@@ -93,7 +93,11 @@ public class Movimentacao : MonoBehaviour
     void OnMove(InputValue valor)
     {
         // Lê o valor vindo do Input System e armazena a direção desejada
-        direcao = valor.Get<Vector2>();
+        direcao = valor.Get<Vector2>(); // {0,0}
+        if (direcao.x < 0)
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+        }
     }
 
     void OnJump()
