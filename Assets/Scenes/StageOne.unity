@@ -496,7 +496,11 @@ Transform:
   m_GameObject: {fileID: 533564099}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< Updated upstream
   m_LocalPosition: {x: 0, y: -2.013, z: 0}
+=======
+  m_LocalPosition: {x: 0, y: -1.975, z: 0}
+>>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -676,8 +680,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Movimentacao
   velocidade: 5
   forcaPulo: 5
+<<<<<<< Updated upstream
   forcaDash: 15
   estaNoChao: 0
+=======
+  forcaDash: 5
+>>>>>>> Stashed changes
   raioVerificaChao: 0.3
   distanciaVerificaPlataforma: 0.2
   oAnimator: {fileID: 1843577485}
@@ -839,7 +847,7 @@ SpriteRenderer:
   m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1843577484
@@ -851,7 +859,11 @@ Transform:
   m_GameObject: {fileID: 1843577478}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< Updated upstream
   m_LocalPosition: {x: -3.61, y: -1.999, z: 0}
+=======
+  m_LocalPosition: {x: -3.61, y: -2.04, z: 0}
+>>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -888,6 +900,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1843577478}
+<<<<<<< Updated upstream
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 858ed0163d7a52a479f7e042ca1531a9, type: 3}
@@ -901,6 +914,35 @@ MonoBehaviour:
   distanciaVerificaPlataforma: 0.2
   oAnimator: {fileID: 1843577485}
   oAnimator: {fileID: 1843577485}
+=======
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9ee44a35967aa640929ed3b0ebcf7d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Ataque
+  rb: {fileID: 0}
+  direcao: {x: 0, y: 0}
+  velocidade: 3
+  forcaPulo: 3
+  puloDuploHabilitado: 0
+  dashDisponivel: 1
+  emDash: 0
+  forcaDash: 15
+  estaNoChao: 0
+  estaNaPlataforma: 0
+  peDoPersonagem: {fileID: 0}
+  Ground:
+    m_Bits: 0
+  Platform:
+    m_Bits: 0
+  PlayerMask:
+    m_Bits: 0
+  raioVerificaChao: 0.3
+  distanciaVerificaPlataforma: 0.2
+  oAnimator: {fileID: 0}
+  descendoDaPlataforma: 0
+  tempoSoco: 0
+>>>>>>> Stashed changes
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
