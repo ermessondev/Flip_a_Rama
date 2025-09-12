@@ -1,29 +1,31 @@
 using System.Collections;
+using System.Data.Common;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 
-// Caso o objeto não tenha o componente, ele é criado em tempo de compilação
+// Caso o objeto nï¿½o tenha o componente, ele ï¿½ criado em tempo de compilaï¿½ï¿½o
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(BoxCollider2D))]
 public class Movimentacao : MonoBehaviour
 {
-    // Variáveis dedicadas à mecânica de movimentação
-    private Rigidbody2D rb;
-    private Vector2 direcao;
+    // Variï¿½veis dedicadas ï¿½ mecï¿½nica de movimentaï¿½ï¿½o
+    protected Rigidbody2D rb;
+    protected Vector2 direcao;
     [SerializeField] private float velocidade = 3f;
     [SerializeField] private float forcaPulo = 3f;
 
-    // Variáveis dedicadas à mecânica de dash
+    // Variï¿½veis dedicadas ï¿½ mecï¿½nica de dash
     private bool puloDuploHabilitado = false;
     private bool dashDisponivel = true;
     private bool emDash = false;
     [SerializeField] private float forcaDash = 15f;
 
-    // Variáveis de controle de plataforma/chão/layers
-    private bool estaNoChao = false;
-    private bool estaNaPlataforma = false;
+    // Variï¿½veis de controle de plataforma/chï¿½o/layers
+    public bool estaNoChao = false;
+    protected bool estaNaPlataforma = false;
     Transform peDoPersonagem;
     private LayerMask Ground;
     private LayerMask Platform;
@@ -32,18 +34,23 @@ public class Movimentacao : MonoBehaviour
     [SerializeField] private float raioVerificaChao = 0.30f;
     [SerializeField] private float distanciaVerificaPlataforma = 0.20f;
 
-    // Variável de controle para queda através da plataforma
+    // Variï¿½veis de AnimaÃ§Ã£o
+    [SerializeField] protected Animator oAnimator;
+
+    // Variï¿½vel de controle para queda atravï¿½s da plataforma
     private bool descendoDaPlataforma = false;
 
     void Awake()
     {
+        oAnimator = GetComponent<Animator>();
+
         rb = GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
-        // Referência ao "pé" do personagem para checar contato com o chão/plataforma
+        // Referï¿½ncia ao "pï¿½" do personagem para checar contato com o chï¿½o/plataforma
         peDoPersonagem = transform.Find("pePlayer");
 
-        // Máscaras de layer usadas nas verificações de colisão
+        // Mï¿½scaras de layer usadas nas verificaï¿½ï¿½es de colisï¿½o
         Ground = LayerMask.GetMask("Ground");
         Platform = LayerMask.GetMask("Platform");
         PlayerMask = LayerMask.GetMask("Player");
@@ -51,10 +58,15 @@ public class Movimentacao : MonoBehaviour
 
     void Update()
     {
-        // Verifica se o personagem está no chão (retorna true se houver um colisor no raio definido)
+        // Inicia as animaÃ§Ãµes
+        RodarAnimacoesHorizontal();
+        RodarAnimacoesVertical();
+        EspelharJogador();
+       
+        // Verifica se o personagem estï¿½ no chï¿½o (retorna true se houver um colisor no raio definido)
         estaNoChao = Physics2D.OverlapCircle(peDoPersonagem.position, raioVerificaChao, Ground) != null;
 
-        // Verifica se o personagem está encostando em uma plataforma logo abaixo do pé
+        // Verifica se o personagem estï¿½ encostando em uma plataforma logo abaixo do pï¿½
         hitPlataforma = Physics2D.Linecast(
             peDoPersonagem.position,
             (Vector2)peDoPersonagem.position + (Vector2.down * distanciaVerificaPlataforma),
@@ -62,15 +74,15 @@ public class Movimentacao : MonoBehaviour
         );
         estaNaPlataforma = hitPlataforma.collider != null;
 
-        // Controle do pulo duplo: recarrega ao tocar o chão ou uma plataforma
+        // Controle do pulo duplo: recarrega ao tocar o chï¿½o ou uma plataforma
         if (estaNaPlataforma || estaNoChao)
         {
             puloDuploHabilitado = true;
         }
 
-        // Controle de colisão com as plataformas:
-        // - Se não está sobre a plataforma, ignora colisão (permite atravessar de baixo para cima)
-        // - Se está sobre a plataforma e não está descendo, reativa a colisão
+        // Controle de colisï¿½o com as plataformas:
+        // - Se nï¿½o estï¿½ sobre a plataforma, ignora colisï¿½o (permite atravessar de baixo para cima)
+        // - Se estï¿½ sobre a plataforma e nï¿½o estï¿½ descendo, reativa a colisï¿½o
         if (!estaNaPlataforma)
         {
             Physics2D.IgnoreLayerCollision(7, 8, true);
@@ -83,7 +95,7 @@ public class Movimentacao : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Se não estiver em dash, aplica a movimentação horizontal usando o valor armazenado em 'direcao' (setado em OnMove)
+        // Se nï¿½o estiver em dash, aplica a movimentaï¿½ï¿½o horizontal usando o valor armazenado em 'direcao' (setado em OnMove)
         if (!emDash)
         {
             rb.linearVelocity = new Vector2(direcao.x * velocidade, rb.linearVelocity.y);
@@ -92,13 +104,13 @@ public class Movimentacao : MonoBehaviour
 
     void OnMove(InputValue valor)
     {
-        // Lê o valor vindo do Input System e armazena a direção desejada
+        // Lï¿½ o valor vindo do Input System e armazena a direï¿½ï¿½o desejada
         direcao = valor.Get<Vector2>();
     }
 
     void OnJump()
     {
-        // Pula se estiver no chão ou sobre uma plataforma; caso contrário, usa o pulo duplo se estiver habilitado
+        // Pula se estiver no chï¿½o ou sobre uma plataforma; caso contrï¿½rio, usa o pulo duplo se estiver habilitado
         if (estaNoChao || estaNaPlataforma)
         {
             pular();
@@ -112,7 +124,7 @@ public class Movimentacao : MonoBehaviour
 
     void OnDash()
     {
-        // Inicia o dash se estiver disponível
+        // Inicia o dash se estiver disponï¿½vel
         if (dashDisponivel == true)
         {
             StartCoroutine(usarDash());
@@ -121,7 +133,7 @@ public class Movimentacao : MonoBehaviour
 
     void OnFallOfPlatform()
     {
-        // Inicia a descida atravessando a plataforma (temporariamente ignora colisão)
+        // Inicia a descida atravessando a plataforma (temporariamente ignora colisï¿½o)
         StartCoroutine(descerPlataforma());
     }
 
@@ -137,16 +149,16 @@ public class Movimentacao : MonoBehaviour
         dashDisponivel = false;
         emDash = true;
 
-        // Desliga a gravidade durante o dash para um impulso mais “reto”
+        // Desliga a gravidade durante o dash para um impulso mais ï¿½retoï¿½
         rb.gravityScale = 0f;
 
-        // Se o pulo duplo foi gasto, recarrega ao usar o dash (mecânica intencional)
+        // Se o pulo duplo foi gasto, recarrega ao usar o dash (mecï¿½nica intencional)
         if (!puloDuploHabilitado)
         {
             puloDuploHabilitado = true;
         }
 
-        // Aplica o dash para a esquerda/direita conforme a direção horizontal
+        // Aplica o dash para a esquerda/direita conforme a direï¿½ï¿½o horizontal
         if (direcao.x == -1)
         {
             rb.AddForce(Vector2.left * forcaDash, ForceMode2D.Impulse);
@@ -156,7 +168,7 @@ public class Movimentacao : MonoBehaviour
             rb.AddForce(Vector2.right * forcaDash, ForceMode2D.Impulse);
         }
 
-        // Duração do dash
+        // Duraï¿½ï¿½o do dash
         yield return new WaitForSeconds(0.3f);
 
         // Finaliza o dash, restaura a gravidade e zera a velocidade
@@ -164,20 +176,46 @@ public class Movimentacao : MonoBehaviour
         rb.gravityScale = 1;
         rb.linearVelocity = Vector2.zero;
 
-        // Tempo de recarga até o próximo dash
+        // Tempo de recarga atï¿½ o prï¿½ximo dash
         yield return new WaitForSeconds(2f);
         dashDisponivel = true;
     }
 
     private IEnumerator descerPlataforma()
     {
-        // Se está sobre a plataforma, permite “cair” por ela ignorando a colisão por um curto período
+        // Se estï¿½ sobre a plataforma, permite ï¿½cairï¿½ por ela ignorando a colisï¿½o por um curto perï¿½odo
         if (estaNaPlataforma == true)
         {
             descendoDaPlataforma = true;
             Physics2D.IgnoreLayerCollision(7, 8, true);
             yield return new WaitForSeconds(0.5f);
             descendoDaPlataforma = false;
+        }
+    }
+
+    void RodarAnimacoesHorizontal()
+    {
+        // Roda as animcaÃ§Ãµes Horizontais - AnimÃ§Ãµes de Walk e Idle
+        oAnimator.SetFloat("HorizontalAnim", rb.linearVelocity.x);
+    }
+
+    void RodarAnimacoesVertical()
+    {
+        // Roda as animcaÃ§Ãµes Verticais - AnimÃ§Ãµes de Jump e ve se o pesrongem esta no chÃ£o pra voltar a animÃ§Ã£o de Idle
+        oAnimator.SetFloat("VerticalAnim", rb.linearVelocity.y);
+        oAnimator.SetBool("EstaNoChao", estaNoChao || estaNaPlataforma);
+    }
+
+    void EspelharJogador()
+    {
+        // Faz o Jogador olhar para a direÃ§Ã£o que esta andando - Espelha o Sprite (direita / esquerda)
+        if (direcao.x == 1)
+        {
+            transform.localScale = new Vector3(1f, 1f, 1f);
+        }
+        else if (direcao.x == -1)
+        {
+            transform.localScale = new Vector3(-1f, 1f, 1f);
         }
     }
 }
