@@ -655,6 +655,7 @@ GameObject:
   - component: {fileID: 1843577479}
   - component: {fileID: 1843577486}
   - component: {fileID: 1843577485}
+  - component: {fileID: 1843577487}
   m_Layer: 8
   m_Name: PlayerOne
   m_TagString: Untagged
@@ -893,14 +894,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 858ed0163d7a52a479f7e042ca1531a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Animacao
+--- !u!114 &1843577487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843577478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9ee44a35967aa640929ed3b0ebcf7d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Ataque
   velocidade: 3
   forcaPulo: 3
   forcaDash: 15
   estaNoChao: 0
   raioVerificaChao: 0.3
   distanciaVerificaPlataforma: 0.2
-  oAnimator: {fileID: 1843577485}
-  oAnimator: {fileID: 1843577485}
+  oAnimator: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
