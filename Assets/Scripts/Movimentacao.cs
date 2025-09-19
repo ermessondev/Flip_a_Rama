@@ -42,8 +42,11 @@ public class Movimentacao : MonoBehaviour
 
     void Awake()
     {
-        oAnimator = GetComponent<Animator>();
-
+        if (oAnimator == null)
+        {
+            oAnimator = GetComponent<Animator>();
+        }
+            
         rb = GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
@@ -196,13 +199,13 @@ public class Movimentacao : MonoBehaviour
     void RodarAnimacoesHorizontal()
     {
         // Roda as animcações Horizontais - Animções de Walk e Idle
-        oAnimator.SetFloat("HorizontalAnim", rb.linearVelocity.x);
+        oAnimator.SetFloat("AnimHorizontal", rb.linearVelocity.x);
     }
 
     void RodarAnimacoesVertical()
     {
         // Roda as animcações Verticais - Animções de Jump e ve se o pesrongem esta no chão pra voltar a animção de Idle
-        oAnimator.SetFloat("VerticalAnim", rb.linearVelocity.y);
+        oAnimator.SetFloat("AnimVertical", rb.linearVelocity.y);
         oAnimator.SetBool("EstaNoChao", estaNoChao || estaNaPlataforma);
     }
 
