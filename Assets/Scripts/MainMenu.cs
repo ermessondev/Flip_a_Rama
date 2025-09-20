@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         singlePlayer.onClick.AddListener(() => modoDeJogo(true));
-        singlePlayer.onClick.AddListener(() => modoDeJogo(false));
+        multiPlayer.onClick.AddListener(() => modoDeJogo(false));
     }
 
     void modoDeJogo (bool modoDeJogo) 
