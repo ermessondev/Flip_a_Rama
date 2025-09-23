@@ -20,7 +20,7 @@ public class Movimentacao : MonoBehaviour
     // Vari�veis dedicadas � mec�nica de dash
     private bool puloDuploHabilitado = false;
     private bool dashDisponivel = true;
-    private bool emDash = false;
+    protected bool emDash = false;
     [SerializeField] private float forcaDash = 15f;
 
     // Vari�veis de controle de plataforma/ch�o/layers

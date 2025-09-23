@@ -4,25 +4,35 @@ using UnityEngine;
 public class Ataque : Movimentacao
 {
     [Header("Configurações do Combo")]
-    [SerializeField] private float tempoEntreGolpes = 1f; // Tempo máximo para apertar de novo / para o combo nao resetar
-    [SerializeField] private float duracaoGolpe = 0.4f;   // Quanto tempo a animação dura
-    [SerializeField] private int maximoCombo = 3;         // Limite de golpes no combo
+    [SerializeField] private float tempoEntreGolpes = 1f;   // Tempo máximo entre ataques para manter o combo
+    [SerializeField] private float duracaoGolpe = 0.4f;     // Duração da animação do golpe
+    [SerializeField] private int maximoCombo = 3;           // Quantos golpes no combo
 
-    private int comboIndice = 0;         // Qual golpe está
-    private bool podeAtacar = true;     // Evita spam
-    private Coroutine resetComboCoroutine;
+    [Header("Configurações do Ataque")]
+    [SerializeField] private Transform pontoAtaque;         // Centro da hitbox do ataque
+    [SerializeField] private Vector2 tamanhoAtaque;         // Tamanho da hitbox do ataque
+    [SerializeField] private BoxCollider2D defesaInimigo;   // Hitbox específica de defesa do inimigo
 
-    // Todos os Debug.Log são de teste por enquanto 
+    private int comboIndice = 0;                            // Indica qual golpe do combo está ativo
+    private bool podeAtacar = true;                         // Evita spam de ataques
+    private Coroutine resetComboCoroutine;                  // Coroutine que reseta o combo por tempo
 
+    // Todos os Debug.Log são para testes
+    
     void OnAttack()
     {
-        if (podeAtacar == false) 
+        if (emDash)
+        {
+            Debug.Log("Não pode atacar durante o dash");
+            return;
+        }
+
+        if (!podeAtacar)
         {
             return;
         }
 
         comboIndice++;
-
         if (comboIndice > maximoCombo)
         {
             comboIndice = 1;
@@ -30,67 +40,79 @@ public class Ataque : Movimentacao
 
         Debug.Log("Ataque pressionado - Golpe atual: " + comboIndice);
 
-        // Inicia a coroutine
+        // Inicia a coroutine do golpe
         StartCoroutine(ExecutarGolpe(comboIndice));
 
+        // Reseta o timer do combo
         if (resetComboCoroutine != null)
         {
             StopCoroutine(resetComboCoroutine);
         }
-
-        // Inicia uma nova coroutine para resetar o combo depois de (tempoEntreGolpes)
-        // Coroutine reinicia o combo se o jogador não apertar ataque dentro do tempo (tempoEntreGolpes)
         resetComboCoroutine = StartCoroutine(ResetarComboDepoisDoTempo());
     }
 
     private IEnumerator ExecutarGolpe(int golpe)
     {
         podeAtacar = false;
+        oAnimator.SetBool("Punch", true); // Inicia animação do soco
 
-        Debug.Log("Executando golpe " + golpe);
+        // Checa se o ataque acertou a hitbox de defesa do inimigo
+        Collider2D defendeu = Physics2D.OverlapBox(pontoAtaque.position, tamanhoAtaque, 0f);
 
-        // Inicia a animção de soco
-        oAnimator.SetBool("Punch", true);
+        // Se acertou ativa o ComboBloqueado
+        if (defendeu == defesaInimigo)
+        {
+            ComboBloqueado();
+        }
 
-        // espera a duração do golpe para setar False ápos o tempo
-        yield return new WaitForSeconds(duracaoGolpe);
+        yield return new WaitForSeconds(duracaoGolpe);  // Espera o tempo da animação mesmo se bloqueado
 
-        // Pausa a animção de soco
-        oAnimator.SetBool("Punch", false);
-
+        oAnimator.SetBool("Punch", false); // Para animação
         podeAtacar = true;
 
-        // Se chegou no último golpe do combo reseta o combo
-        if (golpe >= maximoCombo)
+        // Se chegou no último golpe do combo, reseta o combo automaticamente
+        if (comboIndice >= maximoCombo)
         {
             Debug.Log("Combo finalizado");
             comboIndice = 0;
+
+            // Para a coroutine de tempo entre golpes, se estiver rodando
+            if (resetComboCoroutine != null)
+            {
+                StopCoroutine(resetComboCoroutine);
+                resetComboCoroutine = null;
+            }
         }
     }
 
-    // Resata o combo ser passar do tempo entre os golpes 
     private IEnumerator ResetarComboDepoisDoTempo()
     {
         yield return new WaitForSeconds(tempoEntreGolpes);
-
-        Debug.Log("Combo resetado (tempo expirou)");
-
         comboIndice = 0;
+        Debug.Log("Combo resetado (tempo expirou)");
     }
 
-    // Resetar combo se o adversário bloquear
-    public void EstaBloqueado()
+    // Reseta o combo se o ataque for bloquedo
+    private void ComboBloqueado()
     {
         Debug.Log("Ataque bloqueado - Combo resetado");
-
-        // Interrompe qualquer golpe em andamento
-        StopAllCoroutines();
-
-        // Reseta tudo
         comboIndice = 0;
-        podeAtacar = true;
 
-        // Pausa a animção de soco
-        oAnimator.SetBool("Socando", false);
+        // Para a coroutine de tempo entre golpes, se estiver rodando
+        if (resetComboCoroutine != null)
+        {
+            StopCoroutine(resetComboCoroutine);
+            resetComboCoroutine = null;
+        }
+    }
+
+    // Desenha a hitbox do ataque no editor
+    private void OnDrawGizmos()
+    {
+        if (pontoAtaque != null)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireCube(pontoAtaque.position, tamanhoAtaque);
+        }
     }
 }
