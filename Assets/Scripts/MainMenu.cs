@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    // Todos os Debug.Log são de teste por enquanto 
     [SerializeField] Button singlePlayer;
     [SerializeField] Button multiPlayer;
     void Start()
@@ -17,10 +18,8 @@ public class MainMenu : MonoBehaviour
         GameManager.instance.singleMode = modoDeJogo;
         SceneManager.LoadScene("CharacterSelect");
     }
-
-    // Update is called once per frame
     void Update()
     {
-        
+     
     }
 }
