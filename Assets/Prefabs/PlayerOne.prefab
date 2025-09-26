@@ -204,7 +204,10 @@ GameObject:
   - component: {fileID: 6704710822933544914}
   - component: {fileID: 4736833625534277005}
   - component: {fileID: 7549948446592252409}
+<<<<<<< Updated upstream
   - component: {fileID: 8851212834333140279}
+=======
+>>>>>>> Stashed changes
   - component: {fileID: 803531603513420880}
   m_Layer: 8
   m_Name: PlayerOne
@@ -257,7 +260,11 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
+<<<<<<< Updated upstream
   m_DefaultActionMap: df70fa95-8a34-4494-b137-73ab6b9c7d37
+=======
+  m_DefaultActionMap: Player
+>>>>>>> Stashed changes
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!50 &4736833625534277005
@@ -333,6 +340,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.4833329, y: 3.4023209}
   m_EdgeRadius: 0
+<<<<<<< Updated upstream
 --- !u!114 &8851212834333140279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,6 +364,8 @@ MonoBehaviour:
   tempoEntreGolpes: 1
   duracaoGolpe: 0.4
   maximoCombo: 3
+=======
+>>>>>>> Stashed changes
 --- !u!114 &803531603513420880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,6 +386,15 @@ MonoBehaviour:
   raioVerificaChao: 0.3
   distanciaVerificaPlataforma: 0.2
   oAnimator: {fileID: 4385487078804554253}
+<<<<<<< Updated upstream
+=======
+  tempoEntreGolpes: 1
+  duracaoGolpe: 0.4
+  maximoCombo: 3
+  pontoAtaque: {fileID: 8050961450617242456}
+  tamanhoAtaque: {x: 0, y: 0}
+  defesaInimigo: {fileID: 0}
+>>>>>>> Stashed changes
 --- !u!1 &6484293780016591858
 GameObject:
   m_ObjectHideFlags: 0
