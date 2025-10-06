@@ -900,6 +900,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 598258797}
   m_CullTransparentMesh: 1
+--- !u!4 &734978828 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1109181839370071808, guid: 917e793259e0bbb4ea6c34ac13064776, type: 3}
+  m_PrefabInstance: {fileID: 1570910611}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &770464269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1568,6 +1573,7 @@ GameObject:
   - component: {fileID: 1403105595}
   - component: {fileID: 1403105594}
   - component: {fileID: 1403105597}
+  - component: {fileID: 1403105598}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1694,6 +1700,24 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &1403105598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403105593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cafd37fe15e1fd940a4976026383a164, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraAutoFit
+  p1: {fileID: 734978828}
+  p2: {fileID: 1035627210}
+  padding: 3
+  minSize: 12
+  maxSize: 25
+  zoomSmooth: 0.2
 --- !u!1 &1518130668
 GameObject:
   m_ObjectHideFlags: 0
