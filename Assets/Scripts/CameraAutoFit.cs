@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraAutoFit : MonoBehaviour
 {
@@ -13,7 +14,11 @@ public class CameraAutoFit : MonoBehaviour
 
     void Awake()
     {
-        p1 = GetComponentInChildren<Transform>();
+        string cenaAtual = SceneManager.GetActiveScene().name;
+        if (cenaAtual != "Treinamento")
+        {
+            p1 = GetComponentInChildren<Transform>();
+        }
         // Tenta achar a câmera no próprio objeto; se não, em filhos
         cam = GetComponent<Camera>();
         if (cam == null) cam = GetComponentInChildren<Camera>();
