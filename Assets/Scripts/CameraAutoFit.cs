@@ -15,6 +15,7 @@ public class CameraAutoFit : MonoBehaviour
     void Awake()
     {
         string cenaAtual = SceneManager.GetActiveScene().name;
+        //Controla a seleção de objeto caso seja tela treinamento.
         if (cenaAtual != "Treinamento")
         {
             p1 = GetComponentInChildren<Transform>();
