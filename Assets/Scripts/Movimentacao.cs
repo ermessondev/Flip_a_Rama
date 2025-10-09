@@ -44,7 +44,7 @@ public class Movimentacao : MonoBehaviour
 
     [Header("Configurações do Combo")]
     [SerializeField] private float tempoEntreGolpes = 1f;   // Tempo máximo entre ataques para manter o combo
-    [SerializeField] private float duracaoGolpe = 0.4f;     // Duração da animação do golpe
+    private float duracaoGolpe;     // Duração da animação do golpe
     [SerializeField] private int maximoCombo = 3;           // Quantos golpes no combo
 
     [Header("Configurações do Ataque")]
@@ -283,7 +283,22 @@ public class Movimentacao : MonoBehaviour
     private IEnumerator ExecutarGolpe(int golpe)
     {
         podeAtacar = false;
-        oAnimator.SetBool("Punch", true); // Inicia animação do soco
+        // Inicia animação do soco
+            switch (golpe)
+    {
+        case 1:
+            oAnimator.SetBool("Punch", true);
+            duracaoGolpe = 0.7f;
+            break;
+        case 2:
+            oAnimator.SetBool("Punch_2", true);
+            duracaoGolpe = 0.9f;
+            break;
+        case 3:
+            oAnimator.SetBool("Punch_3", true);
+            duracaoGolpe = 0.9f;
+            break;
+    }
 
         // Checa se o ataque acertou a hitbox de defesa do inimigo
         Collider2D defendeu = Physics2D.OverlapBox(pontoAtaque.position, tamanhoAtaque, 0f);
@@ -297,7 +312,20 @@ public class Movimentacao : MonoBehaviour
 
         yield return new WaitForSeconds(duracaoGolpe);  // Espera o tempo da animação mesmo se bloqueado
 
-        oAnimator.SetBool("Punch", false); // Para animação
+        // Para animação
+        switch (golpe)
+    {
+        case 1:
+            oAnimator.SetBool("Punch", false);
+            break;
+        case 2:
+            oAnimator.SetBool("Punch_2", false);
+            break;
+        case 3:
+            oAnimator.SetBool("Punch_3", false);
+            break;
+    }
+
         podeAtacar = true;
         acertouDammy = false;
 
