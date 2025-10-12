@@ -285,7 +285,7 @@ public class Movimentacao : MonoBehaviour
         podeAtacar = false;
         // Inicia animação do soco
             switch (golpe)
-    {
+        {
         case 1:
             oAnimator.SetBool("Punch", true);
             duracaoGolpe = 0.7f;
@@ -298,7 +298,7 @@ public class Movimentacao : MonoBehaviour
             oAnimator.SetBool("Punch_3", true);
             duracaoGolpe = 0.9f;
             break;
-    }
+        }
 
         // Checa se o ataque acertou a hitbox de defesa do inimigo
         Collider2D defendeu = Physics2D.OverlapBox(pontoAtaque.position, tamanhoAtaque, 0f);
@@ -314,7 +314,7 @@ public class Movimentacao : MonoBehaviour
 
         // Para animação
         switch (golpe)
-    {
+        {
         case 1:
             oAnimator.SetBool("Punch", false);
             break;
@@ -324,7 +324,7 @@ public class Movimentacao : MonoBehaviour
         case 3:
             oAnimator.SetBool("Punch_3", false);
             break;
-    }
+        }
 
         podeAtacar = true;
         acertouDammy = false;
