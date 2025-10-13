@@ -44,7 +44,7 @@ public class Movimentacao : MonoBehaviour
 
     [Header("Configurações do Combo")]
     [SerializeField] private float tempoEntreGolpes = 1f;   // Tempo máximo entre ataques para manter o combo
-    private float duracaoGolpe;     // Duração da animação do golpe
+    private float duracaoGolpe;                             // Duração da animação do golpe
     [SerializeField] private int maximoCombo = 3;           // Quantos golpes no combo
 
     [Header("Configurações do Ataque")]
@@ -288,15 +288,15 @@ public class Movimentacao : MonoBehaviour
         {
         case 1:
             oAnimator.SetBool("Punch", true);
-            duracaoGolpe = 0.7f;
+            duracaoGolpe = 0.6f;
             break;
         case 2:
             oAnimator.SetBool("Punch_2", true);
-            duracaoGolpe = 0.9f;
+            duracaoGolpe = 0.8f;
             break;
         case 3:
             oAnimator.SetBool("Punch_3", true);
-            duracaoGolpe = 0.9f;
+            duracaoGolpe = 0.8f;
             break;
         }
 
