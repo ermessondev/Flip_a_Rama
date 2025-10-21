@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cb76b2e83ef29d845bf1e26953cd8bce
+guid: 9de982799cb8bb948a1860eb09877492
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1989440948222046019
-    second: TestWalk2_0
+      213: -6356986133591018163
+    second: Idle_02_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Walk-02_0
+      name: Idle_02_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 25c69e580fb00294d9a3e6c47c3c7bcd
-      internalID: 1133966852
+      spriteID: d453931dac277c7a0800000000000000
+      internalID: -6356986133591018163
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 1ec50e7096aa5da429d6dd216a9c6211
+    spriteID: 92815d1d1f56d8a489202c31457fadfd
     internalID: 0
     vertices: []
     indices: 
@@ -137,7 +137,7 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Walk-02_0: 1133966852
+      Idle_02_0: -6356986133591018163
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -66,7 +66,11 @@ public class Movimentacao : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         if (oAnimator == null)
         {
-            oAnimator = GetComponent<Animator>();
+            oAnimator = GetComponentInChildren<Animator>();
+                if (oAnimator == null)
+                {
+                    Debug.Log("Nenhum Animator encontrado no Player ou nos filhos!");
+                }
         }
 
         rb = GetComponent<Rigidbody2D>();
@@ -228,8 +232,8 @@ public class Movimentacao : MonoBehaviour
     void RodarAnimacoesVertical()
     {
         // Roda as animcações Verticais - Animções de Jump e ve se o pesrongem esta no chão pra voltar a animção de Idle
-        oAnimator.SetFloat("AnimVertical", rb.linearVelocity.y);
         oAnimator.SetBool("EstaNoChao", estaNoChao || estaNaPlataforma);
+        oAnimator.SetFloat("AnimVertical", rb.linearVelocity.y);
     }
 
     void EspelharJogador()
@@ -288,15 +292,15 @@ public class Movimentacao : MonoBehaviour
         {
         case 1:
             oAnimator.SetBool("Punch", true);
-            duracaoGolpe = 0.6f;
+            duracaoGolpe = 0.4f;
             break;
         case 2:
             oAnimator.SetBool("Punch_2", true);
-            duracaoGolpe = 0.8f;
+            duracaoGolpe = 0.3f;
             break;
         case 3:
             oAnimator.SetBool("Punch_3", true);
-            duracaoGolpe = 0.8f;
+            duracaoGolpe = 0.3f;
             break;
         }
 

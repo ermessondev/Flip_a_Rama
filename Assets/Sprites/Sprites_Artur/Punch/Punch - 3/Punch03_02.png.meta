@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e43c6f455d4fbe04299bb2943b25f195
+guid: 2dadee4a183264048bf50c951c80cd3f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8828132440356860008
-    second: TestIdle01_0
+      213: -1983178363438836582
+    second: Punch03_02_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Idle-01_0
+      name: Punch03_02_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 320815760dc16ff4e992286dc0b03d89
-      internalID: -108203331
+      spriteID: a94dcf829c55a74e0800000000000000
+      internalID: -1983178363438836582
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 26c536334588ca7479a027d425acc2c5
+    spriteID: 75b076b7a14651a41be1ceaf9ee258a2
     internalID: 0
     vertices: []
     indices: 
@@ -137,7 +137,7 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Idle-01_0: -108203331
+      Punch03_02_0: -1983178363438836582
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

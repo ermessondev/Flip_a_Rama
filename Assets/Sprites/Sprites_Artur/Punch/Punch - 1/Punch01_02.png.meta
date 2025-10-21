@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0079b3d52f4ec644fa2ca6c6ea106ce7
+guid: bad63a639e694414c91b12ef5e7c4657
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8425668954605001906
-    second: Jump-03_0
+      213: -557786977653567922
+    second: Punch01_02_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Jump-03_0
+      name: Punch01_02_0
       rect:
         serializedVersion: 2
         x: 0
@@ -108,15 +108,15 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.5, y: -0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e436bb51ab2021b80800000000000000
-      internalID: -8425668954605001906
+      spriteID: e4ece98f2b75248f0800000000000000
+      internalID: -557786977653567922
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 71d60717360c14d449647dc916e25c0e
+    spriteID: ec6d5c17b42dc454b93b5d69684bd312
     internalID: 0
     vertices: []
     indices: 
@@ -137,7 +137,7 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Jump-03_0: -8425668954605001906
+      Punch01_02_0: -557786977653567922
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

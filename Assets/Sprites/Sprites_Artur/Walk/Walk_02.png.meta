@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0079b3d52f4ec644fa2ca6c6ea106ce7
+guid: 7b480819e23c7cd42be07cb7be1199fd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8425668954605001906
-    second: Jump-03_0
+      213: 8887006134180644394
+    second: Walk_02_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Jump-03_0
+      name: Walk_02_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e436bb51ab2021b80800000000000000
-      internalID: -8425668954605001906
+      spriteID: a260e806efcf45b70800000000000000
+      internalID: 8887006134180644394
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 71d60717360c14d449647dc916e25c0e
+    spriteID: 470c2d4da9f856c41beef3881c5580fd
     internalID: 0
     vertices: []
     indices: 
@@ -137,7 +137,7 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Jump-03_0: -8425668954605001906
+      Walk_02_0: 8887006134180644394
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

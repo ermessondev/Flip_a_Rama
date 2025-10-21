@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: dc41ba79650def447bbc78a653441779
+guid: fdfa89cfa15a66c4aafcfef30eed30d2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4279663860856562183
-    second: Jump-01_0
+      213: -6071282306337867847
+    second: Punch01_03_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Jump-01_0
+      name: Punch01_03_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: -0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9fd5197a4649b94c0800000000000000
-      internalID: -4279663860856562183
+      spriteID: 9b7fd9fc8e87ebba0800000000000000
+      internalID: -6071282306337867847
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: a3efad2a6599c0e44bb834d5217765c6
+    spriteID: 8e53fb38fe3f93d44be89e5363facc3e
     internalID: 0
     vertices: []
     indices: 
@@ -137,7 +137,7 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Jump-01_0: -4279663860856562183
+      Punch01_03_0: -6071282306337867847
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
