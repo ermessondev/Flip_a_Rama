@@ -48,13 +48,19 @@ public class Movimentacao : MonoBehaviour
     [SerializeField] private int maximoCombo = 3;           // Quantos golpes no combo
 
     [Header("Configurações do Ataque")]
-    [SerializeField] private Transform pontoAtaque;         // Centro da hitbox do ataque
-    [SerializeField] private Vector2 tamanhoAtaque;         // Tamanho da hitbox do ataque
+    [SerializeField] private Transform hitboxPunch_01;         // Centro da hitbox do ataque
+    [SerializeField] private Transform hitboxPunch_02;
+    [SerializeField] private Transform hitboxPunch_03;
+    [SerializeField] private Vector2 tamanhoAtaque_01;         // Tamanho da hitbox do ataque
+    [SerializeField] private Vector2 tamanhoAtaque_02;
+    [SerializeField] private Vector2 tamanhoAtaque_03;
     [SerializeField] private BoxCollider2D defesaInimigo;   // Hitbox específica de defesa do inimigo
 
     private int comboIndice = 0;                            // Indica qual golpe do combo está ativo
     private bool podeAtacar = true;                         // Evita spam de ataques
     private Coroutine resetComboCoroutine;                  // Coroutine que reseta o combo por tempo
+
+    private bool emBlock = false; 
 
     public bool acertouDammy = false;
 
@@ -191,10 +197,12 @@ public class Movimentacao : MonoBehaviour
         // Aplica o dash para a esquerda/direita conforme a direção horizontal
         if (direcao.x == -1)
         {
+            oAnimator.SetBool("Dash", emDash);
             rb.AddForce(Vector2.left * forcaDash, ForceMode2D.Impulse);
         }
         else if (direcao.x == 1)
         {
+            oAnimator.SetBool("Dash", emDash);
             rb.AddForce(Vector2.right * forcaDash, ForceMode2D.Impulse);
         }
 
@@ -205,6 +213,7 @@ public class Movimentacao : MonoBehaviour
         emDash = false;
         rb.gravityScale = 1;
         rb.linearVelocity = Vector2.zero;
+        oAnimator.SetBool("Dash", emDash);
 
         // Tempo de recarga até o próximo dash
         yield return new WaitForSeconds(2f);
@@ -252,11 +261,37 @@ public class Movimentacao : MonoBehaviour
 
     }
 
+        public void OnBlock()
+    {
+        // Inicia a corrotina quando o jogador clica para bloquear
+        StartCoroutine(ExecutarBlock());
+    }
+
+    private IEnumerator ExecutarBlock()
+    {
+        // Ativa a animação de bloqueio
+        oAnimator.SetBool("Block", true);
+        emBlock = true;
+
+        // Espera 5 segundos
+        yield return new WaitForSeconds(0.5f);
+
+        // Volta para o Idle
+        oAnimator.SetBool("Block", false);
+        emBlock = false;
+    }
+    
     void OnAttack()
     {
         if (emDash)
         {
-            Debug.Log("Não pode atacar durante o dash");
+            Debug.Log("Não pode atacar durante o Dash");
+            return;
+        }
+
+        if (emBlock)
+        {
+            Debug.Log("Não pode atacar durante o Block");
             return;
         }
 
@@ -305,10 +340,12 @@ public class Movimentacao : MonoBehaviour
         }
 
         // Checa se o ataque acertou a hitbox de defesa do inimigo
-        Collider2D defendeu = Physics2D.OverlapBox(pontoAtaque.position, tamanhoAtaque, 0f);
+        Collider2D punch_01 = Physics2D.OverlapBox(hitboxPunch_01.position, tamanhoAtaque_01, 0f);
+        Collider2D punch_02 = Physics2D.OverlapBox(hitboxPunch_02.position, tamanhoAtaque_02, 0f);
+        Collider2D punch_03 = Physics2D.OverlapBox(hitboxPunch_03.position, tamanhoAtaque_03, 0f);
 
         // Se acertou ativa o ComboBloqueado 
-        if (defendeu == defesaInimigo)
+        if (punch_01 == defesaInimigo || punch_02 == defesaInimigo || punch_03 == defesaInimigo)
         {
             ComboBloqueado();
             acertouDammy = true;
@@ -372,10 +409,22 @@ public class Movimentacao : MonoBehaviour
     // Desenha a hitbox do ataque no editor
     private void OnDrawGizmos()
     {
-        if (pontoAtaque != null)
+        if (hitboxPunch_01 != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireCube(hitboxPunch_01.position, tamanhoAtaque_01);
+        }
+
+        if (hitboxPunch_02 != null)
         {
             Gizmos.color = Color.blue;
-            Gizmos.DrawWireCube(pontoAtaque.position, tamanhoAtaque);
+            Gizmos.DrawWireCube(hitboxPunch_02.position, tamanhoAtaque_02);
+        }
+
+        if (hitboxPunch_03 != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(hitboxPunch_03.position, tamanhoAtaque_03);
         }
     }
 
