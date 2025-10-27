@@ -444,6 +444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Movimentacao
   vida: 100
+  som: {fileID: 0}
   velocidade: 5
   forcaPulo: 5
   forcaDash: 15

@@ -1563,11 +1563,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8758331603822144459, guid: 0be7d0eb8d7100844ae26b8b80d3a4cb, type: 3}
   m_PrefabInstance: {fileID: 3776814036799141319}
   m_PrefabAsset: {fileID: 0}
---- !u!61 &1035627211 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 5699092613589366356, guid: 0be7d0eb8d7100844ae26b8b80d3a4cb, type: 3}
-  m_PrefabInstance: {fileID: 3776814036799141319}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1058364574 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 803531603513420880, guid: 917e793259e0bbb4ea6c34ac13064776, type: 3}
@@ -2513,7 +2508,7 @@ PrefabInstance:
     - target: {fileID: 803531603513420880, guid: 917e793259e0bbb4ea6c34ac13064776, type: 3}
       propertyPath: defesaInimigo
       value: 
-      objectReference: {fileID: 1035627211}
+      objectReference: {fileID: 0}
     - target: {fileID: 1109181839370071808, guid: 917e793259e0bbb4ea6c34ac13064776, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.820266
@@ -3339,6 +3334,14 @@ PrefabInstance:
     - target: {fileID: 5997914488800221952, guid: 0be7d0eb8d7100844ae26b8b80d3a4cb, type: 3}
       propertyPath: m_Name
       value: non_hit_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997914488800221952, guid: 0be7d0eb8d7100844ae26b8b80d3a4cb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997914488800221952, guid: 0be7d0eb8d7100844ae26b8b80d3a4cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8758331603822144459, guid: 0be7d0eb8d7100844ae26b8b80d3a4cb, type: 3}
       propertyPath: m_LocalPosition.x
