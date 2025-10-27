@@ -12,12 +12,12 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         singlePlayer.onClick.AddListener(() => modoDeJogo(true, "CharacterSelect"));
-        treinamento.onClick.AddListener(() => modoDeJogo(true, "Treinamento"));
+        treinamento.onClick.AddListener(() => modoDeJogo(true, "CharacterSelect", true));
         multiPlayer.onClick.AddListener(() => modoDeJogo(false, "CharacterSelect"));
 
     }
 
-    void modoDeJogo (bool modoDeJogo, string scene) 
+    void modoDeJogo (bool modoDeJogo, string scene, bool treinamento = false) 
     { 
         GameManager.instance.singleMode = modoDeJogo;
         SceneManager.LoadScene(scene);

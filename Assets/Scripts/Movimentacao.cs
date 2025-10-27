@@ -16,6 +16,9 @@ public class Movimentacao : MonoBehaviour
 
     private PlayerInput playerInput;
 
+    // Variáveis de Áudio e Som
+    [SerializeField] AudioSource caixaDeSom;
+    
     // Variéveis  dedicadas a mecenica de movimentação
     protected Rigidbody2D rb;
     protected Vector2 direcao;
@@ -136,6 +139,13 @@ public class Movimentacao : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(direcao.x * velocidade, rb.linearVelocity.y);
         }
+    }
+
+    void PlaySound(AudioClip som, float pitchMinimo, float pitchMaximo)
+    {
+        Debug.Log($"Ta tocando esse som aqui: {som.name}");
+        caixaDeSom.pitch = Random.Range(pitchMinimo, pitchMaximo);
+        caixaDeSom.PlayOneShot(som);
     }
 
     void OnMove(InputValue valor)
@@ -428,5 +438,11 @@ public class Movimentacao : MonoBehaviour
         }
     }
 
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Limitador"))
+        {
+            Debug.Log("Você passou da arena");
+        }
+    }
 }

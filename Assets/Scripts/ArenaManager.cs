@@ -71,26 +71,30 @@ public class ArenaManager : MonoBehaviour
         }
         else
         {
-            // MODO SINGLEPLAYER: instanciar inimigo sem PlayerInput
-            player2 = Instantiate(GameManager.instance.jogador2);
-            player2.name = "Jogador2 (IA)";
-            GameManager.instance.jogador2 = player2;
-
-            // Remove o PlayerInput caso o prefab tenha, só por garantia
-            var input = player2.GetComponent<PlayerInput>();
-            if (input != null)
+            if (!GameManager.instance.treinamento)
             {
-                Destroy(input);
-            }
+                // MODO SINGLEPLAYER: instanciar inimigo sem PlayerInput
+                player2 = Instantiate(GameManager.instance.jogador2);
+                player2.name = "Jogador2 (IA)";
+                GameManager.instance.jogador2 = player2;
 
-            if (jogador2Referencia != null)
-            {
-                player2.transform.SetParent(jogador2Referencia, false);
-                player2.transform.localPosition = Vector3.zero;
-                player2.transform.localRotation = Quaternion.identity;
-            }
+                // Remove o PlayerInput caso o prefab tenha, só por garantia
+                var input = player2.GetComponent<PlayerInput>();
+                if (input != null)
+                {
+                    Destroy(input);
+                }
 
-            Debug.Log($"🤖 Inimigo instanciado como Jogador2 n modo singleplayer");
+                if (jogador2Referencia != null)
+                {
+                    player2.transform.SetParent(jogador2Referencia, false);
+                    player2.transform.localPosition = Vector3.zero;
+                    player2.transform.localRotation = Quaternion.identity;
+                }
+
+                Debug.Log($"🤖 Inimigo instanciado como Jogador2 n modo singleplayer");
+            }
+            
         }
 
         StartCoroutine(setarCamera(player1Input.transform, player2?.transform));
