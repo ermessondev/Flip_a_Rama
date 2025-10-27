@@ -955,6 +955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   CharacterDatabase:
   - {fileID: 4985995813333879250, guid: 917e793259e0bbb4ea6c34ac13064776, type: 3}
+  - {fileID: 4985995813333879250, guid: 917e793259e0bbb4ea6c34ac13064776, type: 3}
   jogador1: {fileID: 0}
   jogador2: {fileID: 0}
   singleMode: 0
