@@ -76,30 +76,26 @@ public class ArenaManager : MonoBehaviour
         }
         else
         {
-            if (GameManager.instance.treinamento)
+            // MODO SINGLEPLAYER: instanciar inimigo sem PlayerInput
+            player2 = Instantiate(GameManager.instance.jogador2);
+            player2.name = "Jogador2 (IA)";
+            GameManager.instance.jogador2 = player2;
+
+            // Remove o PlayerInput caso o prefab tenha, só por garantia
+            var input = player2.GetComponent<PlayerInput>();
+            if (input != null)
             {
-                // MODO SINGLEPLAYER: instanciar inimigo sem PlayerInput
-                player2 = Instantiate(GameManager.instance.jogador2);
-                player2.name = "Jogador2 (IA)";
-                GameManager.instance.jogador2 = player2;
-
-                // Remove o PlayerInput caso o prefab tenha, só por garantia
-                var input = player2.GetComponent<PlayerInput>();
-                if (input != null)
-                {
-                    Destroy(input);
-                }
-
-                if (jogador2Referencia != null)
-                {
-                    player2.transform.SetParent(jogador2Referencia, false);
-                    player2.transform.localPosition = Vector3.zero;
-                    player2.transform.localRotation = Quaternion.identity;
-                }
-
-                Debug.Log($"🤖 Inimigo instanciado como Jogador2 n modo singleplayer");
+                Destroy(input);
             }
-            
+
+            if (jogador2Referencia != null)
+            {
+                player2.transform.SetParent(jogador2Referencia, false);
+                player2.transform.localPosition = Vector3.zero;
+                player2.transform.localRotation = Quaternion.identity;
+            }
+
+            Debug.Log($"🤖 Inimigo instanciado como Jogador2 n modo singleplayer");
         }
 
         StartCoroutine(setarCamera(player1Input.transform, player2?.transform));
@@ -110,12 +106,5 @@ public class ArenaManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         cameraAutoFit.SetPlayers(p1, p2);
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.name.Contains("Jogador1"))
-        {
-            posP1.position = new Vector3(0f, 0f, 0f);
-            Debug.Log("Você passou da arena");
-        }
-    }
+  
 }

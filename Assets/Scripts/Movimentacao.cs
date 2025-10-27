@@ -430,12 +430,23 @@ public class Movimentacao : MonoBehaviour
             Gizmos.DrawWireCube(hitboxPunch_03.position, tamanhoAtaque_03);
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.CompareTag("Limitador"))
+        if (other.CompareTag("Limitador"))
         {
-            Debug.Log("Você passou da arena");
+            if (this.name == "Jogador1")
+            {
+                Debug.Log($"{gameObject.name} entrou no limitador!");
+
+                rb.linearVelocity = Vector2.zero;
+                transform.position = new Vector3(0f, 0f, 20f);
+            }
+            else 
+            {
+                Debug.Log($"{gameObject.name} entrou no limitador!");
+                rb.linearVelocity = Vector2.zero;
+                transform.position = new Vector3(0f, 0f, 20f);
+            }
         }
     }
 }
