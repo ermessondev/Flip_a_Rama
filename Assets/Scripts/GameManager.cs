@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TextCore.Text;
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // Função para setar jogador selecionado na Scene "CharacterSelection"
+    // FunÃ§Ã£o para setar jogador selecionado na Scene "CharacterSelection"
     public void setarJogadores(int character, int jogador)
     {
         if (jogador == 0)
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //Função de controle para tentativa de inicativa de partida, controla a troca de stagio single e coop.
+    //FunÃ§Ã£o de controle para tentativa de inicativa de partida, controla a troca de stagio single e coop.
     public void TentarIniciarPartida()
     {
         if (singleMode && jogador1 != null)
@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene("StageOne");
         }
+
     }
 
 }

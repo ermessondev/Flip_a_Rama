@@ -8,13 +8,24 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Button singlePlayer;
     [SerializeField] Button treinamento;
     [SerializeField] Button multiPlayer;
-    
-    void Start()
+
+    [SerializeField] Button voltarMenu;
+    [SerializeField] GameObject onlineMenu;
+
+    private void OnEnable()
     {
         singlePlayer.onClick.AddListener(() => modoDeJogo(true, "CharacterSelect"));
         treinamento.onClick.AddListener(() => modoDeJogo(true, "Treinamento"));
-        multiPlayer.onClick.AddListener(() => modoDeJogo(false, "CharacterSelect"));
+        multiPlayer.onClick.AddListener(() => enableDisblePanel(onlineMenu, true));
+        voltarMenu.onClick.AddListener(() => enableDisblePanel(onlineMenu, false));
+    }
 
+    private void OnDisable()
+    {
+        singlePlayer.onClick.RemoveAllListeners();
+        treinamento.onClick.RemoveAllListeners();
+        multiPlayer.onClick.RemoveAllListeners();
+        voltarMenu.onClick.RemoveAllListeners();
     }
 
     void modoDeJogo (bool modoDeJogo, string scene) 
@@ -22,8 +33,9 @@ public class MainMenu : MonoBehaviour
         GameManager.instance.singleMode = modoDeJogo;
         SceneManager.LoadScene(scene);
     }
-    void Update()
+    
+    void enableDisblePanel(GameObject panel, bool status )
     {
-     
+        panel.SetActive(status);
     }
 }

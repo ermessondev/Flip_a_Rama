@@ -375,5 +375,14 @@ public class Movimentacao : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("limitador"))
+        {
+            Debug.Log("O player entrou no trigger do limitador!");
 
+            rb.linearVelocity = Vector2.zero;
+
+        }
+    }
 }
