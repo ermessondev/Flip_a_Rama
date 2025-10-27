@@ -71,7 +71,7 @@ public class ArenaManager : MonoBehaviour
         }
         else
         {
-            if (!GameManager.instance.treinamento)
+            if (GameManager.instance.treinamento)
             {
                 // MODO SINGLEPLAYER: instanciar inimigo sem PlayerInput
                 player2 = Instantiate(GameManager.instance.jogador2);
