@@ -9,7 +9,7 @@ using UnityEngine.Rendering;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(BoxCollider2D))]
-public class Movimentacao : MonoBehaviour
+public class CharacterManager : MonoBehaviour
 {
 
     public float vida = 100;
