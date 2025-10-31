@@ -2648,7 +2648,7 @@ PrefabInstance:
       objectReference: {fileID: 863747373}
     - target: {fileID: 803531603513420880, guid: 917e793259e0bbb4ea6c34ac13064776, type: 3}
       propertyPath: duracaoFreezeFrame
-      value: 0.1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1109181839370071808, guid: 917e793259e0bbb4ea6c34ac13064776, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2656,7 +2656,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1109181839370071808, guid: 917e793259e0bbb4ea6c34ac13064776, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.0257716
+      value: -2.1
       objectReference: {fileID: 0}
     - target: {fileID: 1109181839370071808, guid: 917e793259e0bbb4ea6c34ac13064776, type: 3}
       propertyPath: m_LocalPosition.z

@@ -28,7 +28,7 @@ public class Temporizador : MonoBehaviour
 
         while (tempoRestante > 0)
         {
-            yield return new WaitForSecondsRealtime(tempoEspera);
+            yield return new WaitForSeconds(tempoEspera);
             tempoRestante -= intervaloBase;
 
             UpdateTimerText();

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerFreezeFreme : MonoBehaviour
 {
-    /*public Movimentacao playerScript;
+    public Movimentacao playerScript;
 
     public void AtivarFreezeFrame()
     {
@@ -10,6 +10,6 @@ public class PlayerFreezeFreme : MonoBehaviour
         {
             playerScript.AtivarFreezeFrame();
         }
-    }*/
+    }
     
 }

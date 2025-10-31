@@ -93,7 +93,7 @@ Transform:
   m_GameObject: {fileID: 2397810260837795732}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.72, y: 1.64, z: 0}
+  m_LocalPosition: {x: 1.76, y: 1.64, z: 0}
   m_LocalScale: {x: 0.69936407, y: 0.96464, z: 0.96464}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -468,7 +468,7 @@ MonoBehaviour:
   oAnimator: {fileID: 4385487078804554253}
   tempoEntreGolpes: 10
   maximoCombo: 3
-  duracaoFreezeFrame: 5
+  duracaoFreezeFrame: 0.1
   hitboxPunch_01: {fileID: 3287538295371671684}
   hitboxPunch_02: {fileID: 3313743390127333293}
   hitboxPunch_03: {fileID: 7791964241218036937}

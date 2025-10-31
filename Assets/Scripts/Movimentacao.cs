@@ -46,11 +46,12 @@ public class Movimentacao : MonoBehaviour
     [SerializeField] protected Animator oAnimator;
 
     [Header("Configurações do Combo")]
-    [SerializeField] private float tempoEntreGolpes = 1f;   // Tempo máximo entre ataques para manter o combo
-    [SerializeField] private int maximoCombo = 3;           // Quantos golpes no combo
-    [SerializeField] private float duracaoFreezeFrame = 0.1f; // tempo de freeze frame em segundos
-    private float duracaoGolpe;                             // Duração da animação do golpe
+    [SerializeField] private float tempoEntreGolpes = 1f;       // Tempo máximo entre ataques para manter o combo
+    [SerializeField] private int maximoCombo = 3;               // Quantos golpes no combo
+    [SerializeField] private float duracaoFreezeFrame = 0.1f;   // tempo de freeze frame em segundos
+    private float duracaoGolpe;                                 // Duração da animação do golpe
     private float frameParaAcerto;
+    private float esperaAtaque;
 
     [Header("Configurações do Ataque")]
     [SerializeField] private Transform hitboxPunch_01;         // Centro da hitbox do ataque
@@ -237,6 +238,8 @@ public class Movimentacao : MonoBehaviour
         }
     }
 
+    
+    #region Animações/Ataque
     void RodarAnimacoesHorizontal()
     {
         // Roda as animcações Horizontais - Animções de Walk e Idle
@@ -252,7 +255,6 @@ public class Movimentacao : MonoBehaviour
 
     void EspelharJogador()
     {
-
         // Faz o Jogador olhar para a direção que esta andando - Espelha o Sprite (direita / esquerda)
 
         if (direcao.x == 1)
@@ -287,7 +289,7 @@ public class Movimentacao : MonoBehaviour
     }
     
     void OnAttack()
-    {
+    {   
         if (emDash)
         {
             Debug.Log("Não pode atacar durante o Dash");
@@ -327,7 +329,7 @@ public class Movimentacao : MonoBehaviour
     private IEnumerator ExecutarGolpe(int golpe)
     {
         podeAtacar = false;
-
+    
         // Inicia animação e configura duração de cada golpe
         switch (golpe)
         {
@@ -351,7 +353,7 @@ public class Movimentacao : MonoBehaviour
         // Espera até o frame específico do impacto
         yield return new WaitForSeconds(frameParaAcerto);
 
-        // Ativa SOMENTE a hitbox do golpe atual
+        // Ativa somente a hitbox do golpe atual
         Collider2D[] acertos = null;
         switch (golpe)
         {
@@ -371,10 +373,11 @@ public class Movimentacao : MonoBehaviour
         {
             foreach (Collider2D hitboxInimigo in acertos)
             {
+                
                 if (hitboxInimigo == defesaInimigo)
                 {
-                    ComboBloqueado();
                     acertouDammy = true;
+                    ComboBloqueado();
                     Debug.Log($"Defesa inimigo atingida no golpe {golpe}");
                     break;
                 }
@@ -399,7 +402,6 @@ public class Movimentacao : MonoBehaviour
         }
 
         podeAtacar = true;
-        acertouDammy = false;
 
         // Se for o último golpe do combo, reseta
         if (comboIndice >= maximoCombo)
@@ -415,25 +417,64 @@ public class Movimentacao : MonoBehaviour
         }
     }
     
-    /*public void AtivarFreezeFrame()
+    public void AtivarFreezeFrame()
     {
-        if (acertouDammy == true)
+        // Escolhe a hitbox de acordo com o golpe atual
+        Transform hitboxAtual = null;
+        Vector2 tamanhoAtual = Vector2.zero;
+
+        switch (comboIndice)
         {
-            StartCoroutine(FreezeFrame(duracaoFreezeFrame));
+            case 1:
+                hitboxAtual = hitboxPunch_01;
+                tamanhoAtual = tamanhoAtaque_01;
+                esperaAtaque = 0.25f;
+                break;
+            case 2:
+                hitboxAtual = hitboxPunch_02;
+                tamanhoAtual = tamanhoAtaque_02;
+                esperaAtaque = 0.2f;
+                break;
+            case 3:
+                hitboxAtual = hitboxPunch_03;
+                tamanhoAtual = tamanhoAtaque_03;
+                esperaAtaque = 0.25f;
+                break;
+            default:
+                return;
         }
+
+        // Faz a checagem de colisão no exato momento do evento
+        Collider2D[] acertos = Physics2D.OverlapBoxAll(hitboxAtual.position, tamanhoAtual, 0f);
+
+        foreach (Collider2D hitboxInimigo in acertos)
+        {
+            if (hitboxInimigo == defesaInimigo)
+            {
+                // Ativa o freeze frame apenas se o golpe acertar a defesa
+                StartCoroutine(FreezeFrame(duracaoFreezeFrame));
+                Debug.Log("Freeze Frame ativado — defesa inimigo atingida no frame da animação!");
+                return;
+            }
+        }
+
+        // Se não acertou defesa, não faz nada
+        Debug.Log("Sem impacto na defesa — sem freeze.");
     }
 
     private IEnumerator FreezeFrame(float duracao)
     {
-        // Pausa o jogo
-        Time.timeScale = 0f;
+        yield return new WaitForSeconds(esperaAtaque);
 
-        // Espera tempo real
-        yield return new WaitForSecondsRealtime(duracao);
+        podeAtacar = false;
+        rb.linearVelocity = Vector2.zero;           // Para a física momentaneamente
+        oAnimator.enabled = false;                  // Congela a animação
 
-        // Retoma o jogo
-        Time.timeScale = 1f;
-    }*/
+        yield return new WaitForSeconds(duracao);   // Espera o tempo do "freeze frame"
+
+        oAnimator.enabled = true;                   // Reativa movimentação e animação
+        podeAtacar = true;
+    }
 
     private IEnumerator ResetarComboDepoisDoTempo()
     {
@@ -488,7 +529,7 @@ public class Movimentacao : MonoBehaviour
                 rb.linearVelocity = Vector2.zero;
                 transform.position = new Vector3(0f, 0f, 20f);
             }
-            else 
+            else
             {
                 Debug.Log($"{gameObject.name} entrou no limitador!");
                 rb.linearVelocity = Vector2.zero;
@@ -496,4 +537,5 @@ public class Movimentacao : MonoBehaviour
             }
         }
     }
+    #endregion
 }
