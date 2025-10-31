@@ -47,8 +47,10 @@ public class Movimentacao : MonoBehaviour
 
     [Header("Configurações do Combo")]
     [SerializeField] private float tempoEntreGolpes = 1f;   // Tempo máximo entre ataques para manter o combo
-    private float duracaoGolpe;                             // Duração da animação do golpe
     [SerializeField] private int maximoCombo = 3;           // Quantos golpes no combo
+    [SerializeField] private float duracaoFreezeFrame = 0.1f; // tempo de freeze frame em segundos
+    private float duracaoGolpe;                             // Duração da animação do golpe
+    private float frameParaAcerto;
 
     [Header("Configurações do Ataque")]
     [SerializeField] private Transform hitboxPunch_01;         // Centro da hitbox do ataque
@@ -325,61 +327,86 @@ public class Movimentacao : MonoBehaviour
     private IEnumerator ExecutarGolpe(int golpe)
     {
         podeAtacar = false;
-        // Inicia animação do soco
-            switch (golpe)
-        {
-        case 1:
-            oAnimator.SetBool("Punch", true);
-            duracaoGolpe = 0.4f;
-            break;
-        case 2:
-            oAnimator.SetBool("Punch_2", true);
-            duracaoGolpe = 0.3f;
-            break;
-        case 3:
-            oAnimator.SetBool("Punch_3", true);
-            duracaoGolpe = 0.3f;
-            break;
-        }
 
-        // Checa se o ataque acertou a hitbox de defesa do inimigo
-        Collider2D punch_01 = Physics2D.OverlapBox(hitboxPunch_01.position, tamanhoAtaque_01, 0f);
-        Collider2D punch_02 = Physics2D.OverlapBox(hitboxPunch_02.position, tamanhoAtaque_02, 0f);
-        Collider2D punch_03 = Physics2D.OverlapBox(hitboxPunch_03.position, tamanhoAtaque_03, 0f);
-
-        // Se acertou ativa o ComboBloqueado 
-        if (punch_01 == defesaInimigo || punch_02 == defesaInimigo || punch_03 == defesaInimigo)
-        {
-            ComboBloqueado();
-            acertouDammy = true;
-        } 
-
-        yield return new WaitForSeconds(duracaoGolpe);  // Espera o tempo da animação mesmo se bloqueado
-
-        // Para animação
+        // Inicia animação e configura duração de cada golpe
         switch (golpe)
         {
-        case 1:
-            oAnimator.SetBool("Punch", false);
-            break;
-        case 2:
-            oAnimator.SetBool("Punch_2", false);
-            break;
-        case 3:
-            oAnimator.SetBool("Punch_3", false);
-            break;
+            case 1:
+                oAnimator.SetBool("Punch", true);
+                duracaoGolpe = 0.5f;
+                frameParaAcerto = 0.3f;
+                break;
+            case 2:
+                oAnimator.SetBool("Punch_2", true);
+                duracaoGolpe = 0.4f;
+                frameParaAcerto = 0.2f;
+                break;
+            case 3:
+                oAnimator.SetBool("Punch_3", true);
+                duracaoGolpe = 0.4f;
+                frameParaAcerto = 0.3f;
+                break;
+        }
+
+        // Espera até o frame específico do impacto
+        yield return new WaitForSeconds(frameParaAcerto);
+
+        // Ativa SOMENTE a hitbox do golpe atual
+        Collider2D[] acertos = null;
+        switch (golpe)
+        {
+            case 1:
+                acertos = Physics2D.OverlapBoxAll(hitboxPunch_01.position, tamanhoAtaque_01, 0f);
+                break;
+            case 2:
+                acertos = Physics2D.OverlapBoxAll(hitboxPunch_02.position, tamanhoAtaque_02, 0f);
+                break;
+            case 3:
+                acertos = Physics2D.OverlapBoxAll(hitboxPunch_03.position, tamanhoAtaque_03, 0f);
+                break;
+        }
+
+        // Verifica se o ataque acertou a defesa do inimigo
+        if (acertos != null)
+        {
+            foreach (Collider2D hitboxInimigo in acertos)
+            {
+                if (hitboxInimigo == defesaInimigo)
+                {
+                    ComboBloqueado();
+                    acertouDammy = true;
+                    Debug.Log($"Defesa inimigo atingida no golpe {golpe}");
+                    break;
+                }
+            }
+        }
+
+        // Espera o restante da animação antes de liberar outro ataque
+        yield return new WaitForSeconds(duracaoGolpe - frameParaAcerto);
+
+        // Desativa a animação do golpe
+        switch (golpe)
+        {
+            case 1:
+                oAnimator.SetBool("Punch", false);
+                break;
+            case 2:
+                oAnimator.SetBool("Punch_2", false);
+                break;
+            case 3:
+                oAnimator.SetBool("Punch_3", false);
+                break;
         }
 
         podeAtacar = true;
         acertouDammy = false;
 
-        // Se chegou no último golpe do combo, reseta o combo automaticamente
+        // Se for o último golpe do combo, reseta
         if (comboIndice >= maximoCombo)
         {
             Debug.Log("Combo finalizado");
             comboIndice = 0;
 
-            // Para a coroutine de tempo entre golpes, se estiver rodando
             if (resetComboCoroutine != null)
             {
                 StopCoroutine(resetComboCoroutine);
@@ -387,6 +414,26 @@ public class Movimentacao : MonoBehaviour
             }
         }
     }
+    
+    /*public void AtivarFreezeFrame()
+    {
+        if (acertouDammy == true)
+        {
+            StartCoroutine(FreezeFrame(duracaoFreezeFrame));
+        }
+    }
+
+    private IEnumerator FreezeFrame(float duracao)
+    {
+        // Pausa o jogo
+        Time.timeScale = 0f;
+
+        // Espera tempo real
+        yield return new WaitForSecondsRealtime(duracao);
+
+        // Retoma o jogo
+        Time.timeScale = 1f;
+    }*/
 
     private IEnumerator ResetarComboDepoisDoTempo()
     {
