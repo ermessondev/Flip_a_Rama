@@ -12,6 +12,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Button voltarMenu;
     [SerializeField] GameObject onlineMenu;
 
+    [SerializeField] Button btnCriarSala;
+
     private void OnEnable()
     {
         singlePlayer.onClick.AddListener(() => modoDeJogo(true, "CharacterSelect"));

@@ -358,7 +358,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 74812555}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1443130474}
+        m_TargetAssemblyTypeName: Matchmaking, Assembly-CSharp
+        m_MethodName: OnClickCallRoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &74812555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3047,13 +3059,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1443130473}
   - component: {fileID: 1443130471}
+  - component: {fileID: 1443130474}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1443130471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3081,6 +3094,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1443130474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443130470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5133686f923cafd46b430918afd25bf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Matchmaking
 --- !u!1 &1457108680
 GameObject:
   m_ObjectHideFlags: 0
@@ -4063,6 +4088,55 @@ MonoBehaviour:
   multiPlayer: {fileID: 24462181}
   voltarMenu: {fileID: 1894815575}
   onlineMenu: {fileID: 289943757}
+  btnCriarSala: {fileID: 74812554}
+--- !u!1 &1983194604
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1983194606}
+  - component: {fileID: 1983194605}
+  m_Layer: 0
+  m_Name: 'NetworkGameManager '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1983194605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983194604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9238ea80c2abc4d4fb1debadd1f25e77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  cenaSelecao:
+    RawValue: 2
+  cenaArena:
+    RawValue: 3
+--- !u!4 &1983194606
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983194604}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 918.70044, y: 656.34985, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1989722794
 GameObject:
   m_ObjectHideFlags: 0
@@ -4453,3 +4527,4 @@ SceneRoots:
   - {fileID: 1257337490}
   - {fileID: 289943761}
   - {fileID: 1443130473}
+  - {fileID: 1983194606}
