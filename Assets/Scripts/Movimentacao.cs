@@ -61,19 +61,18 @@ public class Movimentacao : MonoBehaviour
     [SerializeField] private Vector2 tamanhoAtaque_02;
     [SerializeField] private Vector2 tamanhoAtaque_03;
     [SerializeField] private BoxCollider2D defesaInimigo;   // Hitbox específica de defesa do inimigo
+    public bool acertouDammy = false;
+    private bool emBlock = false;
 
-    [SerializeField] public CameraShake cameraShake;
-
+    [Header("Configurações do Shake")]
+    [SerializeField] private float shakeDuracao = 0.1f;
+    [SerializeField] private float shakeMagnitude = 0.2f;
+    [SerializeField] private CameraAutoFit cameraAutoFit;
+    
     private int comboIndice = 0;                            // Indica qual golpe do combo está ativo
     private bool podeAtacar = true;                         // Evita spam de ataques
     private Coroutine resetComboCoroutine;                  // Coroutine que reseta o combo por tempo
 
-    private bool emBlock = false;
-
-    public bool acertouDammy = false;
-
-    [SerializeField] public CameraShake CameraShake;
-    
     // Variéveis  de controle para queda através da plataforma
     private bool descendoDaPlataforma = false;
 
@@ -406,6 +405,7 @@ public class Movimentacao : MonoBehaviour
         }
 
         podeAtacar = true;
+        acertouDammy = false;
 
         // Se for o último golpe do combo, reseta
         if (comboIndice >= maximoCombo)
@@ -455,7 +455,7 @@ public class Movimentacao : MonoBehaviour
         {
             if (hitboxInimigo == defesaInimigo)
             {
-                StartCoroutine(CameraShake.Shake(0.3f, 0.5f)); // duração e intensidade
+                StartCoroutine(cameraAutoFit.Shake(shakeDuracao, shakeMagnitude)); // duração e intensidade
                 StartCoroutine(FreezeFrame(duracaoFreezeFrame)); // Ativa o freeze frame apenas se o golpe acertar a defesa
                 Debug.Log("Freeze Frame ativado — defesa inimigo atingida no frame da animação!");
                 return;
