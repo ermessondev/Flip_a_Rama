@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dummy
   oAnimator2: {fileID: 7990280824699599671}
-  movimentacao: {fileID: 0}
+  scriptPlayer1: {fileID: 0}
   dammyTomouDano: 0
 --- !u!50 &3524288544714685291
 Rigidbody2D:
@@ -158,7 +158,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 5
 --- !u!114 &-308175412244055574
 MonoBehaviour:
   m_ObjectHideFlags: 0
