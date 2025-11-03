@@ -104,7 +104,29 @@ public class Movimentacao : MonoBehaviour
             cameraAutoFit = FindFirstObjectByType<CameraAutoFit>();
         }
     }
-    
+
+    void Start()
+    {
+        if (this.name != "Jogador1")
+        {
+            this.transform.localScale = new Vector3(-1f, 1f, 1f);
+        }
+        
+
+        if (defesaInimigo == null)
+        {
+            if (gameObject.name == "Jogador1")
+            {
+                // Procura o jogador 2 e usa o BoxCollider2D dele como hitbox de defesa
+                GameObject jogador2 = GameObject.Find("Jogador2 (IA)");
+                if (jogador2 != null)
+                {
+                    defesaInimigo = jogador2.GetComponentInChildren<BoxCollider2D>();
+                }
+            }
+        }
+    }
+
     void Update()
     {
         // Inicia as animações
