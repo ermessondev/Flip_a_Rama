@@ -76,8 +76,12 @@ public class Movimentacao : MonoBehaviour
     // Variéveis  de controle para queda através da plataforma
     private bool descendoDaPlataforma = false;
 
+    private ArenaManager arenaManager;
+
     void Awake()
     {
+        
+
         playerInput = GetComponent<PlayerInput>();
         if (oAnimator == null)
         {
@@ -98,6 +102,15 @@ public class Movimentacao : MonoBehaviour
         Ground = LayerMask.GetMask("Ground");
         Platform = LayerMask.GetMask("Platform");
         PlayerMask = LayerMask.GetMask("Player");
+    }
+
+    private void Start()    
+    {
+        arenaManager = FindFirstObjectByType<ArenaManager>();
+        if (this.name != "Jogador1")
+        {
+            transform.localScale = new Vector3 (-1f, 1f, 1f);
+        }
     }
 
 
@@ -257,19 +270,16 @@ public class Movimentacao : MonoBehaviour
     }
 
     void EspelharJogador()
-    {
-        // Faz o Jogador olhar para a direção que esta andando - Espelha o Sprite (direita / esquerda)
+        {
 
+        // Faz o Jogador olhar para a direção que está andando - Espelha o Sprite (direita / esquerda)
         if (direcao.x == 1)
-        {
             transform.localScale = new Vector3(1f, 1f, 1f);
-        }
         else if (direcao.x == -1)
-        {
             transform.localScale = new Vector3(-1f, 1f, 1f);
-        }
 
     }
+
 
         public void OnBlock()
     {
@@ -542,4 +552,9 @@ public class Movimentacao : MonoBehaviour
         }
     }
     #endregion
+
+    void OnPauseMenu()
+    {
+;       arenaManager.PausarJogo(!arenaManager.jogoPausado);
+    }
 }

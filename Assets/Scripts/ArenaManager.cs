@@ -9,6 +9,8 @@ public class ArenaManager : MonoBehaviour
     [SerializeField] private Transform jogador2Referencia;
     [SerializeField] private CameraAutoFit cameraAutoFit;
 
+    public bool jogoPausado = false;
+
     private Transform posP1;
     private Transform posP2;
 
@@ -105,6 +107,19 @@ public class ArenaManager : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         cameraAutoFit.SetPlayers(p1, p2);
+    }
+
+    public void PausarJogo(bool value)
+    {
+        jogoPausado = value;
+        if (jogoPausado)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
     }
   
 }
