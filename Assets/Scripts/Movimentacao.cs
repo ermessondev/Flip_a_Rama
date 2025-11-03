@@ -112,17 +112,25 @@ public class Movimentacao : MonoBehaviour
         {
             this.transform.localScale = new Vector3(-1f, 1f, 1f);
         }
-        
+
 
         if (defesaInimigo == null)
         {
             if (gameObject.name == "Jogador1")
             {
                 // Procura o jogador 2 e usa o BoxCollider2D dele como hitbox de defesa
-                GameObject jogador2 = GameObject.Find("Jogador2 (IA)");
+                GameObject jogador2 = GameObject.Find("Jogador2");
                 if (jogador2 != null)
                 {
                     defesaInimigo = jogador2.GetComponentInChildren<BoxCollider2D>();
+                }
+            }else
+            {
+                // Procura o jogador 1 e usa o BoxCollider2D dele como hitbox de defesa
+                GameObject jogador1 = GameObject.Find("Jogador1");
+                if (jogador1 != null)
+                {
+                    defesaInimigo = jogador1.GetComponentInChildren<BoxCollider2D>();
                 }
             }
         }
