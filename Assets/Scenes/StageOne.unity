@@ -660,6 +660,51 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &353984779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 353984781}
+  - component: {fileID: 353984780}
+  m_Layer: 0
+  m_Name: SFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &353984780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353984779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71dbbdb99935caa48bfb13e970f6c06a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFX
+  sfxObject: {fileID: 5147069674600786078, guid: 2dda02fb4533cda4b9ee03f59e792226, type: 3}
+--- !u!4 &353984781
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353984779}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.69672, y: 1.34744, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &464377460
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,6 +964,7 @@ MonoBehaviour:
   jogador1Referencia: {fileID: 1275451474}
   jogador2Referencia: {fileID: 969615139}
   cameraAutoFit: {fileID: 1037372110}
+  jogoPausado: 0
 --- !u!1 &481241415
 GameObject:
   m_ObjectHideFlags: 0
@@ -2860,7 +2906,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   barraVida: {fileID: 464377462}
+  barraDano: {fileID: 0}
+  vida: 0
   vidaMaxima: 100
+  velocidadeDano: 0.005
 --- !u!1 &1709519360
 GameObject:
   m_ObjectHideFlags: 0
@@ -3213,3 +3262,4 @@ SceneRoots:
   - {fileID: 478659108}
   - {fileID: 1275451474}
   - {fileID: 969615139}
+  - {fileID: 353984781}

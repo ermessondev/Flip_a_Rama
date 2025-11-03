@@ -18,12 +18,15 @@ public class Movimentacao : MonoBehaviour
 
     // Variáveis de Áudio e Som
     [SerializeField] AudioSource som;
+    [SerializeField] private AudioClip sairDaArenaSFX;
+    [SerializeField] private AudioClip socoSFX;
+    [SerializeField] public AudioClip dashSFX;
     
     // Variéveis  dedicadas a mecenica de movimentação
     protected Rigidbody2D rb;
     protected Vector2 direcao;
     [SerializeField] private float velocidade = 3f;
-    [SerializeField] private float forcaPulo = 3f;
+    [SerializeField] private float forcaPulo = 5f;
 
     // Variéveis dedicadas a mecánica de dash
     private bool puloDuploHabilitado = false;
@@ -217,6 +220,7 @@ public class Movimentacao : MonoBehaviour
 
     private IEnumerator usarDash()
     {
+        SFX.instance.TocarSFX(dashSFX, transform, 1f, 1.0f);
         dashDisponivel = false;
         emDash = true;
 
@@ -366,6 +370,7 @@ public class Movimentacao : MonoBehaviour
                 oAnimator.SetBool("Punch", true);
                 duracaoGolpe = 0.5f;
                 frameParaAcerto = 0.3f;
+                
                 break;
             case 2:
                 oAnimator.SetBool("Punch_2", true);
@@ -459,16 +464,25 @@ public class Movimentacao : MonoBehaviour
                 hitboxAtual = hitboxPunch_01;
                 tamanhoAtual = tamanhoAtaque_01;
                 esperaAtaque = 0.25f;
+
+                SFX.instance.TocarSFX(socoSFX, transform, 1f, 1.2f); //tem que tocar só quando acertar
+
                 break;
             case 2:
                 hitboxAtual = hitboxPunch_02;
                 tamanhoAtual = tamanhoAtaque_02;
                 esperaAtaque = 0.2f;
+
+                SFX.instance.TocarSFX(socoSFX, transform, 1f, 1.0f);
+
                 break;
             case 3:
                 hitboxAtual = hitboxPunch_03;
                 tamanhoAtual = tamanhoAtaque_03;
                 esperaAtaque = 0.25f;
+
+                SFX.instance.TocarSFX(socoSFX, transform, 1f, 0.8f);
+
                 break;
             default:
                 return;
@@ -553,6 +567,8 @@ public class Movimentacao : MonoBehaviour
     {
         if (other.CompareTag("Limitador"))
         {
+            SFX.instance.TocarSFX(sairDaArenaSFX, transform, 0.5f, 1f);
+
             if (this.name == "Jogador1")
             {
                 Debug.Log($"{gameObject.name} entrou no limitador!");
@@ -566,6 +582,7 @@ public class Movimentacao : MonoBehaviour
                 rb.linearVelocity = Vector2.zero;
                 transform.position = new Vector3(0f, 0f, 20f);
             }
+
         }
     }
 }
