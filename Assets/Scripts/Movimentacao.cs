@@ -107,6 +107,7 @@ public class Movimentacao : MonoBehaviour
 
     void Start()
     {
+        //LoL
         if (this.name != "Jogador1")
         {
             this.transform.localScale = new Vector3(-1f, 1f, 1f);
