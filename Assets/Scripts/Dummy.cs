@@ -6,6 +6,19 @@ public class Dammy : MonoBehaviour
     [SerializeField] private Movimentacao scriptPlayer1; 
     [SerializeField] private bool dammyTomouDano;
 
+   private void Awake()
+    {
+        // Se o campo estiver vazio no Inspector, tenta encontrar o script automaticamente
+        if (scriptPlayer1 == null)
+        {
+            scriptPlayer1 = FindObjectOfType<Movimentacao>();
+            if (scriptPlayer1 == null)
+            {
+                Debug.LogError("Nenhum script 'Movimentacao' foi encontrado na cena!");
+            }
+        }
+    }
+
    private void OnTriggerEnter2D(Collider2D other)
    {
       Debug.Log($"{gameObject.name} entrou no limitador!");

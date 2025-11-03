@@ -98,8 +98,12 @@ public class Movimentacao : MonoBehaviour
         Ground = LayerMask.GetMask("Ground");
         Platform = LayerMask.GetMask("Platform");
         PlayerMask = LayerMask.GetMask("Player");
-    }
 
+        if (cameraAutoFit == null)
+        {
+            cameraAutoFit = FindFirstObjectByType<CameraAutoFit>();
+        }
+    }
 
     void Update()
     {
