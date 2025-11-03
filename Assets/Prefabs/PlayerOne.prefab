@@ -459,6 +459,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Movimentacao
   vida: 100
   som: {fileID: 0}
+  sairDaArenaSFX: {fileID: 8300000, guid: 95c25b4ed0a740a4fb7072d3e1cea95b, type: 3}
+  socoSFX: {fileID: 8300000, guid: 4e1478d670dc9d249b7c2f25cf97d1a5, type: 3}
+  dashSFX: {fileID: 8300000, guid: b881f3cce674c754ca662b015fcc5d00, type: 3}
   velocidade: 5
   forcaPulo: 5
   forcaDash: 15
@@ -468,7 +471,6 @@ MonoBehaviour:
   oAnimator: {fileID: 4385487078804554253}
   tempoEntreGolpes: 10
   maximoCombo: 3
-  duracaoFreezeFrame: 0.1
   hitboxPunch_01: {fileID: 3287538295371671684}
   hitboxPunch_02: {fileID: 3313743390127333293}
   hitboxPunch_03: {fileID: 7791964241218036937}
@@ -477,6 +479,10 @@ MonoBehaviour:
   tamanhoAtaque_03: {x: 0.7, y: 1.3}
   defesaInimigo: {fileID: 0}
   acertouDammy: 0
+  shakeDuracao: 0.1
+  shakeMagnitude: 0.2
+  cameraAutoFit: {fileID: 0}
+  duracaoFreezeFrame: 0.1
 --- !u!1 &6484293780016591858
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,13 +2,29 @@ using UnityEngine;
 
 public class SFX : MonoBehaviour
 {
-    [SerializeField] AudioSource caixaDeSom;
+    public static SFX instance;
 
+    [SerializeField] private AudioSource sfxObject;
 
-    public void PlaySound(AudioClip som, float pitchMinimo, float pitchMaximo)
+    private void Awake()
+    { 
+        if(instance == null)
+        {
+            instance = this;
+        }
+    }
+
+    [HideInInspector] public void TocarSFX(AudioClip audioclip, Transform spawnTransform, float volume, float pitch)
     {
-        Debug.Log($"Ta tocando esse som aqui: {som.name}");
-        caixaDeSom.pitch = Random.Range(pitchMinimo, pitchMaximo);
-        caixaDeSom.PlayOneShot(som);
+        AudioSource audioSource = Instantiate(sfxObject, spawnTransform.position, Quaternion.identity);
+
+        audioSource.clip = audioclip;
+        audioSource.volume = volume;
+        audioSource.pitch = pitch;
+        audioSource.Play();
+
+        float clipLenght = audioSource.clip.length;
+
+        Destroy(audioSource.gameObject, clipLenght);
     }
 }
