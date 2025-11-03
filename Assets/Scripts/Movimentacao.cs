@@ -48,6 +48,7 @@ public class Movimentacao : MonoBehaviour
     [Header("Configurações do Combo")]
     [SerializeField] private float tempoEntreGolpes = 1f;       // Tempo máximo entre ataques para manter o combo
     [SerializeField] private int maximoCombo = 3;               // Quantos golpes no combo
+    [SerializeField] private float duracaoFreezeFrame = 0.1f;   // tempo de freeze frame em segundos
     private float duracaoGolpe;                                 // Duração da animação do golpe
     private float frameParaAcerto;
     private float esperaAtaque;
@@ -63,11 +64,10 @@ public class Movimentacao : MonoBehaviour
     public bool acertouDammy = false;
     private bool emBlock = false;
 
-    [Header("Configurações do Shake/Frame freeze")]
+    [Header("Configurações do Shake")]
     [SerializeField] private float shakeDuracao = 0.1f;
     [SerializeField] private float shakeMagnitude = 0.2f;
     [SerializeField] private CameraAutoFit cameraAutoFit;
-    [SerializeField] private float duracaoFreezeFrame = 0.1f;   // tempo de freeze frame em segundos
     
     private int comboIndice = 0;                            // Indica qual golpe do combo está ativo
     private bool podeAtacar = true;                         // Evita spam de ataques
@@ -76,8 +76,12 @@ public class Movimentacao : MonoBehaviour
     // Variéveis  de controle para queda através da plataforma
     private bool descendoDaPlataforma = false;
 
+    private ArenaManager arenaManager;
+
     void Awake()
     {
+        
+
         playerInput = GetComponent<PlayerInput>();
         if (oAnimator == null)
         {
@@ -98,12 +102,17 @@ public class Movimentacao : MonoBehaviour
         Ground = LayerMask.GetMask("Ground");
         Platform = LayerMask.GetMask("Platform");
         PlayerMask = LayerMask.GetMask("Player");
+    }
 
-        if (cameraAutoFit == null)
+    private void Start()    
+    {
+        arenaManager = FindFirstObjectByType<ArenaManager>();
+        if (this.name != "Jogador1")
         {
-            cameraAutoFit = FindFirstObjectByType<CameraAutoFit>();
+            transform.localScale = new Vector3 (-1f, 1f, 1f);
         }
     }
+
 
     void Update()
     {
@@ -261,19 +270,16 @@ public class Movimentacao : MonoBehaviour
     }
 
     void EspelharJogador()
-    {
-        // Faz o Jogador olhar para a direção que esta andando - Espelha o Sprite (direita / esquerda)
+        {
 
+        // Faz o Jogador olhar para a direção que está andando - Espelha o Sprite (direita / esquerda)
         if (direcao.x == 1)
-        {
             transform.localScale = new Vector3(1f, 1f, 1f);
-        }
         else if (direcao.x == -1)
-        {
             transform.localScale = new Vector3(-1f, 1f, 1f);
-        }
 
     }
+
 
         public void OnBlock()
     {
@@ -461,7 +467,7 @@ public class Movimentacao : MonoBehaviour
             {
                 StartCoroutine(cameraAutoFit.Shake(shakeDuracao, shakeMagnitude)); // duração e intensidade
                 StartCoroutine(FreezeFrame(duracaoFreezeFrame)); // Ativa o freeze frame apenas se o golpe acertar a defesa
-                Debug.Log("Freeze Frame ativado");
+                Debug.Log("Freeze Frame ativado — defesa inimigo atingida no frame da animação!");
                 return;
             }
         }
@@ -526,7 +532,6 @@ public class Movimentacao : MonoBehaviour
             Gizmos.DrawWireCube(hitboxPunch_03.position, tamanhoAtaque_03);
         }
     }
-    #endregion
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Limitador"))
@@ -545,5 +550,11 @@ public class Movimentacao : MonoBehaviour
                 transform.position = new Vector3(0f, 0f, 20f);
             }
         }
+    }
+    #endregion
+
+    void OnPauseMenu()
+    {
+;       arenaManager.PausarJogo(!arenaManager.jogoPausado);
     }
 }
