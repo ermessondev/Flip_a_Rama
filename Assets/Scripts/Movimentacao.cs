@@ -82,10 +82,10 @@ public class Movimentacao : MonoBehaviour
         if (oAnimator == null)
         {
             oAnimator = GetComponentInChildren<Animator>();
-                if (oAnimator == null)
-                {
-                    Debug.Log("Nenhum Animator encontrado no Player ou nos filhos!");
-                }
+            if (oAnimator == null)
+            {
+                Debug.Log("Nenhum Animator encontrado no Player ou nos filhos!");
+            }
         }
 
         rb = GetComponent<Rigidbody2D>();
@@ -104,7 +104,7 @@ public class Movimentacao : MonoBehaviour
             cameraAutoFit = FindFirstObjectByType<CameraAutoFit>();
         }
     }
-
+    
     void Update()
     {
         // Inicia as animações
