@@ -1,56 +1,83 @@
-using UnityEngine;
-using UnityEngine.SceneManagement;
+ï»¿using UnityEngine;
+using System.Collections;
 
 public class CameraAutoFit : MonoBehaviour
 {
     [SerializeField] private Transform p1, p2;
-    [SerializeField] private float padding = 3f; // folga nas bordas
-    [SerializeField] private float minSize = 12f;    // zoom máximo (chegar perto)
-    [SerializeField] private float maxSize = 25f;   // zoom mínimo (afastar)
-    [SerializeField] private float zoomSmooth = 0.2f; // suavização do zoom (segundos)
+    [SerializeField] private float padding = 3f;
+    [SerializeField] private float minSize = 12f;
+    [SerializeField] private float maxSize = 25f;
+    [SerializeField] private float zoomSmooth = 0.2f;
 
     private Camera cam;
-    private float sizeVel; // usado pelo SmoothDamp
+    private float sizeVel;
+    private Vector3 shakeOffset; // offset temporÃ¡rio do shake
 
     void Awake()
     {
-        string cenaAtual = SceneManager.GetActiveScene().name;
-        //Controla a seleção de objeto caso seja tela treinamento.
-        if (cenaAtual != "Treinamento")
-        {
-            p1 = GetComponentInChildren<Transform>();
-        }
-        // Tenta achar a câmera no próprio objeto; se não, em filhos
         cam = GetComponent<Camera>();
-        if (cam == null) cam = GetComponentInChildren<Camera>();
+        if (cam == null)
+            cam = GetComponentInChildren<Camera>();
     }
 
     void LateUpdate()
     {
-        if (cam == null || p1 == null || p2 == null) return;
+        if (cam == null || p1 == null) return;
 
-        // Garantir que o objeto "meio" siga o centro dos dois
-        // Meio inútil, decidi manter por hora.
-        Vector3 centro = (p1.position + p2.position) / 2f;
-        transform.position = new Vector3(centro.x, centro.y, transform.position.z);
+        // Calcula centro da cÃ¢mera (entre p1 e p2, ou sÃ³ p1)
+        Vector3 centro = (p2 != null)
+            ? (p1.position + p2.position) / 2f
+            : p1.position;
 
-        // Extensões entre os dois pontos
-        float width = Mathf.Abs(p1.position.x - p2.position.x);
-        float height = Mathf.Abs(p1.position.y - p2.position.y);
+        // Aplica posiÃ§Ã£o com shake
+        transform.position = new Vector3(
+            centro.x + shakeOffset.x,
+            centro.y + shakeOffset.y,
+            transform.position.z
+        );
 
-        float halfWidth = width * 0.5f + padding;
-        float halfHeight = height * 0.5f + padding;
+        // Ajuste de zoom se tiver 2 jogadores
+        if (p2 != null)
+        {
+            float width = Mathf.Abs(p1.position.x - p2.position.x);
+            float height = Mathf.Abs(p1.position.y - p2.position.y);
+            float halfWidth = width * 0.5f + padding;
+            float halfHeight = height * 0.5f + padding;
 
-        // Para ortográfica: o tamanho tem que cobrir a metade da altura,
-        float targetSize = Mathf.Max(halfHeight, halfWidth / cam.aspect);
-        targetSize = Mathf.Clamp(targetSize, minSize, maxSize);
+            float targetSize = Mathf.Max(halfHeight, halfWidth / cam.aspect);
+            targetSize = Mathf.Clamp(targetSize, minSize, maxSize);
 
-        // Suaviza o zoom (pode melhorar :/ )
-        cam.orthographicSize = Mathf.SmoothDamp(cam.orthographicSize, targetSize, ref sizeVel, zoomSmooth);
+            cam.orthographicSize = Mathf.SmoothDamp(cam.orthographicSize, targetSize, ref sizeVel, zoomSmooth);
+        }
     }
-    public void SetPlayers(Transform player1,Transform player2)
+
+    public void SetPlayers(Transform player1, Transform player2)
     {
         p1 = player1;
         p2 = player2;
     }
+    #region CameraShake
+
+    // SHAKE camera
+
+    public IEnumerator Shake(float duration, float magnitude)
+    {
+        float elapsed = 0f;
+        shakeOffset = Vector3.zero;
+
+        while (elapsed < duration)
+        {
+            shakeOffset = new Vector3(
+                Random.Range(-1f, 1f) * magnitude,
+                Random.Range(-1f, 1f) * magnitude,
+                0
+            );
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        shakeOffset = Vector3.zero;
+    }
+    #endregion
 }

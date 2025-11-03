@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     // True  = 1 Player
     // False = 2 Players
     [HideInInspector] public bool singleMode;
+    [HideInInspector] public bool treinamento;
 
     [HideInInspector] public int vitoriasP1;
     [HideInInspector] public int vitoriasP2;
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        treinamento = false;
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -50,13 +52,18 @@ public class GameManager : MonoBehaviour
     //Função de controle para tentativa de inicativa de partida, controla a troca de stagio single e coop.
     public void TentarIniciarPartida()
     {
-        if (singleMode && jogador1 != null)
+        if (singleMode && jogador1 != null && treinamento == false)
         {
             jogador2 = CharacterDatabase[0];
             SceneManager.LoadScene("StageOne");
         }
-        else if (!singleMode && jogador1 != null && jogador2 != null)
+        else if (!singleMode && jogador1 != null && jogador2 != null && treinamento == false)
         {
+            SceneManager.LoadScene("StageOne");
+        }
+        else if (singleMode && jogador1 != null && treinamento == true)
+        {
+            jogador2 = CharacterDatabase[1];
             SceneManager.LoadScene("StageOne");
         }
     }

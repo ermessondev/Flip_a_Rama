@@ -16,6 +16,9 @@ public class Movimentacao : MonoBehaviour
 
     private PlayerInput playerInput;
 
+    // Variáveis de Áudio e Som
+    [SerializeField] AudioSource som;
+    
     // Variéveis  dedicadas a mecenica de movimentação
     protected Rigidbody2D rb;
     protected Vector2 direcao;
@@ -43,20 +46,32 @@ public class Movimentacao : MonoBehaviour
     [SerializeField] protected Animator oAnimator;
 
     [Header("Configurações do Combo")]
-    [SerializeField] private float tempoEntreGolpes = 1f;   // Tempo máximo entre ataques para manter o combo
-    private float duracaoGolpe;                             // Duração da animação do golpe
-    [SerializeField] private int maximoCombo = 3;           // Quantos golpes no combo
+    [SerializeField] private float tempoEntreGolpes = 1f;       // Tempo máximo entre ataques para manter o combo
+    [SerializeField] private int maximoCombo = 3;               // Quantos golpes no combo
+    [SerializeField] private float duracaoFreezeFrame = 0.1f;   // tempo de freeze frame em segundos
+    private float duracaoGolpe;                                 // Duração da animação do golpe
+    private float frameParaAcerto;
+    private float esperaAtaque;
 
     [Header("Configurações do Ataque")]
-    [SerializeField] private Transform pontoAtaque;         // Centro da hitbox do ataque
-    [SerializeField] private Vector2 tamanhoAtaque;         // Tamanho da hitbox do ataque
+    [SerializeField] private Transform hitboxPunch_01;         // Centro da hitbox do ataque
+    [SerializeField] private Transform hitboxPunch_02;
+    [SerializeField] private Transform hitboxPunch_03;
+    [SerializeField] private Vector2 tamanhoAtaque_01;         // Tamanho da hitbox do ataque
+    [SerializeField] private Vector2 tamanhoAtaque_02;
+    [SerializeField] private Vector2 tamanhoAtaque_03;
     [SerializeField] private BoxCollider2D defesaInimigo;   // Hitbox específica de defesa do inimigo
+    public bool acertouDammy = false;
+    private bool emBlock = false;
 
+    [Header("Configurações do Shake")]
+    [SerializeField] private float shakeDuracao = 0.1f;
+    [SerializeField] private float shakeMagnitude = 0.2f;
+    [SerializeField] private CameraAutoFit cameraAutoFit;
+    
     private int comboIndice = 0;                            // Indica qual golpe do combo está ativo
     private bool podeAtacar = true;                         // Evita spam de ataques
     private Coroutine resetComboCoroutine;                  // Coroutine que reseta o combo por tempo
-
-    public bool acertouDammy = false;
 
     // Variéveis  de controle para queda através da plataforma
     private bool descendoDaPlataforma = false;
@@ -66,7 +81,11 @@ public class Movimentacao : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         if (oAnimator == null)
         {
-            oAnimator = GetComponent<Animator>();
+            oAnimator = GetComponentInChildren<Animator>();
+                if (oAnimator == null)
+                {
+                    Debug.Log("Nenhum Animator encontrado no Player ou nos filhos!");
+                }
         }
 
         rb = GetComponent<Rigidbody2D>();
@@ -187,10 +206,12 @@ public class Movimentacao : MonoBehaviour
         // Aplica o dash para a esquerda/direita conforme a direção horizontal
         if (direcao.x == -1)
         {
+            oAnimator.SetBool("Dash", emDash);
             rb.AddForce(Vector2.left * forcaDash, ForceMode2D.Impulse);
         }
         else if (direcao.x == 1)
         {
+            oAnimator.SetBool("Dash", emDash);
             rb.AddForce(Vector2.right * forcaDash, ForceMode2D.Impulse);
         }
 
@@ -201,6 +222,7 @@ public class Movimentacao : MonoBehaviour
         emDash = false;
         rb.gravityScale = 1;
         rb.linearVelocity = Vector2.zero;
+        oAnimator.SetBool("Dash", emDash);
 
         // Tempo de recarga até o próximo dash
         yield return new WaitForSeconds(2f);
@@ -219,6 +241,8 @@ public class Movimentacao : MonoBehaviour
         }
     }
 
+    
+    #region Animações/Ataque
     void RodarAnimacoesHorizontal()
     {
         // Roda as animcações Horizontais - Animções de Walk e Idle
@@ -228,13 +252,12 @@ public class Movimentacao : MonoBehaviour
     void RodarAnimacoesVertical()
     {
         // Roda as animcações Verticais - Animções de Jump e ve se o pesrongem esta no chão pra voltar a animção de Idle
-        oAnimator.SetFloat("AnimVertical", rb.linearVelocity.y);
         oAnimator.SetBool("EstaNoChao", estaNoChao || estaNaPlataforma);
+        oAnimator.SetFloat("AnimVertical", rb.linearVelocity.y);
     }
 
     void EspelharJogador()
     {
-
         // Faz o Jogador olhar para a direção que esta andando - Espelha o Sprite (direita / esquerda)
 
         if (direcao.x == 1)
@@ -248,11 +271,37 @@ public class Movimentacao : MonoBehaviour
 
     }
 
-    void OnAttack()
+        public void OnBlock()
     {
+        // Inicia a corrotina quando o jogador clica para bloquear
+        StartCoroutine(ExecutarBlock());
+    }
+
+    private IEnumerator ExecutarBlock()
+    {
+        // Ativa a animação de bloqueio
+        oAnimator.SetBool("Block", true);
+        emBlock = true;
+
+        // Espera 5 segundos
+        yield return new WaitForSeconds(0.5f);
+
+        // Volta para o Idle
+        oAnimator.SetBool("Block", false);
+        emBlock = false;
+    }
+    
+    void OnAttack()
+    {   
         if (emDash)
         {
-            Debug.Log("Não pode atacar durante o dash");
+            Debug.Log("Não pode atacar durante o Dash");
+            return;
+        }
+
+        if (emBlock)
+        {
+            Debug.Log("Não pode atacar durante o Block");
             return;
         }
 
@@ -283,65 +332,152 @@ public class Movimentacao : MonoBehaviour
     private IEnumerator ExecutarGolpe(int golpe)
     {
         podeAtacar = false;
-        // Inicia animação do soco
-            switch (golpe)
-        {
-        case 1:
-            oAnimator.SetBool("Punch", true);
-            duracaoGolpe = 0.6f;
-            break;
-        case 2:
-            oAnimator.SetBool("Punch_2", true);
-            duracaoGolpe = 0.8f;
-            break;
-        case 3:
-            oAnimator.SetBool("Punch_3", true);
-            duracaoGolpe = 0.8f;
-            break;
-        }
-
-        // Checa se o ataque acertou a hitbox de defesa do inimigo
-        Collider2D defendeu = Physics2D.OverlapBox(pontoAtaque.position, tamanhoAtaque, 0f);
-
-        // Se acertou ativa o ComboBloqueado 
-        if (defendeu == defesaInimigo)
-        {
-            ComboBloqueado();
-            acertouDammy = true;
-        } 
-
-        yield return new WaitForSeconds(duracaoGolpe);  // Espera o tempo da animação mesmo se bloqueado
-
-        // Para animação
+    
+        // Inicia animação e configura duração de cada golpe
         switch (golpe)
         {
-        case 1:
-            oAnimator.SetBool("Punch", false);
-            break;
-        case 2:
-            oAnimator.SetBool("Punch_2", false);
-            break;
-        case 3:
-            oAnimator.SetBool("Punch_3", false);
-            break;
+            case 1:
+                oAnimator.SetBool("Punch", true);
+                duracaoGolpe = 0.5f;
+                frameParaAcerto = 0.3f;
+                break;
+            case 2:
+                oAnimator.SetBool("Punch_2", true);
+                duracaoGolpe = 0.4f;
+                frameParaAcerto = 0.2f;
+                break;
+            case 3:
+                oAnimator.SetBool("Punch_3", true);
+                duracaoGolpe = 0.4f;
+                frameParaAcerto = 0.3f;
+                break;
+        }
+
+        // Espera até o frame específico do impacto
+        yield return new WaitForSeconds(frameParaAcerto);
+
+        // Ativa somente a hitbox do golpe atual
+        Collider2D[] acertos = null;
+        switch (golpe)
+        {
+            case 1:
+                acertos = Physics2D.OverlapBoxAll(hitboxPunch_01.position, tamanhoAtaque_01, 0f);
+                break;
+            case 2:
+                acertos = Physics2D.OverlapBoxAll(hitboxPunch_02.position, tamanhoAtaque_02, 0f);
+                break;
+            case 3:
+                acertos = Physics2D.OverlapBoxAll(hitboxPunch_03.position, tamanhoAtaque_03, 0f);
+                break;
+        }
+
+        // Verifica se o ataque acertou a defesa do inimigo
+        if (acertos != null)
+        {
+            foreach (Collider2D hitboxInimigo in acertos)
+            {
+                
+                if (hitboxInimigo == defesaInimigo)
+                {
+                    acertouDammy = true;
+                    ComboBloqueado();
+                    Debug.Log($"Defesa inimigo atingida no golpe {golpe}");
+                    break;
+                }
+            }
+        }
+
+        // Espera o restante da animação antes de liberar outro ataque
+        yield return new WaitForSeconds(duracaoGolpe - frameParaAcerto);
+
+        // Desativa a animação do golpe
+        switch (golpe)
+        {
+            case 1:
+                oAnimator.SetBool("Punch", false);
+                break;
+            case 2:
+                oAnimator.SetBool("Punch_2", false);
+                break;
+            case 3:
+                oAnimator.SetBool("Punch_3", false);
+                break;
         }
 
         podeAtacar = true;
         acertouDammy = false;
 
-        // Se chegou no último golpe do combo, reseta o combo automaticamente
+        // Se for o último golpe do combo, reseta
         if (comboIndice >= maximoCombo)
         {
             Debug.Log("Combo finalizado");
             comboIndice = 0;
 
-            // Para a coroutine de tempo entre golpes, se estiver rodando
             if (resetComboCoroutine != null)
             {
                 StopCoroutine(resetComboCoroutine);
                 resetComboCoroutine = null;
             }
         }
+    }
+    
+    public void AtivarFreezeFrame()
+    {
+        // Escolhe a hitbox de acordo com o golpe atual
+        Transform hitboxAtual = null;
+        Vector2 tamanhoAtual = Vector2.zero;
+
+        switch (comboIndice)
+        {
+            case 1:
+                hitboxAtual = hitboxPunch_01;
+                tamanhoAtual = tamanhoAtaque_01;
+                esperaAtaque = 0.25f;
+                break;
+            case 2:
+                hitboxAtual = hitboxPunch_02;
+                tamanhoAtual = tamanhoAtaque_02;
+                esperaAtaque = 0.2f;
+                break;
+            case 3:
+                hitboxAtual = hitboxPunch_03;
+                tamanhoAtual = tamanhoAtaque_03;
+                esperaAtaque = 0.25f;
+                break;
+            default:
+                return;
+        }
+
+        // Faz a checagem de colisão no exato momento do evento
+        Collider2D[] acertos = Physics2D.OverlapBoxAll(hitboxAtual.position, tamanhoAtual, 0f);
+
+        foreach (Collider2D hitboxInimigo in acertos)
+        {
+            if (hitboxInimigo == defesaInimigo)
+            {
+                StartCoroutine(cameraAutoFit.Shake(shakeDuracao, shakeMagnitude)); // duração e intensidade
+                StartCoroutine(FreezeFrame(duracaoFreezeFrame)); // Ativa o freeze frame apenas se o golpe acertar a defesa
+                Debug.Log("Freeze Frame ativado — defesa inimigo atingida no frame da animação!");
+                return;
+            }
+        }
+
+        // Se não acertou defesa, não faz nada
+        Debug.Log("Sem impacto na defesa — sem freeze.");
+    }
+
+    private IEnumerator FreezeFrame(float duracao)
+    {
+        yield return new WaitForSeconds(esperaAtaque);
+
+        podeAtacar = false;
+        rb.linearVelocity = Vector2.zero;           // Para a física momentaneamente
+        oAnimator.enabled = false;                  // Congela a animação
+
+        yield return new WaitForSeconds(duracao);   // Espera o tempo do "freeze frame"
+
+        oAnimator.enabled = true;                   // Reativa movimentação e animação
+        podeAtacar = true;
     }
 
     private IEnumerator ResetarComboDepoisDoTempo()
@@ -368,12 +504,42 @@ public class Movimentacao : MonoBehaviour
     // Desenha a hitbox do ataque no editor
     private void OnDrawGizmos()
     {
-        if (pontoAtaque != null)
+        if (hitboxPunch_01 != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireCube(hitboxPunch_01.position, tamanhoAtaque_01);
+        }
+
+        if (hitboxPunch_02 != null)
         {
             Gizmos.color = Color.blue;
-            Gizmos.DrawWireCube(pontoAtaque.position, tamanhoAtaque);
+            Gizmos.DrawWireCube(hitboxPunch_02.position, tamanhoAtaque_02);
+        }
+
+        if (hitboxPunch_03 != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(hitboxPunch_03.position, tamanhoAtaque_03);
         }
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Limitador"))
+        {
+            if (this.name == "Jogador1")
+            {
+                Debug.Log($"{gameObject.name} entrou no limitador!");
 
-
+                rb.linearVelocity = Vector2.zero;
+                transform.position = new Vector3(0f, 0f, 20f);
+            }
+            else
+            {
+                Debug.Log($"{gameObject.name} entrou no limitador!");
+                rb.linearVelocity = Vector2.zero;
+                transform.position = new Vector3(0f, 0f, 20f);
+            }
+        }
+    }
+    #endregion
 }

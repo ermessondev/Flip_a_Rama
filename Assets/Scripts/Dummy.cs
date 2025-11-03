@@ -7,11 +7,17 @@ public class Dammy : MonoBehaviour
     [SerializeField] private bool dammyTomouDano;
 
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+       Debug.Log($"{gameObject.name} entrou no limitador!");
+       transform.position = new Vector3(0f, 0f, 20f);
+
+    }
 
     void Update()
     {
-        dammyTomouDano = movimentacao.acertouDammy;
+       // dammyTomouDano = movimentacao.acertouDammy;
 
-        oAnimator2.SetBool("TomouDano", dammyTomouDano);
+       // oAnimator2.SetBool("TomouDano", dammyTomouDano);
     }
 }

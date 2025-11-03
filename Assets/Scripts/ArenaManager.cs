@@ -9,6 +9,9 @@ public class ArenaManager : MonoBehaviour
     [SerializeField] private Transform jogador2Referencia;
     [SerializeField] private CameraAutoFit cameraAutoFit;
 
+    private Transform posP1;
+    private Transform posP2;
+
     void Awake()
     {
         if (GameManager.instance == null)
@@ -27,6 +30,7 @@ public class ArenaManager : MonoBehaviour
 
         player1Input.name = "Jogador1";
         GameManager.instance.jogador1 = player1Input.gameObject;
+        posP1 = player1Input.transform;
 
         if (jogador1Referencia != null)
         {
@@ -54,6 +58,7 @@ public class ArenaManager : MonoBehaviour
                 player2Input.name = "Jogador2";
                 player2 = player2Input.gameObject;
                 GameManager.instance.jogador2 = player2;
+                posP2 = player2.transform;
 
                 if (jogador2Referencia != null)
                 {
@@ -101,4 +106,5 @@ public class ArenaManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         cameraAutoFit.SetPlayers(p1, p2);
     }
+  
 }
