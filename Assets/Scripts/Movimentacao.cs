@@ -123,11 +123,17 @@ public class Movimentacao : MonoBehaviour
             {
                 // Procura o jogador 2 e usa o BoxCollider2D dele como hitbox de defesa
                 GameObject jogador2 = GameObject.Find("Jogador2");
+                if(jogador2 == null)
+                {
+                    jogador2 = GameObject.Find("Jogador2 (IA)");
+                }
+                
                 if (jogador2 != null)
                 {
                     defesaInimigo = jogador2.GetComponentInChildren<BoxCollider2D>();
                 }
-            }else
+            }
+            else
             {
                 // Procura o jogador 1 e usa o BoxCollider2D dele como hitbox de defesa
                 GameObject jogador1 = GameObject.Find("Jogador1");
