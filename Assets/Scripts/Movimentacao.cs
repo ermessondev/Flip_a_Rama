@@ -62,9 +62,15 @@ public class Movimentacao : MonoBehaviour
     [SerializeField] private Vector2 tamanhoAtaque_01;         // Tamanho da hitbox do ataque
     [SerializeField] private Vector2 tamanhoAtaque_02;
     [SerializeField] private Vector2 tamanhoAtaque_03;
-    [SerializeField] private BoxCollider2D defesaInimigo;   // Hitbox específica de defesa do inimigo
+    [SerializeField] private BoxCollider2D defesaInimigo;   // Hitbox específica de defesa do inimigo 
+    [SerializeField] private BoxCollider2D hitboxCorpoPlayer;     
+    [SerializeField] private BoxCollider2D hitboxPePlayer;
+    [SerializeField] private BoxCollider2D hitboxCabecaPlayer;
+    private bool ehJogador1;
+    private string outroNome;
     public bool acertouDammy = false;
     private bool emBlock = false;
+    private int golpeTomado;
 
     [Header("Configurações do Shake/Frame freeze")]
     [SerializeField] private float shakeDuracao = 0.1f;
@@ -123,11 +129,11 @@ public class Movimentacao : MonoBehaviour
             {
                 // Procura o jogador 2 e usa o BoxCollider2D dele como hitbox de defesa
                 GameObject jogador2 = GameObject.Find("Jogador2");
-                if(jogador2 == null)
+                if (jogador2 == null)
                 {
                     jogador2 = GameObject.Find("Jogador2 (IA)");
                 }
-                
+
                 if (jogador2 != null)
                 {
                     defesaInimigo = jogador2.GetComponentInChildren<BoxCollider2D>();
@@ -143,6 +149,27 @@ public class Movimentacao : MonoBehaviour
                 }
             }
         }
+
+        ehJogador1 = gameObject.name.Contains("Jogador1");
+
+        if (ehJogador1)
+            outroNome = "Jogador2";
+        else
+            outroNome = "Jogador1";
+
+        GameObject outroJogador = GameObject.Find(outroNome);
+
+        if (outroJogador == null) return;
+
+        Transform spriteOutro = outroJogador.transform.Find("Sprite");
+        if (spriteOutro == null) return;
+
+        Transform hitboxOutro = spriteOutro.Find("Hitbox");
+        if (hitboxOutro == null) return;
+
+        hitboxCorpoPlayer = hitboxOutro.Find("Hitbox_Corpo")?.GetComponent<BoxCollider2D>();
+        hitboxPePlayer = hitboxOutro.Find("Hitbox_Pe")?.GetComponent<BoxCollider2D>();
+        hitboxCabecaPlayer = hitboxOutro.Find("Hitbox_Cabeca")?.GetComponent<BoxCollider2D>();
     }
 
     void Update()
@@ -191,6 +218,7 @@ public class Movimentacao : MonoBehaviour
         }
     }
 
+    #region Move
     void OnMove(InputValue valor)
     {
         // L� o valor vindo do Input System e armazena a direção desejada
@@ -285,7 +313,7 @@ public class Movimentacao : MonoBehaviour
             descendoDaPlataforma = false;
         }
     }
-
+    #endregion
     
     #region Animações/Ataque
     void RodarAnimacoesHorizontal()
@@ -420,10 +448,10 @@ public class Movimentacao : MonoBehaviour
         // Verifica se o ataque acertou a defesa do inimigo
         if (acertos != null)
         {
-            foreach (Collider2D hitboxInimigo in acertos)
+            foreach (Collider2D hitboxDefesa in acertos)
             {
-                
-                if (hitboxInimigo == defesaInimigo)
+
+                if (hitboxDefesa == defesaInimigo)
                 {
                     acertouDammy = true;
                     ComboBloqueado();
@@ -432,6 +460,21 @@ public class Movimentacao : MonoBehaviour
                 }
             }
         }
+
+        if (acertos != null)
+        {
+            foreach (Collider2D hitboxCorpo in acertos)
+            {
+
+                if (hitboxCorpo == hitboxCorpoPlayer || hitboxCorpo == hitboxCabecaPlayer || hitboxCorpo == hitboxPePlayer)
+                {
+                    Debug.Log($"O inimigo foi atingido no golpe {golpe}");
+                    golpeTomado = golpe;
+                    break;
+                }
+            }
+        }
+        
 
         // Espera o restante da animação antes de liberar outro ataque
         yield return new WaitForSeconds(duracaoGolpe - frameParaAcerto);

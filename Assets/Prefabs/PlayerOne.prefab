@@ -1,5 +1,39 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &587030329446325630
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5946740040910373683}
+  m_Layer: 8
+  m_Name: Hitbox_Punch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5946740040910373683
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587030329446325630}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3287538295371671684}
+  - {fileID: 3313743390127333293}
+  - {fileID: 7791964241218036937}
+  m_Father: {fileID: 4596459128642111932}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &761252622814691328
 GameObject:
   m_ObjectHideFlags: 0
@@ -24,12 +58,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 761252622814691328}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.45, y: 1.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2942926185616793103}
+  m_Father: {fileID: 5946740040910373683}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1658232767187930703
 GameObject:
@@ -63,9 +97,6 @@ Transform:
   - {fileID: 2857854177565695520}
   - {fileID: 5791266423042673091}
   - {fileID: 128314335224920987}
-  - {fileID: 3287538295371671684}
-  - {fileID: 3313743390127333293}
-  - {fileID: 7791964241218036937}
   m_Father: {fileID: 4596459128642111932}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2397810260837795732
@@ -97,7 +128,7 @@ Transform:
   m_LocalScale: {x: 0.69936407, y: 0.96464, z: 0.96464}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2942926185616793103}
+  m_Father: {fileID: 5946740040910373683}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2715483523060087807
 GameObject:
@@ -132,6 +163,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2942926185616793103}
+  - {fileID: 5946740040910373683}
   m_Father: {fileID: 1109181839370071808}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3211016383271581646
@@ -478,6 +510,7 @@ MonoBehaviour:
   tamanhoAtaque_02: {x: 0.2, y: 1}
   tamanhoAtaque_03: {x: 0.7, y: 1.3}
   defesaInimigo: {fileID: 0}
+  hitboxCorpoPlayer: {fileID: 0}
   acertouDammy: 0
   shakeDuracao: 0.1
   shakeMagnitude: 0.2
@@ -694,10 +727,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9140478219146176592}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.86, y: 1.84, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2942926185616793103}
+  m_Father: {fileID: 5946740040910373683}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
