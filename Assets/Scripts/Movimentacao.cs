@@ -470,7 +470,6 @@ public class Movimentacao : MonoBehaviour
                 if (hitboxCorpo == hitboxCorpoPlayer || hitboxCorpo == hitboxCabecaPlayer || hitboxCorpo == hitboxPePlayer)
                 {
                     Debug.Log($"O inimigo foi atingido no golpe {golpe}");
-                    golpeTomado = golpe;
                     break;
                 }
             }
