@@ -561,6 +561,18 @@ public class Movimentacao : MonoBehaviour
             }
         }
 
+        foreach (Collider2D hitboxCorpo in acertos)
+            {
+
+                if (hitboxCorpo == hitboxCorpoPlayer || hitboxCorpo == hitboxCabecaPlayer || hitboxCorpo == hitboxPePlayer)
+                {
+                    StartCoroutine(cameraAutoFit.Shake(shakeDuracao, shakeMagnitude)); 
+                    StartCoroutine(FreezeFrame(duracaoFreezeFrame)); 
+                    Debug.Log("Freeze Frame ativado");
+                    return;
+                }
+            }
+
         // Se não acertou defesa, não faz nada
         Debug.Log("Sem impacto na defesa — sem freeze.");
     }
