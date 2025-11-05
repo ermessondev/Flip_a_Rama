@@ -461,6 +461,7 @@ public class Movimentacao : MonoBehaviour
             }
         }
 
+        // Verifica se o ataque acertou o do inimigo/Hitbox dele
         if (acertos != null)
         {
             foreach (Collider2D hitboxCorpo in acertos)
