@@ -462,7 +462,7 @@ MonoBehaviour:
   sairDaArenaSFX: {fileID: 8300000, guid: 95c25b4ed0a740a4fb7072d3e1cea95b, type: 3}
   socoSFX: {fileID: 8300000, guid: 4e1478d670dc9d249b7c2f25cf97d1a5, type: 3}
   dashSFX: {fileID: 8300000, guid: b881f3cce674c754ca662b015fcc5d00, type: 3}
-  velocidade: 5
+  velocidade: 8
   forcaPulo: 5
   forcaDash: 15
   estaNoChao: 0
