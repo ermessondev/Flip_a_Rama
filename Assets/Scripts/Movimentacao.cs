@@ -67,7 +67,7 @@ public class Movimentacao : MonoBehaviour
     [SerializeField] private BoxCollider2D hitboxPePlayer;
     [SerializeField] private BoxCollider2D hitboxCabecaPlayer;
     private bool ehJogador1;
-    private string outroNome;
+    private string adversarioNome;
     public bool acertouDammy = false;
     private bool emBlock = false;
     private int golpeTomado;
@@ -150,26 +150,26 @@ public class Movimentacao : MonoBehaviour
             }
         }
 
-        ehJogador1 = gameObject.name.Contains("Jogador1");
+        ehJogador1 = gameObject.name.Contains("Jogador1");      // Identificar se este script e do Jogador1
 
-        if (ehJogador1)
-            outroNome = "Jogador2";
+        if (ehJogador1)     // Se for o Jogador1, define o adversário como "Jogador2" e vice-versa
+        {
+            adversarioNome = "Jogador2";
+        }
         else
-            outroNome = "Jogador1";
+        {
+            adversarioNome = "Jogador1";
+        }
+    
+        // Procura nos filhos ate achar as Hitbox
+        GameObject outroJogador = GameObject.Find(adversarioNome);
+        Transform spriteAdversario = outroJogador.transform.Find("Sprite");
+        Transform hitboxAdversario = spriteAdversario.Find("Hitbox");
 
-        GameObject outroJogador = GameObject.Find(outroNome);
-
-        if (outroJogador == null) return;
-
-        Transform spriteOutro = outroJogador.transform.Find("Sprite");
-        if (spriteOutro == null) return;
-
-        Transform hitboxOutro = spriteOutro.Find("Hitbox");
-        if (hitboxOutro == null) return;
-
-        hitboxCorpoPlayer = hitboxOutro.Find("Hitbox_Corpo")?.GetComponent<BoxCollider2D>();
-        hitboxPePlayer = hitboxOutro.Find("Hitbox_Pe")?.GetComponent<BoxCollider2D>();
-        hitboxCabecaPlayer = hitboxOutro.Find("Hitbox_Cabeca")?.GetComponent<BoxCollider2D>();
+        // Passa as Hitbox para suas devidas posicoes 
+        hitboxCorpoPlayer = hitboxAdversario.Find("Hitbox_Corpo").GetComponent<BoxCollider2D>();
+        hitboxPePlayer = hitboxAdversario.Find("Hitbox_Pe").GetComponent<BoxCollider2D>();
+        hitboxCabecaPlayer = hitboxAdversario.Find("Hitbox_Cabeca").GetComponent<BoxCollider2D>();
     }
 
     void Update()
