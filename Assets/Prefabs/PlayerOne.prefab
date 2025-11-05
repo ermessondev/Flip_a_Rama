@@ -25,8 +25,8 @@ Transform:
   m_GameObject: {fileID: 761252622814691328}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.45, y: 1.74, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 2.52, y: 1.74, z: 0}
+  m_LocalScale: {x: 1.0442, y: 2.2281024, z: 1.0442}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2942926185616793103}
@@ -93,7 +93,7 @@ Transform:
   m_GameObject: {fileID: 2397810260837795732}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.76, y: 1.64, z: 0}
+  m_LocalPosition: {x: 1.96, y: 1.58, z: 0}
   m_LocalScale: {x: 0.69936407, y: 0.96464, z: 0.96464}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -463,8 +463,8 @@ MonoBehaviour:
   socoSFX: {fileID: 8300000, guid: 4e1478d670dc9d249b7c2f25cf97d1a5, type: 3}
   dashSFX: {fileID: 8300000, guid: b881f3cce674c754ca662b015fcc5d00, type: 3}
   velocidade: 8
-  forcaPulo: 5
-  forcaDash: 15
+  forcaPulo: 8
+  forcaDash: 10
   estaNoChao: 0
   raioVerificaChao: 0.3
   distanciaVerificaPlataforma: 0.2
@@ -482,7 +482,7 @@ MonoBehaviour:
   shakeDuracao: 0.1
   shakeMagnitude: 0.2
   cameraAutoFit: {fileID: 0}
-  duracaoFreezeFrame: 0.1
+  duracaoFreezeFrame: 0.2
 --- !u!1 &6484293780016591858
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,7 +695,7 @@ Transform:
   m_GameObject: {fileID: 9140478219146176592}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.86, y: 1.84, z: 0}
+  m_LocalPosition: {x: 1.96, y: 1.84, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
