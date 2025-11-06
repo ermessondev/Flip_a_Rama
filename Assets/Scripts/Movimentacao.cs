@@ -490,6 +490,16 @@ public class Movimentacao : MonoBehaviour
                 if (hitboxCorpo == hitboxCorpoPlayer || hitboxCorpo == hitboxCabecaPlayer || hitboxCorpo == hitboxPePlayer)
                 {
                     Debug.Log($"O inimigo foi atingido no golpe {golpe}");
+
+                    string hitboxAtingida = "";
+                    if (hitboxCorpo == hitboxCorpoPlayer)
+                        hitboxAtingida = hitboxCorpoPlayer.gameObject.name;
+                    else if (hitboxCorpo == hitboxCabecaPlayer)
+                        hitboxAtingida = hitboxCabecaPlayer.gameObject.name;
+                    else if (hitboxCorpo == hitboxPePlayer)
+                        hitboxAtingida = hitboxPePlayer.gameObject.name;
+
+                    arenaManager.ControlePartida(0.10f, hitboxAtingida);
                     break;
                 }
             }
