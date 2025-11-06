@@ -333,11 +333,11 @@ public class Movimentacao : MonoBehaviour
     {
         // Faz o Jogador olhar para a direção que esta andando - Espelha o Sprite (direita / esquerda)
 
-        if (direcao.x == 1)
+        if (direcao.x > 0f)
         {
             transform.localScale = new Vector3(1f, 1f, 1f);
         }
-        else if (direcao.x == -1)
+        else if (direcao.x == -1f)
         {
             transform.localScale = new Vector3(-1f, 1f, 1f);
         }

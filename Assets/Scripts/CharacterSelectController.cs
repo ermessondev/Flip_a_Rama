@@ -23,6 +23,8 @@ public class CharacterSelectController : MonoBehaviour
     {
         img = GetComponent<Image>();
         playerInput = GetComponent<PlayerInput>();
+
+        playerInput.actions = Instantiate(playerInput.actions);
     }
 
     void Start()

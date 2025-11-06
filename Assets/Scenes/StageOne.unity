@@ -767,7 +767,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -964,6 +964,17 @@ MonoBehaviour:
   jogador1Referencia: {fileID: 1275451474}
   jogador2Referencia: {fileID: 969615139}
   cameraAutoFit: {fileID: 1037372110}
+  lifeBar: {fileID: 1685100062}
+  barraVidaP1: {fileID: 464377462}
+  barraVidaP2: {fileID: 871506902}
+  koP1:
+  - {fileID: 6272439}
+  - {fileID: 1290205977}
+  - {fileID: 98060938}
+  koP2:
+  - {fileID: 1709519360}
+  - {fileID: 1287698158}
+  - {fileID: 1585387288}
   jogoPausado: 0
 --- !u!1 &481241415
 GameObject:

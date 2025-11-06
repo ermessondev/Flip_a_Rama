@@ -1840,8 +1840,6 @@ MonoBehaviour:
   - {fileID: 653744703}
   - {fileID: 467719350}
   - {fileID: 1941224792}
-  CharacterDatabase:
-  - {fileID: 4985995813333879250, guid: 917e793259e0bbb4ea6c34ac13064776, type: 3}
   canvas: {fileID: 763212268}
 --- !u!114 &1133547228
 MonoBehaviour:
@@ -1868,7 +1866,7 @@ MonoBehaviour:
   m_JoinAction:
     m_UseReference: 0
     m_Action:
-      m_Name: 
+      m_Name: Join
       m_Type: 0
       m_ExpectedControlType: 
       m_Id: b8796a3d-23dc-485b-9090-b43646dd4726

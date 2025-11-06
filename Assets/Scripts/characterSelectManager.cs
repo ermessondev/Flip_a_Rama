@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class characterSelectManager : MonoBehaviour
 {
@@ -31,19 +33,26 @@ public class characterSelectManager : MonoBehaviour
         // Instancia o seletor de personagens através do player input manager.
         if (GameManager.instance.singleMode)
         {
-            pim.JoinPlayer(controlScheme: "Keyboard&Mouse", pairWithDevice: Keyboard.current);
+            var player1 = pim.JoinPlayer(playerIndex: 0, controlScheme: "Keyboard&Mouse", pairWithDevice: Keyboard.current);
         }
         else
         {
             // Player 1 → teclado
-            pim.JoinPlayer(controlScheme: "Keyboard&Mouse", pairWithDevice: Keyboard.current);
+            var player1 = pim.JoinPlayer(playerIndex: 0, controlScheme: "Keyboard&Mouse", pairWithDevice: Keyboard.current);
+            StartCoroutine(SetActionMapNextFrame(player1));
 
-            // Player 2 → gamepad
-            if (Gamepad.all.Count > 0)
-                pim.JoinPlayer(controlScheme: "Gamepad", pairWithDevice: Gamepad.all[0]);
-            else
-                Debug.LogWarning("⚠️ Nenhum Gamepad conectado!");
+
+            var player2 = pim.JoinPlayer(playerIndex: 1, controlScheme: "Virtual");
+            player2.user.UnpairDevices();
+            player2.SwitchCurrentControlScheme("Keyboard&Mouse", Keyboard.current, Mouse.current);
+            StartCoroutine(SetActionMapNextFrame(player2));
+            
+
+
+
         }
+
+
     }
 
 
@@ -54,5 +63,20 @@ public class characterSelectManager : MonoBehaviour
     }
 
 
-
+    private IEnumerator SetActionMapNextFrame(PlayerInput player)
+    {
+        yield return null; // espera 1 frame
+        if (player.playerIndex == 0)
+        {
+            player.SwitchCurrentActionMap("CharacterSelection");
+            Debug.Log($"✅ ActionMap trocado com sucesso para {player.currentActionMap.name}");
+        }
+        else if (player.playerIndex == 1)
+        {
+            player.SwitchCurrentActionMap("CharacterSelectionPlayer2");
+            Debug.Log($"✅ ActionMap trocado com sucesso para {player.currentActionMap.name}, e ControlScheme para {player.currentControlScheme}");
+            
+        } 
+        
+    }
 }
