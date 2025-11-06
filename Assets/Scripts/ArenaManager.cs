@@ -29,6 +29,9 @@ public class ArenaManager : MonoBehaviour
     private Transform posP1;
     private Transform posP2;
 
+    private Movimentacao player1;
+    private Movimentacao player2;
+
     void Awake()
     {
         
@@ -124,7 +127,8 @@ public class ArenaManager : MonoBehaviour
 
     private void Start()
     {
-        
+        player1 = GameObject.Find("Jogador1")?.GetComponent<Movimentacao>();
+        player2 = GameObject.Find("Jogador2")?.GetComponent<Movimentacao>();
     }
 
     private IEnumerator setarCamera(Transform p1, Transform p2)
@@ -158,7 +162,7 @@ public class ArenaManager : MonoBehaviour
             }
             else if (barraVidaP1.fillAmount <= 0 && vidaJogador1 <= 0)
             {
-                //FinalGame();
+                FinalGame();
             }
         }
         else 
@@ -170,14 +174,18 @@ public class ArenaManager : MonoBehaviour
                 StartCoroutine(EfeitoKO("Jogador2"));
             }else if (barraVidaP2.fillAmount <= 0 && vidaJogador2 <= 0)
             {
-                //FinalGame();
+                FinalGame();
             }
         }
     }
 
     void FinalGame()
     {
-
+        var winer = vidaJogador1 > vidaJogador2 ? "Jogador1" : "Jogador2";
+        if (winer == "Jogador1")
+        {
+            player1.FinalPartida(true);
+        }
     }
 
     private IEnumerator EfeitoKO(string jogador) 

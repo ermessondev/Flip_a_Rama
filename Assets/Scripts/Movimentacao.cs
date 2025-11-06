@@ -23,6 +23,7 @@ public class Movimentacao : MonoBehaviour
     [SerializeField] public AudioClip dashSFX;
     
     // Variéveis  dedicadas a mecenica de movimentação
+    [SerializeField]protected bool podeMover = true;
     protected Rigidbody2D rb;
     protected Vector2 direcao;
     [SerializeField] private float velocidade = 3f;
@@ -224,36 +225,51 @@ public class Movimentacao : MonoBehaviour
     void OnMove(InputValue valor)
     {
         // L� o valor vindo do Input System e armazena a direção desejada
-        direcao = valor.Get<Vector2>();
+        if (podeMover)
+        {
+            direcao = valor.Get<Vector2>();
+        }
+        
     }
 
     void OnJump()
     {
         // Pula se estiver no chão ou sobre uma plataforma; caso contrário, usa o pulo duplo se estiver habilitado
-        if (estaNoChao || estaNaPlataforma)
+        if (podeMover)
         {
-            pular();
+            if (estaNoChao || estaNaPlataforma)
+            {
+                pular();
+            }
+            else if (puloDuploHabilitado)
+            {
+                puloDuploHabilitado = false;
+                pular();
+            }
         }
-        else if (puloDuploHabilitado)
-        {
-            puloDuploHabilitado = false;
-            pular();
-        }
+        
     }
 
     void OnDash()
     {
         // Inicia o dash se estiver disponível
-        if (dashDisponivel == true)
+        if (podeMover)
         {
-            StartCoroutine(usarDash());
+            if (dashDisponivel == true)
+            {
+                StartCoroutine(usarDash());
+            }
         }
     }
 
     void OnFallOfPlatform()
     {
         // Inicia a descida atravessando a plataforma (temporariamente ignora colisão)
-        StartCoroutine(descerPlataforma());
+        if (podeMover)
+        {
+            StartCoroutine(descerPlataforma());
+        }
+        
     }
 
     private void pular()
@@ -346,11 +362,11 @@ public class Movimentacao : MonoBehaviour
 
     }
 
-        public void OnBlock()
-    {
-        // Inicia a corrotina quando o jogador clica para bloquear
-        StartCoroutine(ExecutarBlock());
-    }
+    public void OnBlock()
+        {
+            // Inicia a corrotina quando o jogador clica para bloquear
+            StartCoroutine(ExecutarBlock());
+        }
 
     private IEnumerator ExecutarBlock()
     {
@@ -657,6 +673,15 @@ public class Movimentacao : MonoBehaviour
                 transform.position = new Vector3(0f, 0f, 20f);
             }
 
+        }
+    }
+
+    public void FinalPartida(bool vitoria)
+    {
+        podeMover = false;
+        if (vitoria)
+        {
+            Debug.Log($"{this.name} Ganhei saporra");
         }
     }
 }
