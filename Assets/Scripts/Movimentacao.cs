@@ -85,6 +85,7 @@ public class Movimentacao : MonoBehaviour
     // Variéveis  de controle para queda através da plataforma
     private bool descendoDaPlataforma = false;
 
+    [SerializeField]private ArenaManager arenaManager;
     void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -116,7 +117,8 @@ public class Movimentacao : MonoBehaviour
 
     void Start()
     {
-        //LoL
+        arenaManager = FindFirstObjectByType<ArenaManager>();
+
         if (this.name != "Jogador1")
         {
             this.transform.localScale = new Vector3(-1f, 1f, 1f);
@@ -456,6 +458,8 @@ public class Movimentacao : MonoBehaviour
                     acertouDammy = true;
                     ComboBloqueado();
                     Debug.Log($"Defesa inimigo atingida no golpe {golpe}");
+                    Debug.Log($"Inimigo é {defesaInimigo.gameObject.name}");
+                    arenaManager.ControlePartida(0.10f, defesaInimigo.gameObject.name);
                     break;
                 }
             }

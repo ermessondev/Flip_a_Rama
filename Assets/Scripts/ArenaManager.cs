@@ -146,20 +146,19 @@ public class ArenaManager : MonoBehaviour
         }
     }
 
-    private void ControlePartida(float dano, string jogador)
+    public void ControlePartida(float dano, string jogador)
     {
         if (jogador == "Jogador1")
         {
             barraVidaP1.fillAmount -= dano;
+
             if (barraVidaP1.fillAmount <= 0 && vidaJogador1 > 0)
             {
-                koP1[vidaJogador1].SetActive(false);
-                vidaJogador1 -= 1;
                 StartCoroutine(EfeitoKO("Jogador1"));
             }
             else if (barraVidaP1.fillAmount <= 0 && vidaJogador1 <= 0)
             {
-                FinalGame();
+                //FinalGame();
             }
         }
         else 
@@ -167,12 +166,11 @@ public class ArenaManager : MonoBehaviour
             barraVidaP2.fillAmount -= dano;
             if (barraVidaP2.fillAmount <= 0 && vidaJogador2 > 0)
             {
-                koP2[vidaJogador1].SetActive(false);
-                vidaJogador1 -= 1;
+                
                 StartCoroutine(EfeitoKO("Jogador2"));
             }else if (barraVidaP2.fillAmount <= 0 && vidaJogador2 <= 0)
             {
-                FinalGame();
+                //FinalGame();
             }
         }
     }
@@ -184,6 +182,19 @@ public class ArenaManager : MonoBehaviour
 
     private IEnumerator EfeitoKO(string jogador) 
     {
-        yield return null;
+        yield return new WaitForSeconds(1f);
+        if (jogador == "Jogador1")
+        {
+            koP2[vidaJogador1 - 1].SetActive(false);
+            vidaJogador1 -= 1;
+            barraVidaP1.fillAmount += 1;
+        }else if(jogador == "Jogador2")
+        {
+            koP2[vidaJogador2 - 1].SetActive(false);
+            vidaJogador2 -= 1;
+            barraVidaP2.fillAmount += 1;
+        }
+        
+        
     }
 }

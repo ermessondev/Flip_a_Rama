@@ -11,7 +11,7 @@ public class Dammy : MonoBehaviour
         // Se o campo estiver vazio no Inspector, tenta encontrar o script automaticamente
         if (scriptPlayer1 == null)
         {
-            scriptPlayer1 = FindObjectOfType<Movimentacao>();
+            scriptPlayer1 = FindFirstObjectByType<Movimentacao>();
             if (scriptPlayer1 == null)
             {
                 Debug.LogError("Nenhum script 'Movimentacao' foi encontrado na cena!");
