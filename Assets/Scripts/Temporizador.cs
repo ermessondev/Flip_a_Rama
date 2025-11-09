@@ -6,8 +6,10 @@ using Unity.VisualScripting;
 
 public class Temporizador : MonoBehaviour
 {
-    [SerializeField] private float tempoRelogio = 99.0f;
+    [SerializeField] public float tempoRelogio = 30.0f;
     [SerializeField] private float velocidadeRelogio = 1f;
+
+    [SerializeField] private ArenaManager arenaManager;
 
     [Header("Temporizador UI")]
     [SerializeField] TextMeshProUGUI textoRelogio;
@@ -43,10 +45,15 @@ public class Temporizador : MonoBehaviour
     void UpdateTimerText()
     {
         textoRelogio.text = tempoRestante.ToString("0");
+
     }
 
     void TemporizadorTerminou()
     {
         Debug.Log("Acabou o Tempo");
+        StartCoroutine(arenaManager.FinalGame());
     }
+
+
+
 }

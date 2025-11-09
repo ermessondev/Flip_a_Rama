@@ -475,7 +475,7 @@ public class Movimentacao : MonoBehaviour
                     ComboBloqueado();
                     Debug.Log($"Defesa inimigo atingida no golpe {golpe}");
                     Debug.Log($"Inimigo é {defesaInimigo.gameObject.name}");
-                    arenaManager.ControlePartida(0.10f, defesaInimigo.gameObject.name);
+                    arenaManager.ControleDano(0.10f, defesaInimigo.gameObject.name);
                     break;
                 }
             }
@@ -499,7 +499,7 @@ public class Movimentacao : MonoBehaviour
                     else if (hitboxCorpo == hitboxPePlayer)
                         hitboxAtingida = hitboxPePlayer.gameObject.name;
 
-                    arenaManager.ControlePartida(0.10f, hitboxAtingida);
+                    arenaManager.ControleDano(0.10f, adversarioNome);
                     break;
                 }
             }
@@ -668,22 +668,16 @@ public class Movimentacao : MonoBehaviour
         if (other.CompareTag("Limitador"))
         {
             SFX.instance.TocarSFX(sairDaArenaSFX, transform, 0.5f, 1f);
-
-            if (this.name == "Jogador1")
-            {
-                Debug.Log($"{gameObject.name} entrou no limitador!");
-
-                rb.linearVelocity = Vector2.zero;
-                transform.position = new Vector3(0f, 0f, 20f);
-            }
-            else
-            {
-                Debug.Log($"{gameObject.name} entrou no limitador!");
-                rb.linearVelocity = Vector2.zero;
-                transform.position = new Vector3(0f, 0f, 20f);
-            }
+            Debug.Log($"{gameObject.name} entrou no limitador!");
+            Respaw();
 
         }
+    }
+
+    public void Respaw()
+    {
+        rb.linearVelocity = Vector2.zero;
+        transform.position = new Vector3(0f, 0f, 20f);
     }
 
     public void FinalPartida(bool vitoria)
@@ -692,6 +686,9 @@ public class Movimentacao : MonoBehaviour
         if (vitoria)
         {
             Debug.Log($"{this.name} Ganhei saporra");
+        }
+        else {
+            Debug.Log($"{this.name} Perdi saporra");
         }
     }
 }

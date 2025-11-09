@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class ArenaManager : MonoBehaviour
@@ -13,6 +14,8 @@ public class ArenaManager : MonoBehaviour
     [SerializeField] private Transform jogador1Referencia;
     [SerializeField] private Transform jogador2Referencia;
     [SerializeField] private CameraAutoFit cameraAutoFit;
+
+    [SerializeField] private Temporizador temporizador;
 
 
     [Header("Barra de Vida")]
@@ -31,6 +34,9 @@ public class ArenaManager : MonoBehaviour
 
     private Movimentacao player1;
     private Movimentacao player2;
+
+    string winer;
+    bool jaTeveEmpate = false;
 
     void Awake()
     {
@@ -150,57 +156,97 @@ public class ArenaManager : MonoBehaviour
         }
     }
 
-    public void ControlePartida(float dano, string jogador)
+    public void ControleDano(float dano, string jogador)
     {
         if (jogador == "Jogador1")
         {
             barraVidaP1.fillAmount -= dano;
 
-            if (barraVidaP1.fillAmount <= 0 && vidaJogador1 > 0)
+            if (barraVidaP1.fillAmount <= 0)
             {
                 StartCoroutine(EfeitoKO("Jogador1"));
             }
-            else if (barraVidaP1.fillAmount <= 0 && vidaJogador1 <= 0)
-            {
-                FinalGame();
-            }
         }
-        else 
+        else if(jogador == "Jogador2")
         {
             barraVidaP2.fillAmount -= dano;
-            if (barraVidaP2.fillAmount <= 0 && vidaJogador2 > 0)
+            if (barraVidaP2.fillAmount <= 0)
             {
-                
                 StartCoroutine(EfeitoKO("Jogador2"));
-            }else if (barraVidaP2.fillAmount <= 0 && vidaJogador2 <= 0)
-            {
-                FinalGame();
             }
         }
     }
 
-    void FinalGame()
+    public void VerificaVida()
     {
-        var winer = vidaJogador1 > vidaJogador2 ? "Jogador1" : "Jogador2";
+
+    }
+
+    public IEnumerator FinalGame()
+    {
+        yield return null;
+
+
+        if (vidaJogador1 > vidaJogador2 || (vidaJogador1 == vidaJogador2 && barraVidaP1.fillAmount > barraVidaP2.fillAmount))
+        {
+            winer = "Jogador1";
+        }
+        else if (vidaJogador1 < vidaJogador2 || (vidaJogador1 == vidaJogador2 && barraVidaP1.fillAmount < barraVidaP2.fillAmount))
+        {
+            winer = "Jogador2";
+        }
+        else 
+        {
+            winer = "Empate";
+        }
+
         if (winer == "Jogador1")
         {
             player1.FinalPartida(true);
+            GameManager.instance.vitoriasP1 += 1;
+            player2.FinalPartida(false);
+
+            SceneManager.LoadScene("CharacterSelect");
+        }else if (winer == "Jogador2")
+        {
+            player2.FinalPartida(true);
+            GameManager.instance.vitoriasP2 += 1;
+            player1.FinalPartida(false);
+
+            SceneManager.LoadScene("CharacterSelect");
+        }
+        else if (winer == "Empate" && !jaTeveEmpate)
+        {
+            
         }
     }
 
     private IEnumerator EfeitoKO(string jogador) 
     {
-        yield return new WaitForSeconds(1f);
+
+        
         if (jogador == "Jogador1")
         {
-            koP2[vidaJogador1 - 1].SetActive(false);
-            vidaJogador1 -= 1;
+            yield return null;
             barraVidaP1.fillAmount += 1;
+            player1.Respaw();
+            koP1[vidaJogador1 - 1].SetActive(false);
+            vidaJogador1 -= 1;
+            if (vidaJogador1 == 0)
+            {
+                StartCoroutine(FinalGame());
+            }
         }else if(jogador == "Jogador2")
         {
+            yield return null;
+            barraVidaP2.fillAmount += 1;
+            player2.Respaw();
             koP2[vidaJogador2 - 1].SetActive(false);
             vidaJogador2 -= 1;
-            barraVidaP2.fillAmount += 1;
+            if (vidaJogador2 == 0)
+            {
+                StartCoroutine(FinalGame());
+            }
         }
         
         
