@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class ArenaManager : MonoBehaviour
 {
@@ -24,6 +23,7 @@ public class ArenaManager : MonoBehaviour
     [SerializeField] private Image barraVidaP2;
     [SerializeField] private List<GameObject> koP1 = new List<GameObject>();
     [SerializeField] private List<GameObject> koP2 = new List<GameObject>();
+    [SerializeField] private AudioClip koSFX;
     private int vidaJogador1 = 3;
     private int vidaJogador2 = 3;
 
@@ -227,6 +227,7 @@ public class ArenaManager : MonoBehaviour
         
         if (jogador == "Jogador1")
         {
+            SFX.instance.TocarSFX(koSFX, transform, 1f, 1.0f);
             yield return null;
             barraVidaP1.fillAmount += 1;
             player1.Respaw();
@@ -238,6 +239,7 @@ public class ArenaManager : MonoBehaviour
             }
         }else if(jogador == "Jogador2")
         {
+            SFX.instance.TocarSFX(koSFX, transform, 1f, 1.0f);
             yield return null;
             barraVidaP2.fillAmount += 1;
             player2.Respaw();

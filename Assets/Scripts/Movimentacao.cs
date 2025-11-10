@@ -19,7 +19,10 @@ public class Movimentacao : MonoBehaviour
     // Variáveis de Áudio e Som
     [SerializeField] AudioSource som;
     [SerializeField] private AudioClip sairDaArenaSFX;
+    [SerializeField] private AudioClip puloSFX;
+    [SerializeField] private AudioClip bloqueioSFX;
     [SerializeField] private AudioClip socoSFX;
+    [SerializeField] private AudioClip errarSocoSFX;
     [SerializeField] public AudioClip dashSFX;
     
     // Variéveis  dedicadas a mecenica de movimentação
@@ -275,6 +278,7 @@ public class Movimentacao : MonoBehaviour
     private void pular()
     {
         // Zera a velocidade vertical antes de aplicar o impulso de pulo (para padronizar a altura)
+        SFX.instance.TocarSFX(puloSFX, transform, 1f, 1.0f);
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
         rb.AddForce(Vector2.up * forcaPulo, ForceMode2D.Impulse);
     }
@@ -423,7 +427,8 @@ public class Movimentacao : MonoBehaviour
     private IEnumerator ExecutarGolpe(int golpe)
     {
         podeAtacar = false;
-    
+        SFX.instance.TocarSFX(errarSocoSFX, transform, 1f, 1.0f);
+
         // Inicia animação e configura duração de cada golpe
         switch (golpe)
         {
@@ -553,23 +558,17 @@ public class Movimentacao : MonoBehaviour
                 tamanhoAtual = tamanhoAtaque_01;
                 esperaAtaque = 0.25f;
 
-                SFX.instance.TocarSFX(socoSFX, transform, 1f, 1.2f); //tem que tocar só quando acertar
-
                 break;
             case 2:
                 hitboxAtual = hitboxPunch_02;
                 tamanhoAtual = tamanhoAtaque_02;
                 esperaAtaque = 0.2f;
 
-                SFX.instance.TocarSFX(socoSFX, transform, 1f, 1.0f);
-
                 break;
             case 3:
                 hitboxAtual = hitboxPunch_03;
                 tamanhoAtual = tamanhoAtaque_03;
                 esperaAtaque = 0.25f;
-
-                SFX.instance.TocarSFX(socoSFX, transform, 1f, 0.8f);
 
                 break;
             default:
@@ -585,6 +584,9 @@ public class Movimentacao : MonoBehaviour
             {
                 StartCoroutine(cameraAutoFit.Shake(shakeDuracao, shakeMagnitude)); // duração e intensidade
                 StartCoroutine(FreezeFrame(duracaoFreezeFrame)); // Ativa o freeze frame apenas se o golpe acertar a defesa
+
+                SFX.instance.TocarSFX(bloqueioSFX, transform, 1f, 1.0f);
+
                 Debug.Log("Freeze Frame ativado");
                 return;
             }
@@ -596,7 +598,10 @@ public class Movimentacao : MonoBehaviour
                 if (hitboxCorpo == hitboxCorpoPlayer || hitboxCorpo == hitboxCabecaPlayer || hitboxCorpo == hitboxPePlayer)
                 {
                     StartCoroutine(cameraAutoFit.Shake(shakeDuracao, shakeMagnitude)); 
-                    StartCoroutine(FreezeFrame(duracaoFreezeFrame)); 
+                    StartCoroutine(FreezeFrame(duracaoFreezeFrame));
+
+                    SFX.instance.TocarSFX(socoSFX, transform, 1f, 1.0f);
+
                     Debug.Log("Freeze Frame ativado");
                     return;
                 }
