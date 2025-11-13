@@ -1,12 +1,13 @@
 ﻿using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using TMPro;
+using UnityEngine.UI;
 
 public class ArenaManager : MonoBehaviour
 {
@@ -38,6 +39,10 @@ public class ArenaManager : MonoBehaviour
 
     string winer;
     bool jaTeveEmpate = false;
+
+    [SerializeField] private Button btnSim;
+    [SerializeField] private Button btnNao;
+    [SerializeField] private GameObject canvasFinal;
 
     [SerializeField] TextMeshProUGUI textWiner;
     void Awake()
@@ -139,6 +144,25 @@ public class ArenaManager : MonoBehaviour
         player2 = GameObject.Find("Jogador2")?.GetComponent<Movimentacao>();
     }
 
+    private void OnEnable()
+    {
+        btnSim.onClick.AddListener(() => Revanche(false, "CharacterSelect"));
+        btnNao.onClick.AddListener(() => Revanche(true, "MainMenu"));
+    }
+
+    private void OnDisable()
+    {
+        btnSim.onClick.RemoveAllListeners();
+        btnNao.onClick.RemoveAllListeners();
+    }
+
+    void Revanche(bool modoDeJogo, string scene)
+    {
+        GameManager.instance.singleMode = modoDeJogo;
+        SceneManager.LoadScene(scene);
+        Debug.Log($"🎮 Modo selecionado: singleMode={GameManager.instance.singleMode}, treinamento={GameManager.instance.treinamento}");
+    }
+
     private IEnumerator setarCamera(Transform p1, Transform p2)
     {
         yield return new WaitForEndOfFrame();
@@ -207,15 +231,22 @@ public class ArenaManager : MonoBehaviour
             player1.FinalPartida(true);
             GameManager.instance.vitoriasP1 += 1;
             player2.FinalPartida(false);
+            textWiner.text = $"{player1.name} é o Vencendor";
+            textWiner.gameObject.SetActive(true);
+            yield return new WaitForSeconds(3);
+            canvasFinal.gameObject.SetActive(true);
 
-            SceneManager.LoadScene("CharacterSelect");
-        }else if (winer == "Jogador2")
+        }
+        else if (winer == "Jogador2")
         {
             player2.FinalPartida(true);
             GameManager.instance.vitoriasP2 += 1;
             player1.FinalPartida(false);
+            textWiner.text = $"{player2.name} é o Vencendor";
+            textWiner.gameObject.SetActive(true);
+            yield return new WaitForSeconds(3);
+            canvasFinal.gameObject.SetActive(true);
 
-            SceneManager.LoadScene("CharacterSelect");
         }
         else if (winer == "Empate" && !jaTeveEmpate)
         {

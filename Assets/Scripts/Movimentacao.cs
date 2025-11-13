@@ -131,7 +131,9 @@ public class Movimentacao : MonoBehaviour
         if (this.name != "Jogador1")
         {
             this.transform.localScale = new Vector3(-1f, 1f, 1f);
-            this.gameObject.layer = LayerMask.NameToLayer("Player2");
+
+            int layerJogador2 = LayerMask.NameToLayer("Player2");
+            DefinirLayerEmTudo(this.gameObject, layerJogador2);
         }
 
 
@@ -226,10 +228,12 @@ public class Movimentacao : MonoBehaviour
         {
             if (!estaNaPlataforma)
             {
+                //Debug.Log($"[{gameObject.name}] Plataforma detectada: {estaNaPlataforma}, Layer: {gameObject.layer}");
                 Physics2D.IgnoreLayerCollision(7, 10, true);
             }
             else if (!descendoDaPlataforma)
             {
+                Debug.Log($"[{gameObject.name}] Plataforma detectada: {estaNaPlataforma}, Layer: {gameObject.layer}");
                 Physics2D.IgnoreLayerCollision(7, 10, false);
             }
 
@@ -243,6 +247,16 @@ public class Movimentacao : MonoBehaviour
         if (!emDash)
         {
             rb.linearVelocity = new Vector2(direcao.x * velocidade, rb.linearVelocity.y);
+        }
+    }
+
+    void DefinirLayerEmTudo(GameObject objeto, int novaLayer)
+    {
+        objeto.layer = novaLayer;
+
+        foreach (Transform filho in objeto.transform)
+        {
+            DefinirLayerEmTudo(filho.gameObject, novaLayer);
         }
     }
 
@@ -351,10 +365,20 @@ public class Movimentacao : MonoBehaviour
         // Se está sobre a plataforma, permite cair por ela ignorando a colisão por um curto período
         if (estaNaPlataforma == true)
         {
-            descendoDaPlataforma = true;
-            Physics2D.IgnoreLayerCollision(7, 8, true);
-            yield return new WaitForSeconds(0.5f);
-            descendoDaPlataforma = false;
+            if (this.name == "Jogador1")
+            {
+                descendoDaPlataforma = true;
+                Physics2D.IgnoreLayerCollision(7, 8, true);
+                yield return new WaitForSeconds(0.5f);
+                descendoDaPlataforma = false;
+            }
+            else
+            {
+                descendoDaPlataforma = true;
+                Physics2D.IgnoreLayerCollision(7, 10, true);
+                yield return new WaitForSeconds(0.5f);
+                descendoDaPlataforma = false;
+            }
         }
     }
     #endregion
