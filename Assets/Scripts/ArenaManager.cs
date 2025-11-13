@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class ArenaManager : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class ArenaManager : MonoBehaviour
     string winer;
     bool jaTeveEmpate = false;
 
+    [SerializeField] TextMeshProUGUI textWiner;
     void Awake()
     {
         
@@ -221,15 +223,14 @@ public class ArenaManager : MonoBehaviour
         }
     }
 
-    private IEnumerator EfeitoKO(string jogador) 
+    public IEnumerator EfeitoKO(string jogador) 
     {
 
         
         if (jogador == "Jogador1")
         {
             SFX.instance.TocarSFX(koSFX, transform, 1f, 1.0f);
-            yield return null;
-            barraVidaP1.fillAmount += 1;
+            yield return null; 
             player1.Respaw();
             koP1[vidaJogador1 - 1].SetActive(false);
             vidaJogador1 -= 1;
@@ -237,7 +238,9 @@ public class ArenaManager : MonoBehaviour
             {
                 StartCoroutine(FinalGame());
             }
-        }else if(jogador == "Jogador2")
+            barraVidaP1.fillAmount += 1;
+        }
+        else if(jogador == "Jogador2")
         {
             SFX.instance.TocarSFX(koSFX, transform, 1f, 1.0f);
             yield return null;
@@ -249,6 +252,7 @@ public class ArenaManager : MonoBehaviour
             {
                 StartCoroutine(FinalGame());
             }
+            barraVidaP1.fillAmount += 1;
         }
         
         

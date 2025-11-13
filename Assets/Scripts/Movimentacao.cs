@@ -48,6 +48,8 @@ public class Movimentacao : MonoBehaviour
     RaycastHit2D hitPlataforma;
     [SerializeField] private float raioVerificaChao = 0.30f;
     [SerializeField] private float distanciaVerificaPlataforma = 0.20f;
+    private Collider2D meuCollider;
+    private Collider2D plataformaAtual;
 
     // Variéveis de Animação
     [SerializeField] protected Animator oAnimator;
@@ -92,6 +94,9 @@ public class Movimentacao : MonoBehaviour
     [SerializeField]private ArenaManager arenaManager;
     void Awake()
     {
+        meuCollider = GetComponent<Collider2D>();
+
+
         playerInput = GetComponent<PlayerInput>();
         if (oAnimator == null)
         {
@@ -126,6 +131,7 @@ public class Movimentacao : MonoBehaviour
         if (this.name != "Jogador1")
         {
             this.transform.localScale = new Vector3(-1f, 1f, 1f);
+            this.gameObject.layer = LayerMask.NameToLayer("Player2");
         }
 
 
@@ -205,14 +211,30 @@ public class Movimentacao : MonoBehaviour
         // Controle de colis�o com as plataformas:
         // - Se não est� sobre a plataforma, ignora colisão (permite atravessar de baixo para cima)
         // - Se está sobre a plataforma e n�o está descendo, reativa a colisão
-        if (!estaNaPlataforma)
+        if (this.name == "Jogador1")
         {
-            Physics2D.IgnoreLayerCollision(7, 8, true);
+            if (!estaNaPlataforma)
+            {
+                Physics2D.IgnoreLayerCollision(7, 8, true);
+            }
+            else if (!descendoDaPlataforma)
+            {
+                Physics2D.IgnoreLayerCollision(7, 8, false);
+            }
         }
-        else if (!descendoDaPlataforma)
+        else if (this.name == "Jogador2")
         {
-            Physics2D.IgnoreLayerCollision(7, 8, false);
+            if (!estaNaPlataforma)
+            {
+                Physics2D.IgnoreLayerCollision(7, 10, true);
+            }
+            else if (!descendoDaPlataforma)
+            {
+                Physics2D.IgnoreLayerCollision(7, 10, false);
+            }
+
         }
+
     }
 
     private void FixedUpdate()
@@ -674,7 +696,7 @@ public class Movimentacao : MonoBehaviour
         {
             SFX.instance.TocarSFX(sairDaArenaSFX, transform, 0.5f, 1f);
             Debug.Log($"{gameObject.name} entrou no limitador!");
-            Respaw();
+            StartCoroutine(arenaManager.EfeitoKO(this.name));
 
         }
     }

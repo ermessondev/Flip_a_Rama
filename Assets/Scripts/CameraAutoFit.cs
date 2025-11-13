@@ -8,10 +8,12 @@ public class CameraAutoFit : MonoBehaviour
     [SerializeField] private float minSize = 12f;
     [SerializeField] private float maxSize = 25f;
     [SerializeField] private float zoomSmooth = 0.2f;
+    [SerializeField] private float moveSmooth = 0.7f;
 
     private Camera cam;
     private float sizeVel;
-    private Vector3 shakeOffset; // offset temporário do shake
+    private Vector3 shakeOffset;
+    private Vector3 currentVelocity; // <- usado pelo SmoothDamp da posição
 
     void Awake()
     {
@@ -24,17 +26,20 @@ public class CameraAutoFit : MonoBehaviour
     {
         if (cam == null || p1 == null) return;
 
-        // Calcula centro da câmera (entre p1 e p2, ou só p1)
-        Vector3 centro = (p2 != null)
+        // Calcula o centro entre os jogadores (ou só o P1 se for single)
+        Vector3 targetCenter = (p2 != null)
             ? (p1.position + p2.position) / 2f
             : p1.position;
 
-        // Aplica posição com shake
-        transform.position = new Vector3(
-            centro.x + shakeOffset.x,
-            centro.y + shakeOffset.y,
-            transform.position.z
+        // Aplica suavização de movimento + shake
+        Vector3 smoothCenter = Vector3.SmoothDamp(
+            transform.position,
+            new Vector3(targetCenter.x, targetCenter.y, transform.position.z),
+            ref currentVelocity,
+            moveSmooth
         );
+
+        transform.position = smoothCenter + shakeOffset;
 
         // Ajuste de zoom se tiver 2 jogadores
         if (p2 != null)
@@ -56,9 +61,8 @@ public class CameraAutoFit : MonoBehaviour
         p1 = player1;
         p2 = player2;
     }
-    #region CameraShake
 
-    // SHAKE camera
+    #region CameraShake
 
     public IEnumerator Shake(float duration, float magnitude)
     {
