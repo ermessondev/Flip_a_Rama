@@ -273,8 +273,15 @@ public class ArenaManager : MonoBehaviour
             if (vidaJogador1 == 0)
             {
                 StartCoroutine(FinalGame());
+
             }
-            barraVidaP1.fillAmount += 1;
+            if (koP1.Count == 0)
+            {
+                barraVidaP1.fillAmount += 1;
+
+            }
+
+
         }
         else if(jogador == "Jogador2")
         {
@@ -288,7 +295,11 @@ public class ArenaManager : MonoBehaviour
             {
                 StartCoroutine(FinalGame());
             }
-            barraVidaP1.fillAmount += 1;
+            if(koP2.Count == 0)
+            {
+                barraVidaP2.fillAmount += 1;
+                
+            }
         }
         
         

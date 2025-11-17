@@ -544,11 +544,20 @@ public class Movimentacao : MonoBehaviour
 
                     string hitboxAtingida = "";
                     if (hitboxCorpo == hitboxCorpoPlayer)
+                    {
                         hitboxAtingida = hitboxCorpoPlayer.gameObject.name;
-                    else if (hitboxCorpo == hitboxCabecaPlayer)
+                        //arenaManager.ControleDano(0.11f, defesaInimigo.gameObject.name);
+                    }else if (hitboxCorpo == hitboxCabecaPlayer)
+                    {
                         hitboxAtingida = hitboxCabecaPlayer.gameObject.name;
+                        //.ControleDano(0.11f, defesaInimigo.gameObject.name);
+                    }
                     else if (hitboxCorpo == hitboxPePlayer)
+                    {
                         hitboxAtingida = hitboxPePlayer.gameObject.name;
+                        //arenaManager.ControleDano(0.11f, defesaInimigo.gameObject.name);
+                    }
+                        
 
                     arenaManager.ControleDano(0.10f, adversarioNome);
                     break;
