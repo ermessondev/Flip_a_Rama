@@ -1,0 +1,607 @@
+fileFormatVersion: 2
+guid: 2eb7d8fd7d6e97e4595622fe190b18a1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2255635052544030714
+    second: Interface 1_0
+  - first:
+      213: -3891993860906886057
+    second: Interface 1_1
+  - first:
+      213: 5263454276662856789
+    second: Interface 1_2
+  - first:
+      213: 2811941021287778364
+    second: Interface 1_3
+  - first:
+      213: 1247219169174587702
+    second: Interface 1_4
+  - first:
+      213: 9133551877578003299
+    second: Interface 1_5
+  - first:
+      213: -6846184075745115554
+    second: Interface 1_6
+  - first:
+      213: 4170410217668631703
+    second: Interface 1_7
+  - first:
+      213: -7517771354006205835
+    second: Interface 1_8
+  - first:
+      213: -2665150556126225603
+    second: Interface 1_9
+  - first:
+      213: -4622161451346105066
+    second: Interface 1_10
+  - first:
+      213: 5492846285673628583
+    second: Interface 1_11
+  - first:
+      213: -4952899210879372303
+    second: Interface 1_12
+  - first:
+      213: 5433830109946569203
+    second: Interface 1_13
+  - first:
+      213: 5027703248924025948
+    second: Interface 1_14
+  - first:
+      213: 825338191517802063
+    second: Interface 1_15
+  - first:
+      213: 3621357523792438542
+    second: Interface 1_16
+  - first:
+      213: 1930438618801441226
+    second: Interface 1_17
+  - first:
+      213: 3860418423243116913
+    second: Interface 1_18
+  - first:
+      213: 2790414857439057484
+    second: Interface 1_19
+  - first:
+      213: -126442240069838104
+    second: Interface 1_20
+  - first:
+      213: 8256706968039543989
+    second: Interface 1_21
+  - first:
+      213: -506221788437457049
+    second: Interface 1_22
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Interface 1_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 271
+        width: 226
+        height: 226
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af77ec12120ad4f10800000000000000
+      internalID: 2255635052544030714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interface 1_1
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 271
+        width: 418
+        height: 226
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75cd4a4443cdcf9c0800000000000000
+      internalID: -3891993860906886057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interface 1_2
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 205
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55c000417cb8b0940800000000000000
+      internalID: 5263454276662856789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interface 1_3
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 205
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c380537e575060720800000000000000
+      internalID: 2811941021287778364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interface 1_4
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 143
+        width: 130
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63985bfe9330f4110800000000000000
+      internalID: 1247219169174587702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interface 1_5
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 127
+        width: 130
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36393a08a05e0ce70800000000000000
+      internalID: 9133551877578003299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interface 1_6
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 223
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e52c6421bd77df0a0800000000000000
+      internalID: -6846184075745115554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interface 1_7
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 191
+        width: 82
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79c5cc74ff540e930800000000000000
+      internalID: 4170410217668631703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interface 1_8
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 193
+        width: 22
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57a4addc8c28ba790800000000000000
+      internalID: -7517771354006205835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interface 1_9
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 167
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3b592590bb730bd0800000000000000
+      internalID: -2665150556126225603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interface 1_10
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 167
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61de20636a8cadfb0800000000000000
+      internalID: -4622161451346105066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interface 1_15
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 157
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4e5bfc56b0347b00800000000000000
+      internalID: 825338191517802063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interface 1_16
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 157
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e05265a2b75a14230800000000000000
+      internalID: 3621357523792438542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interface 1_17
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 143
+        width: 18
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac90b5622bb4aca10800000000000000
+      internalID: 1930438618801441226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interface 1_21
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 141
+        width: 82
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b45d74dd37b59270800000000000000
+      internalID: 8256706968039543989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interface 1_22
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 127
+        width: 146
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7675f9a27f989f8f0800000000000000
+      internalID: -506221788437457049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interface 1_23
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 166
+        width: 114
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc166ac4ffa00fc449c87b2f012e9d75
+      internalID: -648420953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interface 1_24
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 141
+        width: 82
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f606959e837bd54a8de70a6809f77e1
+      internalID: -1813739833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 67f0ac0db42d8a6469c26007a149d3dd
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Interface 1_0: 2255635052544030714
+      Interface 1_1: -3891993860906886057
+      Interface 1_10: -4622161451346105066
+      Interface 1_11: 5492846285673628583
+      Interface 1_12: -4952899210879372303
+      Interface 1_13: 5433830109946569203
+      Interface 1_14: 5027703248924025948
+      Interface 1_15: 825338191517802063
+      Interface 1_16: 3621357523792438542
+      Interface 1_17: 1930438618801441226
+      Interface 1_18: 3860418423243116913
+      Interface 1_19: 2790414857439057484
+      Interface 1_2: 5263454276662856789
+      Interface 1_20: -126442240069838104
+      Interface 1_21: 8256706968039543989
+      Interface 1_22: -506221788437457049
+      Interface 1_23: -648420953
+      Interface 1_24: -1813739833
+      Interface 1_3: 2811941021287778364
+      Interface 1_4: 1247219169174587702
+      Interface 1_5: 9133551877578003299
+      Interface 1_6: -6846184075745115554
+      Interface 1_7: 4170410217668631703
+      Interface 1_8: -7517771354006205835
+      Interface 1_9: -2665150556126225603
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
