@@ -480,14 +480,14 @@ public class Movimentacao : MonoBehaviour
         {
             case 1:
                 oAnimator.SetBool("Punch", true);
-                duracaoGolpe = 0.5f;
+                duracaoGolpe = 0.4f;
                 frameParaAcerto = 0.3f;
                 
                 break;
             case 2:
                 oAnimator.SetBool("Punch_2", true);
                 duracaoGolpe = 0.4f;
-                frameParaAcerto = 0.2f;
+                frameParaAcerto = 0.25f;
                 break;
             case 3:
                 oAnimator.SetBool("Punch_3", true);
@@ -614,7 +614,7 @@ public class Movimentacao : MonoBehaviour
             case 3:
                 hitboxAtual = hitboxPunch_03;
                 tamanhoAtual = tamanhoAtaque_03;
-                esperaAtaque = 0.25f;
+                esperaAtaque = 0.3f;
 
                 break;
             default:
