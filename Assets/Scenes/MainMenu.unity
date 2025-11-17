@@ -1900,7 +1900,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   CharacterDatabase:
+  - {fileID: 4985995813333879250, guid: bc00e97726f656a498cffae1f419c4e9, type: 3}
   - {fileID: 4985995813333879250, guid: 917e793259e0bbb4ea6c34ac13064776, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 5997914488800221952, guid: 0be7d0eb8d7100844ae26b8b80d3a4cb, type: 3}
   jogador1: {fileID: 0}
   jogador2: {fileID: 0}
