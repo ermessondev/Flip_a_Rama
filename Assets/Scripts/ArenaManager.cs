@@ -23,6 +23,8 @@ public class ArenaManager : MonoBehaviour
     [SerializeField] private GameObject lifeBar;
     [SerializeField] private Image barraVidaP1;
     [SerializeField] private Image barraVidaP2;
+    [SerializeField] private Image barraDanoP1;
+    [SerializeField] private Image barraDanoP2;
     [SerializeField] private List<GameObject> koP1 = new List<GameObject>();
     [SerializeField] private List<GameObject> koP2 = new List<GameObject>();
     [SerializeField] private AudioClip koSFX;
@@ -41,6 +43,8 @@ public class ArenaManager : MonoBehaviour
     bool jaTeveEmpate = false;
 
     [SerializeField] private GameObject canvasFinal;
+
+    [SerializeField] private GameObject MenuPausa;
 
     [SerializeField] TextMeshProUGUI textWiner;
     void Awake()
@@ -148,16 +152,25 @@ public class ArenaManager : MonoBehaviour
         cameraAutoFit.SetPlayers(p1, p2);
     }
 
+    void OnPauseMenu()
+    {
+        PausarJogo(!jogoPausado);
+    }
+
     public void PausarJogo(bool value)
     {
+
         jogoPausado = value;
         if (jogoPausado)
         {
+
             Time.timeScale = 0f;
+            MenuPausa.SetActive(true);
         }
         else
         {
             Time.timeScale = 1f;
+            MenuPausa.SetActive(false);
         }
     }
 
@@ -166,7 +179,8 @@ public class ArenaManager : MonoBehaviour
         if (jogador == "Jogador1" && !player1.emBlock)
         {
             barraVidaP1.fillAmount -= dano;
-
+            controleBarraSegundaria(barraDanoP1, dano);
+            StartCoroutine(controleBarraSegundaria(barraDanoP1, dano));
             if (barraVidaP1.fillAmount <= 0)
             {
                 StartCoroutine(EfeitoKO("Jogador1"));
@@ -175,10 +189,22 @@ public class ArenaManager : MonoBehaviour
         else if(jogador == "Jogador2" && !player2.emBlock)
         {
             barraVidaP2.fillAmount -= dano;
+            StartCoroutine(controleBarraSegundaria(barraDanoP2, dano));
+
             if (barraVidaP2.fillAmount <= 0)
             {
                 StartCoroutine(EfeitoKO("Jogador2"));
             }
+        }
+    }
+
+    IEnumerator controleBarraSegundaria(Image barraVida, float dano)
+    {
+        yield return new WaitForSeconds(1f);
+        for (int i = 0; i < 10; i ++) 
+        {
+            barraVida.fillAmount -= 0.01f;
+            yield return new WaitForSeconds (0.05f);
         }
     }
 

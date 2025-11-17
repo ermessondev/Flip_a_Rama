@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Data.Common;
+using TreeEditor;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -76,7 +77,11 @@ public class Movimentacao : MonoBehaviour
     private string adversarioNome;
     public bool acertouDammy = false;
     public bool emBlock = false;
+    public bool podeBloquear = true;
     private int golpeTomado;
+    [SerializeField] private float distanciaArremesso = 10f;
+    [SerializeField] private Movimentacao inimigo;
+    private bool sendoArremessado = false;
 
     [Header("Configurações do Shake/Frame freeze")]
     [SerializeField] private float shakeDuracao = 0.1f;
@@ -126,6 +131,7 @@ public class Movimentacao : MonoBehaviour
 
     void Start()
     {
+        inimigo = this.name == "Jogador1" ? GameObject.Find("Jogador2")?.GetComponent<Movimentacao>() : GameObject.Find("Jogador1")?.GetComponent<Movimentacao>();
         arenaManager = FindFirstObjectByType<ArenaManager>();
 
         if (this.name != "Jogador1")
@@ -244,7 +250,7 @@ public class Movimentacao : MonoBehaviour
     private void FixedUpdate()
     {
         // Se na estiver em dash, aplica a movimentação horizontal usando o valor armazenado em 'direcao' (setado em OnMove)
-        if (!emDash)
+        if (!emDash && !sendoArremessado)
         {
             rb.linearVelocity = new Vector2(direcao.x * velocidade, rb.linearVelocity.y);
         }
@@ -414,8 +420,13 @@ public class Movimentacao : MonoBehaviour
 
     public void OnBlock()
         {
-            // Inicia a corrotina quando o jogador clica para bloquear
-            StartCoroutine(ExecutarBlock());
+            if (podeBloquear)
+            {
+                // Inicia a corrotina quando o jogador clica para bloquear
+                StartCoroutine(ExecutarBlock());
+
+            }
+            
         }
 
     private IEnumerator ExecutarBlock()
@@ -434,20 +445,9 @@ public class Movimentacao : MonoBehaviour
     
     void OnAttack()
     {   
-        if (emDash)
+        if (emDash || emBlock || sendoArremessado || !podeAtacar)
         {
-            Debug.Log("Não pode atacar durante o Dash");
-            return;
-        }
-
-        if (emBlock)
-        {
-            Debug.Log("Não pode atacar durante o Block");
-            return;
-        }
-
-        if (!podeAtacar)
-        {
+            Debug.Log("Não pode atacar");
             return;
         }
 
@@ -526,7 +526,7 @@ public class Movimentacao : MonoBehaviour
                     ComboBloqueado();
                     Debug.Log($"Defesa inimigo atingida no golpe {golpe}");
                     Debug.Log($"Inimigo é {defesaInimigo.gameObject.name}");
-                    arenaManager.ControleDano(0.10f, defesaInimigo.gameObject.name);
+                    arenaManager.ControleDano(0.11f, defesaInimigo.gameObject.name);
                     break;
                 }
             }
@@ -580,6 +580,8 @@ public class Movimentacao : MonoBehaviour
         // Se for o último golpe do combo, reseta
         if (comboIndice >= maximoCombo)
         {
+            inimigo.Arremesso(transform.localScale);
+
             Debug.Log("Combo finalizado");
             comboIndice = 0;
 
@@ -590,7 +592,31 @@ public class Movimentacao : MonoBehaviour
             }
         }
     }
-    
+
+    public void Arremesso(Vector3 direcao)
+    {
+        StartCoroutine(ArremessoCoroutine(direcao));
+    }
+
+    private IEnumerator ArremessoCoroutine(Vector3 direcao)
+    {
+        sendoArremessado = true;
+
+        rb.gravityScale = 1f;
+        rb.linearVelocity = Vector2.zero;
+
+        // define o angulo do arremesso para 45 graus
+        Vector2 dir45 = new Vector2(Mathf.Sign(direcao.x), 1).normalized;
+
+        rb.AddForce(dir45 * distanciaArremesso, ForceMode2D.Impulse);
+
+        yield return new WaitForSeconds(1.5f);
+
+        sendoArremessado = false;
+    }
+
+
+
     public void AtivarFreezeFrame()
     {
         // Escolhe a hitbox de acordo com o golpe atual
@@ -723,6 +749,16 @@ public class Movimentacao : MonoBehaviour
             StartCoroutine(arenaManager.EfeitoKO(this.name));
 
         }
+    }
+
+    void OnPauseMenu()
+    {
+        arenaManager.PausarJogo(!arenaManager.jogoPausado);
+    }
+
+    public void falarTeste()
+    {
+        Debug.Log("Ai AI");
     }
 
     public void Respaw()

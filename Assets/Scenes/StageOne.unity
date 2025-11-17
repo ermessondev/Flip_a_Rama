@@ -388,7 +388,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 94435764}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 478659109}
+        m_TargetAssemblyTypeName: ArenaManager, Assembly-CSharp
+        m_MethodName: PausarJogo
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &94435764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2037,6 +2049,8 @@ MonoBehaviour:
   lifeBar: {fileID: 1685100062}
   barraVidaP1: {fileID: 464377462}
   barraVidaP2: {fileID: 871506902}
+  barraDanoP1: {fileID: 644749171}
+  barraDanoP2: {fileID: 1797164789}
   koP1:
   - {fileID: 6272439}
   - {fileID: 1290205977}
@@ -2047,9 +2061,8 @@ MonoBehaviour:
   - {fileID: 1585387288}
   koSFX: {fileID: 8300000, guid: 4e16f9fa0f27d3d459ebee59fad41ea2, type: 3}
   jogoPausado: 0
-  btnSim: {fileID: 710594654}
-  btnNao: {fileID: 1587667458}
   canvasFinal: {fileID: 1375850838}
+  MenuPausa: {fileID: 1707770295}
   textWiner: {fileID: 1377749961}
 --- !u!1 &481241415
 GameObject:
@@ -7124,8 +7137,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 621870253}
   - {fileID: 1931500643}
+  - {fileID: 621870253}
   m_Father: {fileID: 295428755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}

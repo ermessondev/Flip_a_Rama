@@ -72,7 +72,7 @@
                 {
                     "name": "PauseMenu",
                     "type": "Button",
-                    "id": "6c2b6eea-12a8-440e-9c5a-03c78d3a5d78",
+                    "id": "32ff0a51-dd35-45cd-a0dc-fa1dc9692730",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -225,6 +225,28 @@
                 },
                 {
                     "name": "",
+                    "id": "c1f879d0-406a-4386-92e1-d1195edf8791",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "PauseMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f969ada7-a830-4e5d-b54c-db4a3ec71185",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad;Joystick;XR",
+                    "action": "PauseMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "0663e619-ec16-408c-b626-5b0dc8b651d4",
                     "path": "<Keyboard>/f",
                     "interactions": "",
@@ -264,28 +286,6 @@
                     "processors": "",
                     "groups": ";Gamepad;Joystick;XR",
                     "action": "Block",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fc5f81ba-85f6-4d11-affd-5072f84366c7",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "PauseMenu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "59fda7bc-6d6d-4cc9-915b-1ae65b9bdcff",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad;Joystick;XR",
-                    "action": "PauseMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -361,7 +361,7 @@
                 {
                     "name": "PauseMenu",
                     "type": "Button",
-                    "id": "65a2e78a-1d21-4ac5-b9cc-08506388b76d",
+                    "id": "2ebbec4c-1e93-4836-8c5e-73cdfbef9fcb",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -514,6 +514,28 @@
                 },
                 {
                     "name": "",
+                    "id": "c6582540-7404-4cd3-8e11-f6da41ce2e3e",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "PauseMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "80946a1b-25c0-4bfd-8597-e2fecbb10277",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad;Joystick;XR",
+                    "action": "PauseMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5e9660bf-076c-4a79-8311-ff074a51c86e",
                     "path": "<Keyboard>/p",
                     "interactions": "",
@@ -553,28 +575,6 @@
                     "processors": "",
                     "groups": ";Gamepad;Joystick;XR",
                     "action": "Block",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "21d77f86-797c-41b2-a574-780489a8ed95",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "PauseMenu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f2303451-465a-4fc2-8ae1-8e9da8ff5b8c",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad;Joystick;XR",
-                    "action": "PauseMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
