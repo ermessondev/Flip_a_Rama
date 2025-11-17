@@ -40,8 +40,6 @@ public class ArenaManager : MonoBehaviour
     string winer;
     bool jaTeveEmpate = false;
 
-    [SerializeField] private Button btnSim;
-    [SerializeField] private Button btnNao;
     [SerializeField] private GameObject canvasFinal;
 
     [SerializeField] TextMeshProUGUI textWiner;
@@ -144,25 +142,6 @@ public class ArenaManager : MonoBehaviour
         player2 = GameObject.Find("Jogador2")?.GetComponent<Movimentacao>();
     }
 
-    private void OnEnable()
-    {
-        btnSim.onClick.AddListener(() => Revanche(false, "CharacterSelect"));
-        btnNao.onClick.AddListener(() => Revanche(true, "MainMenu"));
-    }
-
-    private void OnDisable()
-    {
-        btnSim.onClick.RemoveAllListeners();
-        btnNao.onClick.RemoveAllListeners();
-    }
-
-    void Revanche(bool modoDeJogo, string scene)
-    {
-        GameManager.instance.singleMode = modoDeJogo;
-        SceneManager.LoadScene(scene);
-        Debug.Log($"🎮 Modo selecionado: singleMode={GameManager.instance.singleMode}, treinamento={GameManager.instance.treinamento}");
-    }
-
     private IEnumerator setarCamera(Transform p1, Transform p2)
     {
         yield return new WaitForEndOfFrame();
@@ -184,7 +163,7 @@ public class ArenaManager : MonoBehaviour
 
     public void ControleDano(float dano, string jogador)
     {
-        if (jogador == "Jogador1")
+        if (jogador == "Jogador1" && !player1.emBlock)
         {
             barraVidaP1.fillAmount -= dano;
 
@@ -193,7 +172,7 @@ public class ArenaManager : MonoBehaviour
                 StartCoroutine(EfeitoKO("Jogador1"));
             }
         }
-        else if(jogador == "Jogador2")
+        else if(jogador == "Jogador2" && !player2.emBlock)
         {
             barraVidaP2.fillAmount -= dano;
             if (barraVidaP2.fillAmount <= 0)

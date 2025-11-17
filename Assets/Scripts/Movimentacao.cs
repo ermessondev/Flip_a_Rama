@@ -75,7 +75,7 @@ public class Movimentacao : MonoBehaviour
     private bool ehJogador1;
     private string adversarioNome;
     public bool acertouDammy = false;
-    private bool emBlock = false;
+    public bool emBlock = false;
     private int golpeTomado;
 
     [Header("Configurações do Shake/Frame freeze")]
