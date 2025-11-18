@@ -143,33 +143,6 @@ public class Movimentacao : MonoBehaviour
         }
 
 
-        if (defesaInimigo == null)
-        {
-            if (gameObject.name == "Jogador1")
-            {
-                // Procura o jogador 2 e usa o BoxCollider2D dele como hitbox de defesa
-                GameObject jogador2 = GameObject.Find("Jogador2");
-                if (jogador2 == null)
-                {
-                    jogador2 = GameObject.Find("Jogador2 (IA)");
-                }
-
-                if (jogador2 != null)
-                {
-                    defesaInimigo = jogador2.GetComponentInChildren<BoxCollider2D>();
-                }
-            }
-            else
-            {
-                // Procura o jogador 1 e usa o BoxCollider2D dele como hitbox de defesa
-                GameObject jogador1 = GameObject.Find("Jogador1");
-                if (jogador1 != null)
-                {
-                    defesaInimigo = jogador1.GetComponentInChildren<BoxCollider2D>();
-                }
-            }
-        }
-
         ehJogador1 = gameObject.name.Contains("Jogador1");      // Identificar se este script e do Jogador1
 
         if (ehJogador1)     // Se for o Jogador1, define o adversário como "Jogador2" e vice-versa
@@ -190,6 +163,17 @@ public class Movimentacao : MonoBehaviour
         hitboxCorpoPlayer = hitboxAdversario.Find("Hitbox_Corpo").GetComponent<BoxCollider2D>();
         hitboxPePlayer = hitboxAdversario.Find("Hitbox_Pe").GetComponent<BoxCollider2D>();
         hitboxCabecaPlayer = hitboxAdversario.Find("Hitbox_Cabeca").GetComponent<BoxCollider2D>();
+
+        Transform defesaHitbox = spriteAdversario.Find("Hitbox_Defesa"); 
+        
+        if (defesaHitbox != null) 
+        { 
+            defesaInimigo = defesaHitbox.GetComponent<BoxCollider2D>(); 
+        } 
+        else 
+        { 
+            Debug.LogError("Hitbox_Defesa não encontrada"); 
+        }
     }
 
     void Update()
@@ -436,7 +420,7 @@ public class Movimentacao : MonoBehaviour
         emBlock = true;
 
         // Espera 5 segundos
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         // Volta para o Idle
         oAnimator.SetBool("Block", false);
@@ -526,7 +510,6 @@ public class Movimentacao : MonoBehaviour
                     ComboBloqueado();
                     Debug.Log($"Defesa inimigo atingida no golpe {golpe}");
                     Debug.Log($"Inimigo é {defesaInimigo.gameObject.name}");
-                    arenaManager.ControleDano(0.11f, defesaInimigo.gameObject.name);
                     break;
                 }
             }
@@ -560,6 +543,17 @@ public class Movimentacao : MonoBehaviour
                         
 
                     arenaManager.ControleDano(0.10f, adversarioNome);
+
+                    if (golpe == 3)
+                    {
+                        bool inimigoDefendeu = defesaInimigo != null && defesaInimigo.enabled && inimigo.emBlock;
+
+                        if (!inimigoDefendeu)
+                        {
+                            inimigo.Arremesso(transform.localScale);
+                        }
+                    }
+
                     break;
                 }
             }
@@ -682,7 +676,9 @@ public class Movimentacao : MonoBehaviour
                     StartCoroutine(FreezeFrame(duracaoFreezeFrame));
 
                     SFX.instance.TocarSFX(socoSFX, transform, 1f, 1.0f);
-
+                    arenaManager.ControleDano(0.11f, hitboxCabecaPlayer.gameObject.name);
+                    arenaManager.ControleDano(0.11f, hitboxCorpoPlayer.gameObject.name);
+                    arenaManager.ControleDano(0.11f, hitboxPePlayer.gameObject.name);
                     Debug.Log("Freeze Frame ativado");
                     return;
                 }

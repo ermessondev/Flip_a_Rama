@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 7310301890650407780}
   - component: {fileID: 1570939322366064599}
   m_Layer: 8
-  m_Name: Hitbox_Block
+  m_Name: Hitbox_Defesa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138,7 +138,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2275764838258819986}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -597,6 +597,10 @@ MonoBehaviour:
   hitboxPePlayer: {fileID: 0}
   hitboxCabecaPlayer: {fileID: 0}
   acertouDammy: 0
+  emBlock: 0
+  podeBloquear: 1
+  distanciaArremesso: 10
+  inimigo: {fileID: 0}
   shakeDuracao: 0.1
   shakeMagnitude: 0.2
   cameraAutoFit: {fileID: 0}

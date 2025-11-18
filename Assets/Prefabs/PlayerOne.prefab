@@ -597,6 +597,10 @@ MonoBehaviour:
   hitboxPePlayer: {fileID: 0}
   hitboxCabecaPlayer: {fileID: 0}
   acertouDammy: 0
+  emBlock: 0
+  podeBloquear: 1
+  distanciaArremesso: 10
+  inimigo: {fileID: 0}
   shakeDuracao: 0.1
   shakeMagnitude: 0.2
   cameraAutoFit: {fileID: 0}
