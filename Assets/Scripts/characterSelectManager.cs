@@ -3,14 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TMPro;
+
 
 public class characterSelectManager : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI textoBloqueado;
     // Todos os Debug.Log são de teste por enquanto 
     [SerializeField] public List<Button> listaDePersonagens = new List<Button>();
 
     [SerializeField] private Canvas canvas;
     private PlayerInputManager pim;
+
+    [SerializeField] private GameObject seletorP1;
+    [SerializeField] private GameObject seletorP2;
 
     void Awake()
     {
@@ -26,29 +32,31 @@ public class characterSelectManager : MonoBehaviour
     {
         pim.onPlayerJoined -= OnPlayerJoined;
     }
-
+    public IEnumerator charBloqueado()
+    {
+        textoBloqueado.text = "Este personagem está bloqueado, Escolha outro";
+        textoBloqueado.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3);
+        textoBloqueado.gameObject.SetActive(false);
+    }
     private void Start()
     {
         // Instancia o seletor de personagens através do player input manager.
         if (GameManager.instance.singleMode)
         {
-            var player1 = pim.JoinPlayer(playerIndex: 0, controlScheme: "Keyboard&Mouse", pairWithDevice: Keyboard.current);
+            var player1 = PlayerInput.Instantiate(seletorP1, playerIndex: 0, controlScheme: "Keyboard&Mouse", pairWithDevice: Keyboard.current);
         }
         else
         {
             // Player 1 → teclado
-            var player1 = pim.JoinPlayer(playerIndex: 0, controlScheme: "Keyboard&Mouse", pairWithDevice: Keyboard.current);
+            var player1 = PlayerInput.Instantiate(seletorP1, playerIndex: 0, controlScheme: "Keyboard&Mouse", pairWithDevice: Keyboard.current);
             StartCoroutine(SetActionMapNextFrame(player1));
 
 
-            var player2 = pim.JoinPlayer(playerIndex: 1, controlScheme: "Virtual");
+            var player2 = PlayerInput.Instantiate(seletorP2, playerIndex: 1, controlScheme: "Virtual");
             player2.user.UnpairDevices();
             player2.SwitchCurrentControlScheme("Keyboard&Mouse", Keyboard.current, Mouse.current);
             StartCoroutine(SetActionMapNextFrame(player2));
-            
-
-
-
         }
 
 
@@ -74,8 +82,8 @@ public class characterSelectManager : MonoBehaviour
         {
             player.SwitchCurrentActionMap("CharacterSelectionPlayer2");
             Debug.Log($"✅ ActionMap trocado com sucesso para {player.currentActionMap.name}, e ControlScheme para {player.currentControlScheme}");
-            
-        } 
-        
+
+        }
+
     }
 }

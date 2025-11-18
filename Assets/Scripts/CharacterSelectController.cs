@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
-public class CharacterSelectController : MonoBehaviour
+    public class CharacterSelectController : MonoBehaviour
 {
-    [SerializeField] private int colunas = 4; // número de colunas da grade
+    [SerializeField] private int colunas = 1; // número de colunas da grade
 
     private int personagemAtual;
     private Image img;
@@ -18,6 +19,7 @@ public class CharacterSelectController : MonoBehaviour
     private bool selecionado = false;
 
     private characterSelectManager manager;
+
 
     void Awake()
     {
@@ -42,12 +44,12 @@ public class CharacterSelectController : MonoBehaviour
             if (playerInput.playerIndex == 0)
             {
                 personagemAtual = 0;
-                img.color = Color.blue;
+                //img.color = Color.blue;
             }
             else if (playerInput.playerIndex == 1)
             {
-                personagemAtual = 3; 
-                img.color = Color.red;
+                personagemAtual = 3;
+                //.color = Color.red;
             }
         }
 
@@ -67,7 +69,7 @@ public class CharacterSelectController : MonoBehaviour
 
             if (listaPersonagens == null || listaPersonagens.Count == 0) return;
 
-            int total = listaPersonagens.Count;
+            int total = 4;
 
             if (direcao.x > 0.5f) // direita
                 personagemAtual = (personagemAtual + 1 + total) % total;
@@ -80,7 +82,7 @@ public class CharacterSelectController : MonoBehaviour
 
             MoverParaBotao(listaPersonagens[personagemAtual]);
         }
-        
+
     }
 
     private void MoverParaBotao(Button botao)
@@ -91,7 +93,12 @@ public class CharacterSelectController : MonoBehaviour
 
     void OnConfirm()
     {
-        selecionado = true;
+        if (personagemAtual == 2 || personagemAtual == 3)
+        {
+            StartCoroutine(manager.charBloqueado());
+            return; 
+        }
+        selecionado = !selecionado;
 
         if (playerInput.playerIndex == 0)
         {

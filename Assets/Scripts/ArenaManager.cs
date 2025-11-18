@@ -216,8 +216,6 @@ public class ArenaManager : MonoBehaviour
     public IEnumerator FinalGame()
     {
         yield return null;
-
-
         if (vidaJogador1 > vidaJogador2 || (vidaJogador1 == vidaJogador2 && barraVidaP1.fillAmount > barraVidaP2.fillAmount))
         {
             winer = "Jogador1";
@@ -266,28 +264,29 @@ public class ArenaManager : MonoBehaviour
         if (jogador == "Jogador1")
         {
             SFX.instance.TocarSFX(koSFX, transform, 1f, 1.0f);
-            yield return null; 
+            if (vidaJogador1 > 1)
+            {
+                barraVidaP1.fillAmount += 1;
+                barraDanoP1.fillAmount += 1; 
+            }
             player1.Respaw();
             koP1[vidaJogador1 - 1].SetActive(false);
             vidaJogador1 -= 1;
             if (vidaJogador1 == 0)
             {
                 StartCoroutine(FinalGame());
-
             }
-            if (koP1.Count == 0)
-            {
-                barraVidaP1.fillAmount += 1;
-
-            }
-
-
+            yield return null;
         }
         else if(jogador == "Jogador2")
         {
             SFX.instance.TocarSFX(koSFX, transform, 1f, 1.0f);
-            yield return null;
-            barraVidaP2.fillAmount += 1;
+            if (vidaJogador2 > 1)
+            {
+                barraVidaP2.fillAmount += 1;
+                barraDanoP2.fillAmount += 1;
+
+            }
             player2.Respaw();
             koP2[vidaJogador2 - 1].SetActive(false);
             vidaJogador2 -= 1;
@@ -295,11 +294,7 @@ public class ArenaManager : MonoBehaviour
             {
                 StartCoroutine(FinalGame());
             }
-            if(koP2.Count == 0)
-            {
-                barraVidaP2.fillAmount += 1;
-                
-            }
+            yield return null;
         }
         
         
