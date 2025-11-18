@@ -583,8 +583,6 @@ public class Movimentacao : MonoBehaviour
         // Se for o último golpe do combo, reseta
         if (comboIndice >= maximoCombo)
         {
-            inimigo.Arremesso(transform.localScale);
-
             Debug.Log("Combo finalizado");
             comboIndice = 0;
 
