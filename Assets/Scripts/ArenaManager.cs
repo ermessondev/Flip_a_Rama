@@ -47,6 +47,8 @@ public class ArenaManager : MonoBehaviour
     [SerializeField] private GameObject MenuPausa;
 
     [SerializeField] TextMeshProUGUI textWiner;
+    [SerializeField] TextMeshProUGUI roundStart;
+    public bool partidaIniciada = false;
     void Awake()
     {
         
@@ -144,6 +146,7 @@ public class ArenaManager : MonoBehaviour
     {
         player1 = GameObject.Find("Jogador1")?.GetComponent<Movimentacao>();
         player2 = GameObject.Find("Jogador2")?.GetComponent<Movimentacao>();
+        StartCoroutine(RoundStart());
     }
 
     private IEnumerator setarCamera(Transform p1, Transform p2)
@@ -257,6 +260,7 @@ public class ArenaManager : MonoBehaviour
         }
     }
 
+
     public IEnumerator EfeitoKO(string jogador) 
     {
 
@@ -298,5 +302,33 @@ public class ArenaManager : MonoBehaviour
         }
         
         
+    }
+
+    private IEnumerator RoundStart() 
+    {
+        player1.podeMover = false; player2.podeMover = false;
+        player1.podeBloquear = false; player2.podeBloquear=false;
+        player1.dashDisponivel = false; player2.dashDisponivel = false;
+        for (int i = 3; i >= 1; i--) 
+        {
+            roundStart.text = $"{i}";
+            roundStart.gameObject.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            roundStart.gameObject.SetActive(false);
+            if (i == 1)
+            {
+                roundStart.text = $"Comecem a Luta";
+                roundStart.gameObject.SetActive(true);
+                yield return new WaitForSeconds(1f);
+                roundStart.gameObject.SetActive(false);
+            }
+
+        }
+        player1.podeMover = true; player2.podeMover = true;
+        player1.podeBloquear = true; player2.podeBloquear = true;
+        player1.dashDisponivel = true; player2.dashDisponivel = true;
+        partidaIniciada = true;
+        temporizador.IniciarRelogio();
+
     }
 }

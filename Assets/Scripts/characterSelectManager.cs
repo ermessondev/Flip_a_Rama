@@ -1,14 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 using UnityEngine.UI;
-using TMPro;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 
 public class characterSelectManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI textoBloqueado;
+    [SerializeField] private TextMeshProUGUI textoJogador1Confirmado;
+    [SerializeField] private TextMeshProUGUI textoJogador2Confirmado;
+
+
     // Todos os Debug.Log são de teste por enquanto 
     [SerializeField] public List<Button> listaDePersonagens = new List<Button>();
 
@@ -32,13 +38,51 @@ public class characterSelectManager : MonoBehaviour
     {
         pim.onPlayerJoined -= OnPlayerJoined;
     }
-    public IEnumerator charBloqueado()
+    public void Bloqueado(string jogador)
     {
-        textoBloqueado.text = "Este personagem está bloqueado, Escolha outro";
+        StartCoroutine(CharBloqueado(jogador));
+    }
+    private IEnumerator CharBloqueado(string jogador)
+    {
+        Debug.Log("Personagem Bloqueado");
+        textoBloqueado.text = $"{jogador} este personagem está bloqueado, Escolha outro";
         textoBloqueado.gameObject.SetActive(true);
         yield return new WaitForSeconds(3);
         textoBloqueado.gameObject.SetActive(false);
     }
+
+    public void ConfirmaPersonagem(string jogador, bool valor)
+    {
+        StartCoroutine(confirmaPersonagemCoroutine(jogador, valor));
+    }
+
+    private IEnumerator confirmaPersonagemCoroutine(string jogador, bool valor)
+    {
+        if (jogador == "Jogador1" && !valor)
+        {
+            Debug.Log("Personagem Bloqueado");
+            textoJogador1Confirmado.text = $"{jogador} Deseja confirmar o personagem? F para sim ESC para nao";
+            textoJogador1Confirmado.gameObject.SetActive(true);
+            yield return new WaitForSeconds(1);
+        }else if (jogador == "Jogador1" && valor)
+        {
+            textoJogador1Confirmado.gameObject.SetActive(false);
+        }
+
+        if (jogador == "Jogador2" && !valor)
+        {
+            Debug.Log("Personagem Bloqueado");
+            textoJogador2Confirmado.text = $"{jogador} Deseja confirmar o personagem? P para sim BACKSPACE para nao";
+            textoJogador2Confirmado.gameObject.SetActive(true);
+            yield return new WaitForSeconds(1);
+        }
+        else if (jogador == "Jogador2" && valor)
+        {
+            textoJogador2Confirmado.gameObject.SetActive(false);
+        }
+    }
+
+
     private void Start()
     {
         // Instancia o seletor de personagens através do player input manager.
@@ -50,6 +94,7 @@ public class characterSelectManager : MonoBehaviour
         {
             // Player 1 → teclado
             var player1 = PlayerInput.Instantiate(seletorP1, playerIndex: 0, controlScheme: "Keyboard&Mouse", pairWithDevice: Keyboard.current);
+            
             StartCoroutine(SetActionMapNextFrame(player1));
 
 

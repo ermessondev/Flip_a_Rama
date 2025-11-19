@@ -27,7 +27,7 @@ public class Movimentacao : MonoBehaviour
     [SerializeField] public AudioClip dashSFX;
     
     // Variéveis  dedicadas a mecenica de movimentação
-    [SerializeField]protected bool podeMover = true;
+    [SerializeField]public bool podeMover = true;
     protected Rigidbody2D rb;
     protected Vector2 direcao;
     [SerializeField] private float velocidade = 3f;
@@ -35,7 +35,7 @@ public class Movimentacao : MonoBehaviour
 
     // Variéveis dedicadas a mecánica de dash
     private bool puloDuploHabilitado = false;
-    private bool dashDisponivel = true;
+    public bool dashDisponivel = true;
     private bool emDash = false;
     [SerializeField] private float forcaDash = 15f;
 
@@ -623,6 +623,8 @@ public class Movimentacao : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         podeAtacar = true;
+        dashDisponivel = true;
+        podeMover = true;
 
         yield return new WaitForSeconds(0.9f);
         sendoArremessado = false;

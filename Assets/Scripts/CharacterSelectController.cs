@@ -5,8 +5,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Unity.VisualScripting;
 
-    public class CharacterSelectController : MonoBehaviour
+public class CharacterSelectController : MonoBehaviour
 {
     [SerializeField] private int colunas = 1; // número de colunas da grade
 
@@ -17,10 +18,11 @@ using TMPro;
     private Vector2 direcao;
 
     private bool selecionado = false;
+    private bool confirmado = false;
 
     private characterSelectManager manager;
 
-
+    private string jogador;
     void Awake()
     {
         img = GetComponent<Image>();
@@ -32,7 +34,7 @@ using TMPro;
     void Start()
     {
         // Pega a lista do manager 
-        var manager = FindFirstObjectByType<characterSelectManager>();
+        manager = FindFirstObjectByType<characterSelectManager>();
         if (manager != null)
         {
             listaPersonagens = manager.listaDePersonagens;
@@ -58,6 +60,8 @@ using TMPro;
         {
             MoverParaBotao(listaPersonagens[personagemAtual]);
         }
+
+        jogador = this.name == "PlayerSelector1(Clone)" ? "Jogador1" : "Jogador2";
     }
 
     //movimentação exclusiva para HUD
@@ -91,24 +95,50 @@ using TMPro;
         transform.SetAsLastSibling(); // mantém o seletor na frente
     }
 
+    void OnCancel()
+    {
+        if (selecionado && confirmado) 
+        {
+            return;
+        }
+        selecionado = false;
+        confirmado = false;
+        manager.ConfirmaPersonagem(jogador, true);
+
+    }
+
     void OnConfirm()
     {
         if (personagemAtual == 2 || personagemAtual == 3)
         {
-            StartCoroutine(manager.charBloqueado());
+            manager.Bloqueado(jogador);
             return; 
         }
-        selecionado = !selecionado;
 
-        if (playerInput.playerIndex == 0)
+        if (!confirmado && !selecionado)
+        {
+            selecionado = !selecionado;
+            manager.ConfirmaPersonagem(jogador, false);
+            return;
+        }
+
+        if (selecionado && !confirmado) 
+        {
+            confirmado = true;
+            manager.ConfirmaPersonagem(jogador, true);
+        }
+
+        if (playerInput.playerIndex == 0 && confirmado)
         {
             GameManager.instance.setarJogadores(personagemAtual, 0);
             print($"Jogador {playerInput.playerIndex} selecionou {personagemAtual}");
+            manager.listaDePersonagens[personagemAtual].image.color = new Color(0f, 0f, 0f, 0.6f);
         }
-        else if (playerInput.playerIndex == 1)
+        else if (playerInput.playerIndex == 1 && confirmado)
         {
             GameManager.instance.setarJogadores(personagemAtual, 1);
             print($"Jogador {playerInput.playerIndex} selecionou {personagemAtual}");
+            manager.listaDePersonagens[personagemAtual].image.color = new Color(0f, 0f, 0f, 0.6f);
         }
 
         // Tenta carregar a arena só quando os jogadores estiverem prontos
