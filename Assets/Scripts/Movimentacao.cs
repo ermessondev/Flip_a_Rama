@@ -85,6 +85,7 @@ public class Movimentacao : MonoBehaviour
     public bool podeBloquear = true;
     private int golpeTomado;
     [SerializeField] private float distanciaArremesso = 10f;
+    [SerializeField] private float distanciaArremessoEsp = 6.5f;
     [SerializeField] private Movimentacao inimigo;
     private bool sendoArremessado = false;
     
@@ -701,9 +702,9 @@ public class Movimentacao : MonoBehaviour
                     StartCoroutine(FreezeFrame(duracaoFreezeFrame));
 
                     SFX.instance.TocarSFX(socoSFX, transform, 1f, 1.0f);
-                    arenaManager.ControleDano(0.11f, hitboxCabecaPlayer.gameObject.name);
-                    arenaManager.ControleDano(0.11f, hitboxCorpoPlayer.gameObject.name);
-                    arenaManager.ControleDano(0.11f, hitboxPePlayer.gameObject.name);
+                    arenaManager.ControleDano(0.10f, hitboxCabecaPlayer.gameObject.name);
+                    arenaManager.ControleDano(0.10f, hitboxCorpoPlayer.gameObject.name);
+                    arenaManager.ControleDano(0.10f, hitboxPePlayer.gameObject.name);
                     Debug.Log("Freeze Frame ativado");
                     return;
                 }
@@ -786,7 +787,7 @@ public class Movimentacao : MonoBehaviour
     {
         if (other.collider.CompareTag("Espinhos"))
         {
-            arenaManager.ControleDano(0.11f, this.name);
+            arenaManager.ControleDano(0.10f, this.name);
             ArremessoEsp(transform.localScale);
             Debug.Log($"{gameObject.name} pisou nos espinhos");
         }
@@ -808,7 +809,7 @@ public class Movimentacao : MonoBehaviour
 
         Vector2 dir80 = new Vector2(Mathf.Cos(rad) * Mathf.Sign(direcao.x), Mathf.Sin(rad)).normalized;
 
-        rb.AddForce(dir80 * distanciaArremesso, ForceMode2D.Impulse);
+        rb.AddForce(dir80 * distanciaArremessoEsp, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(1.5f);
     }
