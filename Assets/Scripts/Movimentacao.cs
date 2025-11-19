@@ -8,7 +8,7 @@ using UnityEngine.Rendering;
 
 // Caso o objeto não tenha o componente, ele é criado em tempo de compilação
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(PlayerInput))]
+//[RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(BoxCollider2D))]
 public class Movimentacao : MonoBehaviour
 {
@@ -133,6 +133,11 @@ public class Movimentacao : MonoBehaviour
 
     void Start()
     {
+        if (GameManager.instance.singleMode && !GameManager.instance.treinamento)
+        {
+           // gameObject.AddComponent<InimigoIA>();
+        }
+
         inimigo = this.name == "Jogador1" ? GameObject.Find("Jogador2")?.GetComponent<Movimentacao>() : GameObject.Find("Jogador1")?.GetComponent<Movimentacao>();
         arenaManager = FindFirstObjectByType<ArenaManager>();
 
