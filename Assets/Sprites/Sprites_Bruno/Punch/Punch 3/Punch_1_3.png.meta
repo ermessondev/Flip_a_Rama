@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: d9679316586df1a42a7b7258b6805811
+guid: fd8f2f64276532f42be86c7d8bfa5e95
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8746076448398800751
-    second: Punch2_3_0
+      213: 1329966572380430466
+    second: Punch_1_3_0
+  - first:
+      213: 6475856291342029616
+    second: Punch_1_3_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +103,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Punch2_3_0
+      name: Punch_1_3_0
       rect:
         serializedVersion: 2
         x: 80
@@ -115,8 +118,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 19887c21fc1bf9680800000000000000
-      internalID: -8746076448398800751
+      spriteID: 28021e51d8df47210800000000000000
+      internalID: 1329966572380430466
       vertices: []
       indices: 
       edges: []
@@ -125,7 +128,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 6c082c832ee06154495b477fcd421f8a
+    spriteID: 97b069efa875b774fb0a63856e5d479e
     internalID: 0
     vertices: []
     indices: 
@@ -135,9 +138,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":900.0,"y":1240.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":900.0,"y":1240.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":450.0,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Punch2_3_0: -8746076448398800751
+      Punch_1_3_0: 1329966572380430466
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
