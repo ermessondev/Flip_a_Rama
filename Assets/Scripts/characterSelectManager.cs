@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class characterSelectManager : MonoBehaviour
 {
+    // Add o script de som aqu => SFX.instance.TocarSFX(selecionarPersonagemSFX, transform, 1f, 1f);
+
     // Todos os Debug.Log são de teste por enquanto 
     [SerializeField] public List<Button> listaDePersonagens = new List<Button>();
 
