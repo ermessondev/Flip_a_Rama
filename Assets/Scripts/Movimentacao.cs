@@ -85,7 +85,7 @@ public class Movimentacao : MonoBehaviour
     public bool podeBloquear = true;
     private int golpeTomado;
     [SerializeField] private float distanciaArremesso = 10f;
-    [SerializeField] private float distanciaArremessoEsp = 6.5f;
+    [SerializeField] private float distanciaArremessoEsp = 8f;
     [SerializeField] private Movimentacao inimigo;
     private bool sendoArremessado = false;
     
