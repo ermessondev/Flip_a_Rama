@@ -19,10 +19,13 @@ public class Movimentacao : MonoBehaviour
 
     // Variáveis de Áudio e Som
     [SerializeField] AudioSource som;
+    [SerializeField] private AudioClip andarSFX;
     [SerializeField] private AudioClip sairDaArenaSFX;
+    [SerializeField] private AudioClip receberDanoSFX;
     [SerializeField] private AudioClip puloSFX;
     [SerializeField] private AudioClip bloqueioSFX;
     [SerializeField] private AudioClip socoSFX;
+    [SerializeField] private AudioClip socoForteSFX;
     [SerializeField] private AudioClip errarSocoSFX;
     [SerializeField] public AudioClip dashSFX;
     
@@ -524,6 +527,7 @@ public class Movimentacao : MonoBehaviour
                 if (hitboxCorpo == hitboxCorpoPlayer || hitboxCorpo == hitboxCabecaPlayer || hitboxCorpo == hitboxPePlayer)
                 {
                     Debug.Log($"O inimigo foi atingido no golpe {golpe}");
+                    SFX.instance.TocarSFX(receberDanoSFX, transform, 0.2f, 1f);
 
                     string hitboxAtingida = "";
                     if (hitboxCorpo == hitboxCorpoPlayer)
@@ -550,6 +554,7 @@ public class Movimentacao : MonoBehaviour
 
                         if (!inimigoDefendeu)
                         {
+                            SFX.instance.TocarSFX(socoForteSFX, transform, 1f, 1f);
                             inimigo.Arremesso(transform.localScale);
                         }
                     }
@@ -753,6 +758,16 @@ public class Movimentacao : MonoBehaviour
 
         }
     }
+
+    //StageTwo - Entrega para Level Design
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.collider.CompareTag("Player"))
+        {
+            Debug.Log($"{gameObject.name} pisou nos espinhos");
+        }
+    }
+    //StageTwo - Entrega para Level Design
 
     void OnPauseMenu()
     {
