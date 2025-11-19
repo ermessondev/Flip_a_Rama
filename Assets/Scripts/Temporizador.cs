@@ -19,6 +19,11 @@ public class Temporizador : MonoBehaviour
 
     private void Start()
     {
+        
+    }
+
+    public void IniciarRelogio()
+    {
         tempoRestante = tempoRelogio;
         UpdateTimerText();
         StartCoroutine(TemporizadorCoroutine());

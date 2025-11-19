@@ -584,7 +584,7 @@ MonoBehaviour:
   raioVerificaChao: 0.3
   distanciaVerificaPlataforma: 0.2
   oAnimator: {fileID: 4385487078804554253}
-  tempoEntreGolpes: 10
+  tempoEntreGolpes: 1
   maximoCombo: 3
   hitboxPunch_01: {fileID: 3287538295371671684}
   hitboxPunch_02: {fileID: 3313743390127333293}

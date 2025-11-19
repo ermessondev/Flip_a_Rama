@@ -47,6 +47,8 @@ public class ArenaManager : MonoBehaviour
     [SerializeField] private GameObject MenuPausa;
 
     [SerializeField] TextMeshProUGUI textWiner;
+    [SerializeField] TextMeshProUGUI roundStart;
+    public bool partidaIniciada = false;
     void Awake()
     {
         
@@ -144,6 +146,7 @@ public class ArenaManager : MonoBehaviour
     {
         player1 = GameObject.Find("Jogador1")?.GetComponent<Movimentacao>();
         player2 = GameObject.Find("Jogador2")?.GetComponent<Movimentacao>();
+        StartCoroutine(RoundStart());
     }
 
     private IEnumerator setarCamera(Transform p1, Transform p2)
@@ -216,8 +219,6 @@ public class ArenaManager : MonoBehaviour
     public IEnumerator FinalGame()
     {
         yield return null;
-
-
         if (vidaJogador1 > vidaJogador2 || (vidaJogador1 == vidaJogador2 && barraVidaP1.fillAmount > barraVidaP2.fillAmount))
         {
             winer = "Jogador1";
@@ -259,6 +260,7 @@ public class ArenaManager : MonoBehaviour
         }
     }
 
+
     public IEnumerator EfeitoKO(string jogador) 
     {
 
@@ -266,28 +268,29 @@ public class ArenaManager : MonoBehaviour
         if (jogador == "Jogador1")
         {
             SFX.instance.TocarSFX(koSFX, transform, 1f, 1.0f);
-            yield return null; 
+            if (vidaJogador1 > 1)
+            {
+                barraVidaP1.fillAmount += 1;
+                barraDanoP1.fillAmount += 1; 
+            }
             player1.Respaw();
             koP1[vidaJogador1 - 1].SetActive(false);
             vidaJogador1 -= 1;
             if (vidaJogador1 == 0)
             {
                 StartCoroutine(FinalGame());
-
             }
-            if (koP1.Count == 0)
-            {
-                barraVidaP1.fillAmount += 1;
-
-            }
-
-
+            yield return null;
         }
         else if(jogador == "Jogador2")
         {
             SFX.instance.TocarSFX(koSFX, transform, 1f, 1.0f);
-            yield return null;
-            barraVidaP2.fillAmount += 1;
+            if (vidaJogador2 > 1)
+            {
+                barraVidaP2.fillAmount += 1;
+                barraDanoP2.fillAmount += 1;
+
+            }
             player2.Respaw();
             koP2[vidaJogador2 - 1].SetActive(false);
             vidaJogador2 -= 1;
@@ -295,13 +298,37 @@ public class ArenaManager : MonoBehaviour
             {
                 StartCoroutine(FinalGame());
             }
-            if(koP2.Count == 0)
-            {
-                barraVidaP2.fillAmount += 1;
-                
-            }
+            yield return null;
         }
         
         
+    }
+
+    private IEnumerator RoundStart() 
+    {
+        player1.podeMover = false; player2.podeMover = false;
+        player1.podeBloquear = false; player2.podeBloquear=false;
+        player1.dashDisponivel = false; player2.dashDisponivel = false;
+        for (int i = 3; i >= 1; i--) 
+        {
+            roundStart.text = $"{i}";
+            roundStart.gameObject.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            roundStart.gameObject.SetActive(false);
+            if (i == 1)
+            {
+                roundStart.text = $"Comecem a Luta";
+                roundStart.gameObject.SetActive(true);
+                yield return new WaitForSeconds(1f);
+                roundStart.gameObject.SetActive(false);
+            }
+
+        }
+        player1.podeMover = true; player2.podeMover = true;
+        player1.podeBloquear = true; player2.podeBloquear = true;
+        player1.dashDisponivel = true; player2.dashDisponivel = true;
+        partidaIniciada = true;
+        temporizador.IniciarRelogio();
+
     }
 }

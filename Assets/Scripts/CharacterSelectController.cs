@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
+using Unity.VisualScripting;
 
 public class CharacterSelectController : MonoBehaviour
 {
-    [SerializeField] private int colunas = 4; // número de colunas da grade
+    [SerializeField] private int colunas = 1; // número de colunas da grade
 
     private int personagemAtual;
     private Image img;
@@ -16,9 +18,11 @@ public class CharacterSelectController : MonoBehaviour
     private Vector2 direcao;
 
     private bool selecionado = false;
+    private bool confirmado = false;
 
     private characterSelectManager manager;
 
+    private string jogador;
     void Awake()
     {
         img = GetComponent<Image>();
@@ -30,7 +34,7 @@ public class CharacterSelectController : MonoBehaviour
     void Start()
     {
         // Pega a lista do manager 
-        var manager = FindFirstObjectByType<characterSelectManager>();
+        manager = FindFirstObjectByType<characterSelectManager>();
         if (manager != null)
         {
             listaPersonagens = manager.listaDePersonagens;
@@ -42,12 +46,12 @@ public class CharacterSelectController : MonoBehaviour
             if (playerInput.playerIndex == 0)
             {
                 personagemAtual = 0;
-                img.color = Color.blue;
+                //img.color = Color.blue;
             }
             else if (playerInput.playerIndex == 1)
             {
-                personagemAtual = 3; 
-                img.color = Color.red;
+                personagemAtual = 3;
+                //.color = Color.red;
             }
         }
 
@@ -56,6 +60,8 @@ public class CharacterSelectController : MonoBehaviour
         {
             MoverParaBotao(listaPersonagens[personagemAtual]);
         }
+
+        jogador = this.name == "PlayerSelector1(Clone)" ? "Jogador1" : "Jogador2";
     }
 
     //movimentação exclusiva para HUD
@@ -67,7 +73,7 @@ public class CharacterSelectController : MonoBehaviour
 
             if (listaPersonagens == null || listaPersonagens.Count == 0) return;
 
-            int total = listaPersonagens.Count;
+            int total = 4;
 
             if (direcao.x > 0.5f) // direita
                 personagemAtual = (personagemAtual + 1 + total) % total;
@@ -80,7 +86,7 @@ public class CharacterSelectController : MonoBehaviour
 
             MoverParaBotao(listaPersonagens[personagemAtual]);
         }
-        
+
     }
 
     private void MoverParaBotao(Button botao)
@@ -89,19 +95,50 @@ public class CharacterSelectController : MonoBehaviour
         transform.SetAsLastSibling(); // mantém o seletor na frente
     }
 
+    void OnCancel()
+    {
+        if (selecionado && confirmado) 
+        {
+            return;
+        }
+        selecionado = false;
+        confirmado = false;
+        manager.ConfirmaPersonagem(jogador, true);
+
+    }
+
     void OnConfirm()
     {
-        selecionado = true;
+        if (personagemAtual == 2 || personagemAtual == 3)
+        {
+            manager.Bloqueado(jogador);
+            return; 
+        }
 
-        if (playerInput.playerIndex == 0)
+        if (!confirmado && !selecionado)
+        {
+            selecionado = !selecionado;
+            manager.ConfirmaPersonagem(jogador, false);
+            return;
+        }
+
+        if (selecionado && !confirmado) 
+        {
+            confirmado = true;
+            manager.ConfirmaPersonagem(jogador, true);
+        }
+
+        if (playerInput.playerIndex == 0 && confirmado)
         {
             GameManager.instance.setarJogadores(personagemAtual, 0);
             print($"Jogador {playerInput.playerIndex} selecionou {personagemAtual}");
+            manager.listaDePersonagens[personagemAtual].image.color = new Color(0f, 0f, 0f, 0.6f);
         }
-        else if (playerInput.playerIndex == 1)
+        else if (playerInput.playerIndex == 1 && confirmado)
         {
             GameManager.instance.setarJogadores(personagemAtual, 1);
             print($"Jogador {playerInput.playerIndex} selecionou {personagemAtual}");
+            manager.listaDePersonagens[personagemAtual].image.color = new Color(0f, 0f, 0f, 0.6f);
         }
 
         // Tenta carregar a arena só quando os jogadores estiverem prontos

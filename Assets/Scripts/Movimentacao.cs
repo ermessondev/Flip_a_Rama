@@ -27,7 +27,7 @@ public class Movimentacao : MonoBehaviour
     [SerializeField] public AudioClip dashSFX;
     
     // Variéveis  dedicadas a mecenica de movimentação
-    [SerializeField]protected bool podeMover = true;
+    [SerializeField]public bool podeMover = true;
     protected Rigidbody2D rb;
     protected Vector2 direcao;
     [SerializeField] private float velocidade = 3f;
@@ -35,7 +35,7 @@ public class Movimentacao : MonoBehaviour
 
     // Variéveis dedicadas a mecánica de dash
     private bool puloDuploHabilitado = false;
-    private bool dashDisponivel = true;
+    public bool dashDisponivel = true;
     private bool emDash = false;
     [SerializeField] private float forcaDash = 15f;
 
@@ -56,7 +56,7 @@ public class Movimentacao : MonoBehaviour
     [SerializeField] protected Animator oAnimator;
 
     [Header("Configurações do Combo")]
-    [SerializeField] private float tempoEntreGolpes = 1f;       // Tempo máximo entre ataques para manter o combo
+    private float tempoEntreGolpes = 0.9f;       // Tempo máximo entre ataques para manter o combo
     [SerializeField] private int maximoCombo = 3;               // Quantos golpes no combo
     private float duracaoGolpe;                                 // Duração da animação do golpe
     private float frameParaAcerto;
@@ -234,7 +234,7 @@ public class Movimentacao : MonoBehaviour
     private void FixedUpdate()
     {
         // Se na estiver em dash, aplica a movimentação horizontal usando o valor armazenado em 'direcao' (setado em OnMove)
-        if (!emDash && !sendoArremessado)
+        if (!emDash && !sendoArremessado && podeMover)
         {
             rb.linearVelocity = new Vector2(direcao.x * velocidade, rb.linearVelocity.y);
         }
@@ -415,6 +415,7 @@ public class Movimentacao : MonoBehaviour
 
     private IEnumerator ExecutarBlock()
     {
+        podeAtacar = false;  
         // Ativa a animação de bloqueio
         oAnimator.SetBool("Block", true);
         emBlock = true;
@@ -425,15 +426,19 @@ public class Movimentacao : MonoBehaviour
         // Volta para o Idle
         oAnimator.SetBool("Block", false);
         emBlock = false;
+        StartCoroutine(cotroleAtaqueDefesa("ataque", true));
     }
     
     void OnAttack()
     {   
-        if (emDash || emBlock || sendoArremessado || !podeAtacar)
+        if (emDash || emBlock || !podeAtacar)
         {
             Debug.Log("Não pode atacar");
             return;
         }
+        
+        podeBloquear = false;
+        sendoArremessado = false;
 
         comboIndice++;
         if (comboIndice > maximoCombo)
@@ -452,6 +457,7 @@ public class Movimentacao : MonoBehaviour
             StopCoroutine(resetComboCoroutine);
         }
         resetComboCoroutine = StartCoroutine(ResetarComboDepoisDoTempo());
+        StartCoroutine(cotroleAtaqueDefesa("defesa", true));
     }
 
     private IEnumerator ExecutarGolpe(int golpe)
@@ -543,6 +549,7 @@ public class Movimentacao : MonoBehaviour
                         
 
                     arenaManager.ControleDano(0.10f, adversarioNome);
+                    StartCoroutine(inimigo.limitaAcoes());
 
                     if (golpe == 3)
                     {
@@ -551,6 +558,7 @@ public class Movimentacao : MonoBehaviour
                         if (!inimigoDefendeu)
                         {
                             inimigo.Arremesso(transform.localScale);
+                            arenaManager.ControleDano(0.05f, adversarioNome);
                         }
                     }
 
@@ -602,6 +610,7 @@ public class Movimentacao : MonoBehaviour
     private IEnumerator ArremessoCoroutine(Vector3 direcao)
     {
         sendoArremessado = true;
+        podeAtacar = false;
 
         rb.gravityScale = 1f;
         rb.linearVelocity = Vector2.zero;
@@ -611,8 +620,13 @@ public class Movimentacao : MonoBehaviour
 
         rb.AddForce(dir45 * distanciaArremesso, ForceMode2D.Impulse);
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
 
+        podeAtacar = true;
+        dashDisponivel = true;
+        podeMover = true;
+
+        yield return new WaitForSeconds(0.9f);
         sendoArremessado = false;
     }
 
@@ -762,6 +776,34 @@ public class Movimentacao : MonoBehaviour
     public void falarTeste()
     {
         Debug.Log("Ai AI");
+    }
+
+    public IEnumerator limitaAcoes()
+    {
+        
+        podeBloquear = false;
+        podeMover = false;
+        rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+        podeAtacar = false;
+        dashDisponivel = false;
+        yield return new WaitForSeconds(0.8f);
+        podeBloquear = true;
+        podeMover = true;
+        podeAtacar = true;
+        dashDisponivel = true;
+    }
+
+    IEnumerator cotroleAtaqueDefesa(string variavel, bool valor)
+    {
+        yield return new WaitForSeconds(0.6f);
+        if (variavel == "defesa")
+        {
+            podeBloquear = valor;
+        }
+        else 
+        { 
+            podeAtacar = valor;
+        }
     }
 
     public void Respaw()
