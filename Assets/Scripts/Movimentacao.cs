@@ -765,7 +765,7 @@ public class Movimentacao : MonoBehaviour
     {
         if (other.collider.CompareTag("Espinhos"))
         {
-            //arenaManager.ControleDano(0.11f, this.name);
+            arenaManager.ControleDano(0.11f, this.name);
             ArremessoEsp(transform.localScale);
             Debug.Log($"{gameObject.name} pisou nos espinhos");
         }
