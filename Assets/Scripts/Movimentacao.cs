@@ -420,7 +420,7 @@ public class Movimentacao : MonoBehaviour
         emBlock = true;
 
         // Espera 5 segundos
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         // Volta para o Idle
         oAnimator.SetBool("Block", false);

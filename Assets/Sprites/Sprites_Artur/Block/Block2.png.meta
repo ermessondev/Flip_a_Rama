@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 98540dc6c96ed7c42b85f7bf08e5cbda
+guid: 79e00f2213aa894498ace3fbdb49d7fe
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4224858959336072711
-    second: Punch1_3_0
-  - first:
-      213: -4426227592438109048
-    second: Punch1_3_1
+      213: 4681476298195807261
+    second: Block2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -54,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 215
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -103,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Punch1_3_0
+      name: Block2_0
       rect:
         serializedVersion: 2
-        x: 80
+        x: 0
         y: 0
-        width: 900
-        height: 1240
+        width: 64
+        height: 64
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7066a59d6d6b1aa30800000000000000
-      internalID: 4224858959336072711
+      spriteID: d1c2f52c3e1f7f040800000000000000
+      internalID: 4681476298195807261
       vertices: []
       indices: 
       edges: []
@@ -128,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 21e06f25f3f708846a1c3aa9fab091d9
+    spriteID: f154bf5a8d211a145bfdba9a10b6840c
     internalID: 0
     vertices: []
     indices: 
@@ -138,9 +135,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":900.0,"y":1240.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Punch1_3_0: 4224858959336072711
+      Block2_0: 4681476298195807261
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
