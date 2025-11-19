@@ -32,6 +32,8 @@ public class Movimentacao : MonoBehaviour
     protected Vector2 direcao;
     [SerializeField] private float velocidade = 3f;
     [SerializeField] private float forcaPulo = 5f;
+    [SerializeField] private bool estaMorto = false;
+    [SerializeField] private bool venceuPartida = false;
 
     // Variéveis dedicadas a mecánica de dash
     private bool puloDuploHabilitado = false;
@@ -818,9 +820,19 @@ public class Movimentacao : MonoBehaviour
         if (vitoria)
         {
             Debug.Log($"{this.name} Ganhei saporra");
+            venceuPartida = true;
+            podeAtacar = false;
+            podeBloquear = false;
+            podeMover = false;
+            dashDisponivel = false;
         }
         else {
             Debug.Log($"{this.name} Perdi saporra");
+            podeAtacar = false;
+            podeBloquear = false;
+            podeMover = false ;
+            dashDisponivel=false;
+            estaMorto = false;
         }
     }
 }
