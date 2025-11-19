@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Treinamento.unity
     guid: 56e8d33d807d3ad4a9bbc485b7ea18dd
+  - enabled: 1
+    path: Assets/Scenes/StageTwo.unity
+    guid: 63a4d01bbdc99224c8ded68d0569e20a
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 32767409dfaf3d241a6aaa03d1794b38, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

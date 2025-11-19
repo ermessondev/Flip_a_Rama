@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // Função para setar jogador selecionado na Scene "CharacterSelection"
+    // Funï¿½ï¿½o para setar jogador selecionado na Scene "CharacterSelection"
     public void setarJogadores(int character, int jogador)
     {
         if (jogador == 0)
@@ -49,22 +49,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //Função de controle para tentativa de inicativa de partida, controla a troca de stagio single e coop.
+    //Funï¿½ï¿½o de controle para tentativa de inicativa de partida, controla a troca de stagio single e coop.
     public void TentarIniciarPartida()
     {
         if (singleMode && jogador1 != null && treinamento == false)
         {
             jogador2 = CharacterDatabase[0];
-            SceneManager.LoadScene("StageOne");
+            SceneManager.LoadScene("StageTwo");
         }
         else if (!singleMode && jogador1 != null && jogador2 != null && treinamento == false)
         {
-            SceneManager.LoadScene("StageOne");
+            SceneManager.LoadScene("StageTwo");
         }
         else if (singleMode && jogador1 != null && treinamento == true)
         {
             jogador2 = CharacterDatabase[8];
-            SceneManager.LoadScene("StageOne");
+            SceneManager.LoadScene("StageTwo");
         }
     }
 

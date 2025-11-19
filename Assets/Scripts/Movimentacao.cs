@@ -85,6 +85,7 @@ public class Movimentacao : MonoBehaviour
     [SerializeField] private float distanciaArremesso = 10f;
     [SerializeField] private Movimentacao inimigo;
     private bool sendoArremessado = false;
+    
 
     [Header("Configurações do Shake/Frame freeze")]
     [SerializeField] private float shakeDuracao = 0.1f;
@@ -423,7 +424,7 @@ public class Movimentacao : MonoBehaviour
         emBlock = true;
 
         // Espera 5 segundos
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         // Volta para o Idle
         oAnimator.SetBool("Block", false);
@@ -762,11 +763,35 @@ public class Movimentacao : MonoBehaviour
     //StageTwo - Entrega para Level Design
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.collider.CompareTag("Player"))
+        if (other.collider.CompareTag("Espinhos"))
         {
+            //arenaManager.ControleDano(0.11f, this.name);
+            ArremessoEsp(transform.localScale);
             Debug.Log($"{gameObject.name} pisou nos espinhos");
         }
     }
+
+    public void ArremessoEsp(Vector3 direcao)
+    {
+        StartCoroutine(ArremessoEspinhos(direcao));
+    }
+
+    private IEnumerator ArremessoEspinhos(Vector3 direcao)
+    {
+        rb.gravityScale = 1f;
+        rb.linearVelocity = Vector2.zero;
+
+        float angulo = 80f;
+
+        float rad = angulo * Mathf.Deg2Rad;
+
+        Vector2 dir80 = new Vector2(Mathf.Cos(rad) * Mathf.Sign(direcao.x), Mathf.Sin(rad)).normalized;
+
+        rb.AddForce(dir80 * distanciaArremesso, ForceMode2D.Impulse);
+
+        yield return new WaitForSeconds(1.5f);
+    }
+    
     //StageTwo - Entrega para Level Design
 
     void OnPauseMenu()

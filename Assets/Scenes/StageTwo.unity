@@ -694,7 +694,7 @@ GameObject:
   - component: {fileID: 167103793}
   m_Layer: 13
   m_Name: espinhos
-  m_TagString: Untagged
+  m_TagString: Espinhos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -981,7 +981,7 @@ GameObject:
   - component: {fileID: 255397984}
   m_Layer: 13
   m_Name: espinhos (1)
-  m_TagString: Untagged
+  m_TagString: Espinhos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -995,7 +995,7 @@ Transform:
   m_GameObject: {fileID: 255397982}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -17.5, y: -4.06, z: 0}
+  m_LocalPosition: {x: -17.5, y: -3.6, z: 0}
   m_LocalScale: {x: 4.7784934, y: 0.39710566, z: 1.1149}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4675,7 +4675,7 @@ GameObject:
   - component: {fileID: 893397747}
   m_Layer: 13
   m_Name: espinhos (2)
-  m_TagString: Untagged
+  m_TagString: Espinhos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7071,7 +7071,7 @@ GameObject:
   - component: {fileID: 1422727328}
   m_Layer: 13
   m_Name: espinhos (4)
-  m_TagString: Untagged
+  m_TagString: Espinhos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8612,7 +8612,7 @@ GameObject:
   - component: {fileID: 1863821740}
   m_Layer: 13
   m_Name: espinhos (3)
-  m_TagString: Untagged
+  m_TagString: Espinhos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
