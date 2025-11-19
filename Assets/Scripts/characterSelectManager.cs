@@ -10,10 +10,11 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class characterSelectManager : MonoBehaviour
 {
+
+    // Add o script de som aqu => SFX.instance.TocarSFX(selecionarPersonagemSFX, transform, 1f, 1f);
     [SerializeField] private TextMeshProUGUI textoBloqueado;
     [SerializeField] private TextMeshProUGUI textoJogador1Confirmado;
     [SerializeField] private TextMeshProUGUI textoJogador2Confirmado;
-
 
     // Todos os Debug.Log são de teste por enquanto 
     [SerializeField] public List<Button> listaDePersonagens = new List<Button>();

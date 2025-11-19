@@ -306,9 +306,18 @@ public class ArenaManager : MonoBehaviour
 
     private IEnumerator RoundStart() 
     {
-        player1.podeMover = false; player2.podeMover = false;
-        player1.podeBloquear = false; player2.podeBloquear=false;
-        player1.dashDisponivel = false; player2.dashDisponivel = false;
+        if (!GameManager.instance.treinamento)
+        {
+            player1.podeMover = false; player2.podeMover = false;
+            player1.podeBloquear = false; player2.podeBloquear = false;
+            player1.dashDisponivel = false; player2.dashDisponivel = false;
+        }
+        else 
+        {
+            player1.podeMover = false;
+            player1.podeBloquear = false;
+            player1.dashDisponivel = false;
+        }
         for (int i = 3; i >= 1; i--) 
         {
             roundStart.text = $"{i}";
@@ -324,10 +333,18 @@ public class ArenaManager : MonoBehaviour
             }
 
         }
-        player1.podeMover = true; player2.podeMover = true;
-        player1.podeBloquear = true; player2.podeBloquear = true;
-        player1.dashDisponivel = true; player2.dashDisponivel = true;
-        partidaIniciada = true;
+        if (!GameManager.instance.treinamento)
+        {
+            player1.podeMover = true; player2.podeMover = true;
+            player1.podeBloquear = true; player2.podeBloquear = true;
+            player1.dashDisponivel = true; player2.dashDisponivel = true;
+        }
+        else
+        {
+            player1.podeMover = true;
+            player1.podeBloquear = true;
+            player1.dashDisponivel = true;
+        }
         temporizador.IniciarRelogio();
 
     }

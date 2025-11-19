@@ -32,6 +32,15 @@ public class MainMenu : MonoBehaviour
         AbrirCreditos(false);
     }
 
+    private void OnEnable()
+    {
+    //    jogar.onClick.AddListener
+    }
+    private void OnDisable()
+    {
+    //    jogar.onClick.RemoveAllListeners
+    }
+
     void Start()
     {
         jogar.onClick.AddListener(() => AbrirJogar(true));

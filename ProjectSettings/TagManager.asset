@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Limitador
+  - Espinhos
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Player2
   - IgnoreP1
   - IgnoreP2
-  - 
+  - Espinhos
   - 
   - 
   - 

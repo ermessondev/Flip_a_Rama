@@ -8,7 +8,7 @@ using UnityEngine.Rendering;
 
 // Caso o objeto não tenha o componente, ele é criado em tempo de compilação
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(PlayerInput))]
+//[RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(BoxCollider2D))]
 public class Movimentacao : MonoBehaviour
 {
@@ -19,10 +19,13 @@ public class Movimentacao : MonoBehaviour
 
     // Variáveis de Áudio e Som
     [SerializeField] AudioSource som;
+    [SerializeField] private AudioClip andarSFX;
     [SerializeField] private AudioClip sairDaArenaSFX;
+    [SerializeField] private AudioClip receberDanoSFX;
     [SerializeField] private AudioClip puloSFX;
     [SerializeField] private AudioClip bloqueioSFX;
     [SerializeField] private AudioClip socoSFX;
+    [SerializeField] private AudioClip socoForteSFX;
     [SerializeField] private AudioClip errarSocoSFX;
     [SerializeField] public AudioClip dashSFX;
     
@@ -82,8 +85,10 @@ public class Movimentacao : MonoBehaviour
     public bool podeBloquear = true;
     private int golpeTomado;
     [SerializeField] private float distanciaArremesso = 10f;
+    [SerializeField] private float distanciaArremessoEsp = 8f;
     [SerializeField] private Movimentacao inimigo;
     private bool sendoArremessado = false;
+    
 
     [Header("Configurações do Shake/Frame freeze")]
     [SerializeField] private float shakeDuracao = 0.1f;
@@ -133,6 +138,11 @@ public class Movimentacao : MonoBehaviour
 
     void Start()
     {
+        if (GameManager.instance.singleMode && !GameManager.instance.treinamento)
+        {
+           // gameObject.AddComponent<InimigoIA>();
+        }
+
         inimigo = this.name == "Jogador1" ? GameObject.Find("Jogador2")?.GetComponent<Movimentacao>() : GameObject.Find("Jogador1")?.GetComponent<Movimentacao>();
         arenaManager = FindFirstObjectByType<ArenaManager>();
 
@@ -532,6 +542,7 @@ public class Movimentacao : MonoBehaviour
                 if (hitboxCorpo == hitboxCorpoPlayer || hitboxCorpo == hitboxCabecaPlayer || hitboxCorpo == hitboxPePlayer)
                 {
                     Debug.Log($"O inimigo foi atingido no golpe {golpe}");
+                    SFX.instance.TocarSFX(receberDanoSFX, transform, 0.2f, 1f);
 
                     string hitboxAtingida = "";
                     if (hitboxCorpo == hitboxCorpoPlayer)
@@ -559,6 +570,7 @@ public class Movimentacao : MonoBehaviour
 
                         if (!inimigoDefendeu)
                         {
+                            SFX.instance.TocarSFX(socoForteSFX, transform, 1f, 1f);
                             inimigo.Arremesso(transform.localScale);
                             arenaManager.ControleDano(0.05f, adversarioNome);
                         }
@@ -690,9 +702,9 @@ public class Movimentacao : MonoBehaviour
                     StartCoroutine(FreezeFrame(duracaoFreezeFrame));
 
                     SFX.instance.TocarSFX(socoSFX, transform, 1f, 1.0f);
-                    arenaManager.ControleDano(0.11f, hitboxCabecaPlayer.gameObject.name);
-                    arenaManager.ControleDano(0.11f, hitboxCorpoPlayer.gameObject.name);
-                    arenaManager.ControleDano(0.11f, hitboxPePlayer.gameObject.name);
+                    arenaManager.ControleDano(0.10f, hitboxCabecaPlayer.gameObject.name);
+                    arenaManager.ControleDano(0.10f, hitboxCorpoPlayer.gameObject.name);
+                    arenaManager.ControleDano(0.10f, hitboxPePlayer.gameObject.name);
                     Debug.Log("Freeze Frame ativado");
                     return;
                 }
@@ -769,6 +781,40 @@ public class Movimentacao : MonoBehaviour
 
         }
     }
+
+    //StageTwo - Entrega para Level Design
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.collider.CompareTag("Espinhos"))
+        {
+            arenaManager.ControleDano(0.10f, this.name);
+            ArremessoEsp(transform.localScale);
+            Debug.Log($"{gameObject.name} pisou nos espinhos");
+        }
+    }
+
+    public void ArremessoEsp(Vector3 direcao)
+    {
+        StartCoroutine(ArremessoEspinhos(direcao));
+    }
+
+    private IEnumerator ArremessoEspinhos(Vector3 direcao)
+    {
+        rb.gravityScale = 1f;
+        rb.linearVelocity = Vector2.zero;
+
+        float angulo = 80f;
+
+        float rad = angulo * Mathf.Deg2Rad;
+
+        Vector2 dir80 = new Vector2(Mathf.Cos(rad) * Mathf.Sign(direcao.x), Mathf.Sin(rad)).normalized;
+
+        rb.AddForce(dir80 * distanciaArremessoEsp, ForceMode2D.Impulse);
+
+        yield return new WaitForSeconds(1.5f);
+    }
+    
+    //StageTwo - Entrega para Level Design
 
     void OnPauseMenu()
     {
