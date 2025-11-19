@@ -24,6 +24,9 @@ public class characterSelectManager : MonoBehaviour
     [SerializeField] private GameObject seletorP1;
     [SerializeField] private GameObject seletorP2;
 
+    [SerializeField] private GameObject confirmarP1;
+    [SerializeField] private GameObject confirmarP2;
+
     void Awake()
     {
         pim = GetComponent<PlayerInputManager>();
@@ -61,6 +64,7 @@ public class characterSelectManager : MonoBehaviour
         if (jogador == "Jogador1" && !valor)
         {
             Debug.Log("Personagem Bloqueado");
+            PlayerInput.Instantiate(confirmarP1);
             textoJogador1Confirmado.text = $"{jogador} Deseja confirmar o personagem? F para sim ESC para nao";
             textoJogador1Confirmado.gameObject.SetActive(true);
             yield return new WaitForSeconds(1);
