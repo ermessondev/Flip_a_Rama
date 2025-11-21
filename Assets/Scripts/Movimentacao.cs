@@ -191,6 +191,7 @@ public class Movimentacao : MonoBehaviour
         RodarAnimacoesHorizontal();
         RodarAnimacoesVertical();
         EspelharJogador();
+        RodarAnimacaoMorte();
 
         // Verifica se o personagem está no chão (retorna true se houver um colisor no raio definido)
         estaNoChao = Physics2D.OverlapCircle(peDoPersonagem.position, raioVerificaChao, Ground) != null;
@@ -398,6 +399,11 @@ public class Movimentacao : MonoBehaviour
     {
         // Roda as animcações Horizontais - Animções de Walk e Idle
         oAnimator.SetFloat("AnimHorizontal", rb.linearVelocity.x);
+    }
+
+    void RodarAnimacaoMorte()
+    {
+        oAnimator.SetBool("Dead", estaMorto);
     }
 
     void RodarAnimacoesVertical()
@@ -880,13 +886,14 @@ public class Movimentacao : MonoBehaviour
             podeMover = false;
             dashDisponivel = false;
         }
-        else {
+        else 
+        {
             Debug.Log($"{this.name} Perdi saporra");
             podeAtacar = false;
             podeBloquear = false;
             podeMover = false ;
             dashDisponivel=false;
-            estaMorto = false;
+            estaMorto = true;
         }
     }
 }

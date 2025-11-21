@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 761252622814691328}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.45, y: 1.74, z: 0}
+  m_LocalPosition: {x: 2.21, y: 1.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -202,7 +202,7 @@ Transform:
   m_GameObject: {fileID: 2397810260837795732}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.76, y: 1.64, z: 0}
+  m_LocalPosition: {x: 1.47, y: 1.64, z: 0}
   m_LocalScale: {x: 0.69936407, y: 0.96464, z: 0.96464}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -580,21 +580,24 @@ MonoBehaviour:
   errarSocoSFX: {fileID: 8300000, guid: cc01e1fe7d7e57d4987bc679c662eb1d, type: 3}
   dashSFX: {fileID: 8300000, guid: b881f3cce674c754ca662b015fcc5d00, type: 3}
   podeMover: 1
+  direcao: {x: 0, y: 0}
   velocidade: 5
   forcaPulo: 8
+  estaMorto: 0
+  venceuPartida: 0
+  dashDisponivel: 1
   forcaDash: 12
   estaNoChao: 0
   raioVerificaChao: 0.3
   distanciaVerificaPlataforma: 0.2
   oAnimator: {fileID: 4385487078804554253}
-  tempoEntreGolpes: 1
   maximoCombo: 3
   hitboxPunch_01: {fileID: 3287538295371671684}
   hitboxPunch_02: {fileID: 3313743390127333293}
   hitboxPunch_03: {fileID: 7791964241218036937}
-  tamanhoAtaque_01: {x: 0.2, y: 1}
-  tamanhoAtaque_02: {x: 0.2, y: 1}
-  tamanhoAtaque_03: {x: 0.7, y: 1.3}
+  tamanhoAtaque_01: {x: 0.74, y: 1.18}
+  tamanhoAtaque_02: {x: 0.68, y: 1.24}
+  tamanhoAtaque_03: {x: 1.18, y: 1.3}
   defesaInimigo: {fileID: 0}
   hitboxCorpoPlayer: {fileID: 0}
   hitboxPePlayer: {fileID: 0}
@@ -603,6 +606,7 @@ MonoBehaviour:
   emBlock: 0
   podeBloquear: 1
   distanciaArremesso: 10
+  distanciaArremessoEsp: 8
   inimigo: {fileID: 0}
   shakeDuracao: 0.1
   shakeMagnitude: 0.2
@@ -821,7 +825,7 @@ Transform:
   m_GameObject: {fileID: 9140478219146176592}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.86, y: 1.84, z: 0}
+  m_LocalPosition: {x: 1.67, y: 1.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
