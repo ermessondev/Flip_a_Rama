@@ -870,9 +870,24 @@ public class Movimentacao : MonoBehaviour
 
     public void Respaw()
     {
+        StartCoroutine(ZerarY());
         rb.linearVelocity = Vector2.zero;
         transform.position = new Vector3(0f, 0f, 20f);
     }
+
+    IEnumerator ZerarY()
+{
+    // Zera a velocidade só no eixo Y
+    rb.velocity = new Vector2(rb.velocity.x, 0);
+
+    // Desativa momentaneamente o movimento no Y
+    rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+
+    yield return new WaitForSeconds(0.1f);
+
+    // Liberta o eixo Y depois dos 0.5s
+    rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+}
 
     public void FinalPartida(bool vitoria)
     {

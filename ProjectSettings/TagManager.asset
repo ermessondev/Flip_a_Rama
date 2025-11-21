@@ -46,5 +46,17 @@ TagManager:
   - name: New Layer 1
     uniqueID: 3846203115
     locked: 0
+  - name: Plataforma
+    uniqueID: 484259211
+    locked: 0
+  - name: Groud
+    uniqueID: 62007871
+    locked: 0
+  - name: Espinhos
+    uniqueID: 1491960327
+    locked: 0
+  - name: Player
+    uniqueID: 48701259
+    locked: 0
   m_RenderingLayers:
   - Default
