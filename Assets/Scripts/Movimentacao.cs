@@ -32,11 +32,11 @@ public class Movimentacao : MonoBehaviour
     // Variéveis  dedicadas a mecenica de movimentação
     [SerializeField]public bool podeMover = true;
     protected Rigidbody2D rb;
-    protected Vector2 direcao;
+    public Vector2 direcao;
     [SerializeField] private float velocidade = 3f;
     [SerializeField] private float forcaPulo = 5f;
-    [SerializeField] private bool estaMorto = false;
-    [SerializeField] private bool venceuPartida = false;
+    [SerializeField] public bool estaMorto = false;
+    [SerializeField] public bool venceuPartida = false;
 
     // Variéveis dedicadas a mecánica de dash
     private bool puloDuploHabilitado = false;
@@ -56,6 +56,7 @@ public class Movimentacao : MonoBehaviour
     [SerializeField] private float distanciaVerificaPlataforma = 0.20f;
     private Collider2D meuCollider;
     private Collider2D plataformaAtual;
+    private float controleGravidade = 1.5f;
 
     // Variéveis de Animação
     [SerializeField] protected Animator oAnimator;
@@ -138,10 +139,6 @@ public class Movimentacao : MonoBehaviour
 
     void Start()
     {
-        if (GameManager.instance.singleMode && !GameManager.instance.treinamento)
-        {
-           // gameObject.AddComponent<InimigoIA>();
-        }
 
         inimigo = this.name == "Jogador1" ? GameObject.Find("Jogador2")?.GetComponent<Movimentacao>() : GameObject.Find("Jogador1")?.GetComponent<Movimentacao>();
         arenaManager = FindFirstObjectByType<ArenaManager>();
@@ -241,6 +238,8 @@ public class Movimentacao : MonoBehaviour
 
         }
 
+        
+
     }
 
     private void FixedUpdate()
@@ -249,6 +248,15 @@ public class Movimentacao : MonoBehaviour
         if (!emDash && !sendoArremessado && podeMover)
         {
             rb.linearVelocity = new Vector2(direcao.x * velocidade, rb.linearVelocity.y);
+        }
+
+        if (!estaNaPlataforma && !estaNoChao && rb.linearVelocity.y < 0)
+        {
+            rb.gravityScale = controleGravidade;
+        }
+        else
+        {
+            rb.gravityScale = 1f;
         }
     }
 
@@ -337,12 +345,12 @@ public class Movimentacao : MonoBehaviour
         }
 
         // Aplica o dash para a esquerda/direita conforme a direção horizontal
-        if (direcao.x == -1)
+        if (transform.localScale.x == -1)
         {
             oAnimator.SetBool("Dash", emDash);
             rb.AddForce(Vector2.left * forcaDash, ForceMode2D.Impulse);
         }
-        else if (direcao.x == 1)
+        else if (transform.localScale.x == 1)
         {
             oAnimator.SetBool("Dash", emDash);
             rb.AddForce(Vector2.right * forcaDash, ForceMode2D.Impulse);

@@ -74,7 +74,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: CharacterSelectionPlayer2
+  m_DefaultActionMap: 5f1cdb30-7322-444a-a94c-8129936b1c07
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &-6767524158742670253
