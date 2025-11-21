@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
         }
         else if (singleMode && jogador1 != null && treinamento == true)
         {
-            jogador2 = CharacterDatabase[1];
+            jogador2 = CharacterDatabase[8];
             SceneManager.LoadScene("StageOne");
         }
     }
