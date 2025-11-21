@@ -886,7 +886,7 @@ public class Movimentacao : MonoBehaviour
             podeBloquear = false;
             podeMover = false ;
             dashDisponivel=false;
-            estaMorto = false;
+            estaMorto = true;
         }
     }
 }
