@@ -9087,7 +9087,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1213122924
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9136,7 +9136,7 @@ MonoBehaviour:
   volumeGeral: {fileID: 0}
   volumeEfeitos: {fileID: 0}
   volumeMusica: {fileID: 0}
-  mixer: {fileID: 0}
+  mixer: {fileID: 24100000, guid: f879bbc931741824e8ef67589a4a5eb2, type: 2}
   botaoAbrirMenuSFX: {fileID: 8300000, guid: 4860a2a2625aaab4c8b846d2a28e9846, type: 3}
   botaoFecharMenuSFX: {fileID: 8300000, guid: a34032c571982524eb2b812995062dc6, type: 3}
   botaoOnSFX: {fileID: 8300000, guid: f4d4211f35961ee43aae6763bb801ee9, type: 3}
@@ -15020,6 +15020,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5147069674600786078, guid: a600b0a4457d1a94fb0fc17acf0d6819, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147069674600786078, guid: a600b0a4457d1a94fb0fc17acf0d6819, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: a84f707f7f4cf1a44b34929be644fb85, type: 3}
     - target: {fileID: 6622440223774867124, guid: a600b0a4457d1a94fb0fc17acf0d6819, type: 3}
       propertyPath: m_Name
       value: SFX - Musica
