@@ -7,6 +7,10 @@ using TMPro;
 
 public class PainelDeConfiguracoes : MonoBehaviour
 {
+    [SerializeField] public Slider volumeGeral;
+    [SerializeField] public Slider volumeEfeitos;
+    [SerializeField] public Slider volumeMusica;
+    [SerializeField] public AudioMixer mixer;
 
     const string MIXER_MASTER = "Master";
     const string MIXER_MUSICA = "Musica";
@@ -25,17 +29,17 @@ public class PainelDeConfiguracoes : MonoBehaviour
     {
         telaCheia.onValueChanged.AddListener(QuandoClicarTelaCheia);
         painelResolucao.onValueChanged.AddListener(QuandoSelecionarResolucao);
-        GameManager.instance.volumeGeral.onValueChanged.AddListener(QuandoAletrarVolumeGeral);
-        GameManager.instance.volumeEfeitos.onValueChanged.AddListener(QuandoAlterarVolumeEfeitos);
-        GameManager.instance.volumeMusica.onValueChanged.AddListener(QuandoAlterarVolumeMusica);
+        volumeGeral.onValueChanged.AddListener(QuandoAletrarVolumeGeral);
+        volumeEfeitos.onValueChanged.AddListener(QuandoAlterarVolumeEfeitos);
+        volumeMusica.onValueChanged.AddListener(QuandoAlterarVolumeMusica);
     }
     private void OnDisable()
     {
         telaCheia.onValueChanged.RemoveAllListeners();
         painelResolucao.onValueChanged.RemoveAllListeners();
-        GameManager.instance.volumeGeral.onValueChanged.RemoveAllListeners();
-        GameManager.instance.volumeEfeitos.onValueChanged.RemoveAllListeners();
-        GameManager.instance.volumeMusica.onValueChanged.RemoveAllListeners();
+        volumeGeral.onValueChanged.RemoveAllListeners();
+        volumeEfeitos.onValueChanged.RemoveAllListeners();
+        volumeMusica.onValueChanged.RemoveAllListeners();
     }
 
     void Start()
@@ -50,7 +54,7 @@ public class PainelDeConfiguracoes : MonoBehaviour
         painelResolucao.ClearOptions();
         painelResolucao.AddOptions(nomesDasResolucoes);
 
-        QuandoAletrarVolumeGeral(GameManager.instance.volumeGeral.value);
+        QuandoAletrarVolumeGeral(GameManager.instance.volumeGeral);
     }
 
     public void TocarSomConfiguracoes()
@@ -83,16 +87,16 @@ public class PainelDeConfiguracoes : MonoBehaviour
     public void QuandoAletrarVolumeGeral(float volumeAtual)
     {
         Debug.Log($"Slider com valor de: {volumeAtual}");
-        GameManager.instance.mixer.SetFloat(MIXER_MASTER, Mathf.Log10(volumeAtual) * 20);
+        mixer.SetFloat(MIXER_MASTER, Mathf.Log10(volumeAtual) * 20);
     }
     public void QuandoAlterarVolumeEfeitos(float volumeAtual)
     {
         Debug.Log($"Slider com valor de: {volumeAtual}");
-        GameManager.instance.mixer.SetFloat(MIXER_EFEITOS, Mathf.Log10(volumeAtual) * 20);
+        mixer.SetFloat(MIXER_EFEITOS, Mathf.Log10(volumeAtual) * 20);
     }
     public void QuandoAlterarVolumeMusica(float volumeAtual)
     {
         Debug.Log($"Slider com valor de: {volumeAtual}");
-        GameManager.instance.mixer.SetFloat(MIXER_MUSICA, Mathf.Log10(volumeAtual) * 20);
+        mixer.SetFloat(MIXER_MUSICA, Mathf.Log10(volumeAtual) * 20);
     }
 }

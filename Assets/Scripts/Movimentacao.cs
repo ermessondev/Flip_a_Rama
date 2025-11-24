@@ -315,7 +315,6 @@ public class Movimentacao : MonoBehaviour
         {
             StartCoroutine(descerPlataforma());
         }
-        
     }
 
     private void pular()
@@ -324,6 +323,7 @@ public class Movimentacao : MonoBehaviour
         SFX.instance.TocarSFX(puloSFX, transform, 1f, 1.0f);
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
         rb.AddForce(Vector2.up * forcaPulo, ForceMode2D.Impulse);
+        Debug.Log(GameManager.instance.volumeEfeitos);
     }
 
     private IEnumerator usarDash()

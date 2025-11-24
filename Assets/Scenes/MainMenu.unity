@@ -581,12 +581,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -928,10 +928,9 @@ MonoBehaviour:
   vitoriasP1: 0
   vitoriasP2: 0
   raudsTotais: 0
-  volumeGeral: {fileID: 436177734}
-  volumeEfeitos: {fileID: 373597083}
-  volumeMusica: {fileID: 1494586583}
-  mixer: {fileID: 24100000, guid: f879bbc931741824e8ef67589a4a5eb2, type: 2}
+  volumeGeral: 0
+  volumeEfeitos: 0
+  volumeMusica: 0
 --- !u!4 &351998751
 Transform:
   m_ObjectHideFlags: 0
@@ -947,17 +946,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &373597083 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5319019697245740546, guid: 6fa65301187affe45b67ee1f6d8bc49b, type: 3}
-  m_PrefabInstance: {fileID: 4154950001208131729}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!1 &410613117
 GameObject:
   m_ObjectHideFlags: 0
@@ -1072,17 +1060,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -5}
   m_SizeDelta: {x: 1820, y: 1160}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &436177734 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7548172944491254543, guid: 6fa65301187affe45b67ee1f6d8bc49b, type: 3}
-  m_PrefabInstance: {fileID: 4154950001208131729}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!1 &507419089
 GameObject:
   m_ObjectHideFlags: 0
@@ -2482,7 +2459,7 @@ RectTransform:
   m_GameObject: {fileID: 959402121}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6859865, y: 0.6859865, z: 0.6859865}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1849238895}
@@ -2490,7 +2467,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -16}
-  m_SizeDelta: {x: 1754, y: 1240}
+  m_SizeDelta: {x: 1754, y: 1952}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &959402123
 MonoBehaviour:
@@ -2818,10 +2795,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1849238895}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1156162808
 MonoBehaviour:
@@ -3511,17 +3488,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1494586583 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3993840978913771466, guid: 6fa65301187affe45b67ee1f6d8bc49b, type: 3}
-  m_PrefabInstance: {fileID: 4154950001208131729}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!1 &1659623368
 GameObject:
   m_ObjectHideFlags: 0
@@ -3839,7 +3805,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -4410,7 +4376,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 2}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2108399886

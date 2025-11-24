@@ -23,10 +23,10 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int vitoriasP2;
     [HideInInspector] public int raudsTotais;
 
-    [SerializeField] public Slider volumeGeral;
-    [SerializeField] public Slider volumeEfeitos;
-    [SerializeField] public Slider volumeMusica;
-    [SerializeField] public AudioMixer mixer;
+    [SerializeField] public float volumeGeral;
+    [SerializeField] public float volumeEfeitos;
+    [SerializeField] public float volumeMusica;
+
 
     void Awake()
     {
