@@ -559,7 +559,7 @@
                 {
                     "name": "",
                     "id": "3f0d065d-10dd-4a38-857c-f07fe0ba0d57",
-                    "path": "<Keyboard>/leftBracket",
+                    "path": "<Keyboard>/#(º)",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -647,7 +647,7 @@
                 {
                     "name": "",
                     "id": "5e9660bf-076c-4a79-8311-ff074a51c86e",
-                    "path": "<Keyboard>/p",
+                    "path": "<Keyboard>/#(Ç)",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -669,7 +669,7 @@
                 {
                     "name": "",
                     "id": "e3cf307d-5a29-458a-9fa5-4a7fa4a3a6a6",
-                    "path": "<Keyboard>/quote",
+                    "path": "<Keyboard>/#(.)",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -1416,7 +1416,7 @@
                 {
                     "name": "",
                     "id": "e74ce965-cd27-4780-b107-c519bd75893a",
-                    "path": "<Keyboard>/p",
+                    "path": "<Keyboard>/#(Ç)",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",

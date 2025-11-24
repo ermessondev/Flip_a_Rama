@@ -1,10 +1,6 @@
 using System.Collections;
-using System.Data.Common;
-using TreeEditor;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 
 // Caso o objeto não tenha o componente, ele é criado em tempo de compilação
 [RequireComponent(typeof(Rigidbody2D))]
@@ -792,7 +788,6 @@ public class Movimentacao : MonoBehaviour
             SFX.instance.TocarSFX(sairDaArenaSFX, transform, 0.5f, 1f);
             Debug.Log($"{gameObject.name} entrou no limitador!");
             StartCoroutine(arenaManager.EfeitoKO(this.name));
-
         }
     }
 
@@ -878,7 +873,7 @@ public class Movimentacao : MonoBehaviour
     IEnumerator ZerarY()
 {
     // Zera a velocidade só no eixo Y
-    rb.velocity = new Vector2(rb.velocity.x, 0);
+    rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
 
     // Desativa momentaneamente o movimento no Y
     rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;

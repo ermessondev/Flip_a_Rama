@@ -380,7 +380,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -402,7 +402,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -424,7 +424,7 @@ TextureImporter:
         width: 128
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -446,7 +446,7 @@ TextureImporter:
         width: 128
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -468,7 +468,7 @@ TextureImporter:
         width: 128
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -490,7 +490,7 @@ TextureImporter:
         width: 96
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -499,6 +499,28 @@ TextureImporter:
       bones: []
       spriteID: 775eea61f8592ea428cbc1bed0f6c9e3
       internalID: -1637445837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interface_17
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 147
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed4cacfec6270564694062ea3ecfb632
+      internalID: 1691116231
       vertices: []
       indices: 
       edges: []
@@ -526,6 +548,7 @@ TextureImporter:
       Interface_14: -921084467
       Interface_15: 2090206082
       Interface_16: -1637445837
+      Interface_17: 1691116231
       Interface_2: 6645267774847150050
       Interface_3: 6489428544528313055
       Interface_4: -159245420439134157
