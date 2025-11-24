@@ -2409,6 +2409,8 @@ MonoBehaviour:
   - {fileID: 1585387288}
   koSFX: {fileID: 8300000, guid: 4e16f9fa0f27d3d459ebee59fad41ea2, type: 3}
   jogoPausado: 0
+  nameP1: {fileID: 0}
+  nameP2: {fileID: 0}
   canvasFinal: {fileID: 1678543978}
   MenuPausa: {fileID: 1707770295}
   btnContinuarJogo: {fileID: 94435763}
@@ -2417,6 +2419,7 @@ MonoBehaviour:
   textWiner: {fileID: 1377749961}
   roundStart: {fileID: 1272945879}
   partidaIniciada: 0
+  painelDeConfiguracoes: {fileID: 0}
 --- !u!114 &478659110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8315,7 +8318,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1707770296
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8348,6 +8351,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd63126b5da63045b2e9f2c2b8f67d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenu
+  botaoAbrirMenuSFX: {fileID: 0}
+  botaoFecharMenuSFX: {fileID: 0}
+  botaoOnSFX: {fileID: 0}
   jogar: {fileID: 0}
   configuracoes: {fileID: 0}
   creditos: {fileID: 0}
@@ -8358,15 +8364,6 @@ MonoBehaviour:
   painelDeCreditos: {fileID: 0}
   arena: {fileID: 0}
   treinamento: {fileID: 0}
-  telaCheia: {fileID: 0}
-  painelResolucao: {fileID: 0}
-  volumeGeral: {fileID: 0}
-  volumeEfeitos: {fileID: 0}
-  volumeMusica: {fileID: 0}
-  mixer: {fileID: 0}
-  botaoAbrirMenuSFX: {fileID: 0}
-  botaoFecharMenuSFX: {fileID: 0}
-  botaoOnSFX: {fileID: 0}
 --- !u!1 &1709519360
 GameObject:
   m_ObjectHideFlags: 0
