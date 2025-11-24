@@ -53,8 +53,23 @@ public class PainelDeConfiguracoes : MonoBehaviour
         }
         painelResolucao.ClearOptions();
         painelResolucao.AddOptions(nomesDasResolucoes);
+        painelResolucao.value = GameSave.CarregarResolucao(resolucoesPossiveis.Length-1);
 
-        QuandoAletrarVolumeGeral(GameManager.instance.volumeGeral);
+        //QuandoAletrarVolumeGeral(GameManager.instance.volumeGeral);
+
+        float volumeSalvoGeral = GameSave.CarregarVolumeGeral(1f);
+        QuandoAletrarVolumeGeral(volumeSalvoGeral);
+        volumeGeral.SetValueWithoutNotify(volumeSalvoGeral);
+
+        float volumeSalvoEfeitos = GameSave.CarregarVolumeEfeitos(1f);
+        QuandoAlterarVolumeEfeitos(volumeSalvoEfeitos);
+        volumeEfeitos.SetValueWithoutNotify(volumeSalvoEfeitos);
+
+        float volumeSalvoMusica = GameSave.CarregarVolumeMusica(1f);
+        QuandoAlterarVolumeMusica(volumeSalvoMusica);
+        volumeMusica.SetValueWithoutNotify(volumeSalvoMusica);
+
+        telaCheia.isOn = GameSave.CarregaTelaCheia(true);
     }
 
     public void TocarSomConfiguracoes()
@@ -67,6 +82,7 @@ public class PainelDeConfiguracoes : MonoBehaviour
         TocarSomConfiguracoes();
         Debug.Log($"Valor tela cheia: {estaEmTelaCheia}");
         Screen.fullScreen = estaEmTelaCheia;
+        GameSave.SalvaTelaCheia(estaEmTelaCheia);
         // Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
     }
     public void QuandoSelecionarResolucao(int indiceDaResolucao)
@@ -76,6 +92,7 @@ public class PainelDeConfiguracoes : MonoBehaviour
             resolucoesPossiveis[indiceDaResolucao].height,
             Screen.fullScreenMode,
             resolucoesPossiveis[indiceDaResolucao].refreshRateRatio);
+        GameSave.SalvaResolucao(indiceDaResolucao);
     }
 
     public void VoltandoParaMenuInicial()
@@ -88,15 +105,18 @@ public class PainelDeConfiguracoes : MonoBehaviour
     {
         Debug.Log($"Slider com valor de: {volumeAtual}");
         mixer.SetFloat(MIXER_MASTER, Mathf.Log10(volumeAtual) * 20);
+        GameSave.SalvaVolumeGeral(volumeAtual);
     }
     public void QuandoAlterarVolumeEfeitos(float volumeAtual)
     {
         Debug.Log($"Slider com valor de: {volumeAtual}");
         mixer.SetFloat(MIXER_EFEITOS, Mathf.Log10(volumeAtual) * 20);
+        GameSave.SalvaVolumeEfeitos(volumeAtual);
     }
     public void QuandoAlterarVolumeMusica(float volumeAtual)
     {
         Debug.Log($"Slider com valor de: {volumeAtual}");
         mixer.SetFloat(MIXER_MUSICA, Mathf.Log10(volumeAtual) * 20);
+        GameSave.SalvaVolumeMusica(volumeAtual);
     }
 }
