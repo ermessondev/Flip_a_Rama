@@ -76,7 +76,7 @@ public class characterSelectManager : MonoBehaviour
         if (jogador == "Jogador2" && !valor)
         {
             Debug.Log("Personagem Bloqueado");
-            textoJogador2Confirmado.text = $"{jogador} Deseja confirmar o personagem? P para sim BACKSPACE para nao";
+            textoJogador2Confirmado.text = $"{jogador} Deseja confirmar o personagem? ';' para sim BACKSPACE para nao";
             textoJogador2Confirmado.gameObject.SetActive(true);
             yield return new WaitForSeconds(1);
         }
