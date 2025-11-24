@@ -2411,6 +2411,9 @@ MonoBehaviour:
   jogoPausado: 0
   canvasFinal: {fileID: 1678543978}
   MenuPausa: {fileID: 1707770295}
+  btnContinuarJogo: {fileID: 94435763}
+  btnConfiguracoes: {fileID: 2024134756}
+  btnVoltarMenu: {fileID: 2048380527}
   textWiner: {fileID: 1377749961}
   roundStart: {fileID: 1272945879}
   partidaIniciada: 0
@@ -8349,15 +8352,21 @@ MonoBehaviour:
   configuracoes: {fileID: 0}
   creditos: {fileID: 0}
   sair: {fileID: 0}
+  voltarAoMenu: {fileID: 0}
   painelDeJogar: {fileID: 0}
   painelDeConfiguracoes: {fileID: 0}
   painelDeCreditos: {fileID: 0}
   arena: {fileID: 0}
   treinamento: {fileID: 0}
+  telaCheia: {fileID: 0}
+  painelResolucao: {fileID: 0}
+  volumeGeral: {fileID: 0}
+  volumeEfeitos: {fileID: 0}
+  volumeMusica: {fileID: 0}
+  mixer: {fileID: 0}
   botaoAbrirMenuSFX: {fileID: 0}
   botaoFecharMenuSFX: {fileID: 0}
   botaoOnSFX: {fileID: 0}
-  botaoOffSFX: {fileID: 0}
 --- !u!1 &1709519360
 GameObject:
   m_ObjectHideFlags: 0

@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 7549948446592252409}
   - component: {fileID: 803531603513420880}
   m_Layer: 8
-  m_Name: PlayerOne
+  m_Name: Bom-bot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -628,8 +628,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 750, y: 505}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 514.72864, y: 510}
+  m_SizeDelta: {x: 454.2714, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &125455154
 MonoBehaviour:
@@ -685,7 +685,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -8915,8 +8915,13 @@ MonoBehaviour:
   - {fileID: 1763903190}
   koSFX: {fileID: 8300000, guid: 4e16f9fa0f27d3d459ebee59fad41ea2, type: 3}
   jogoPausado: 0
+  nameP1: {fileID: 2020265199}
+  nameP2: {fileID: 125455154}
   canvasFinal: {fileID: 1420302814}
   MenuPausa: {fileID: 1213122923}
+  btnContinuarJogo: {fileID: 793600262}
+  btnConfiguracoes: {fileID: 1914839134}
+  btnVoltarMenu: {fileID: 1945340229}
   textWiner: {fileID: 1388428368}
   roundStart: {fileID: 504139534}
   partidaIniciada: 0
@@ -14350,8 +14355,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -855, y: 505}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -855, y: 510}
+  m_SizeDelta: {x: 416.9792, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &2020265199
 MonoBehaviour:
@@ -14407,7 +14412,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0

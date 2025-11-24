@@ -97,6 +97,11 @@ public class CharacterSelectController : MonoBehaviour
 
     void OnCancel()
     {
+        if (!selecionado && !confirmado)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+
         if (selecionado && confirmado) 
         {
             return;

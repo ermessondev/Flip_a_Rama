@@ -825,11 +825,6 @@ public class Movimentacao : MonoBehaviour
     
     //StageTwo - Entrega para Level Design
 
-    void OnPauseMenu()
-    {
-        arenaManager.PausarJogo(!arenaManager.jogoPausado);
-    }
-
     public void falarTeste()
     {
         Debug.Log("Ai AI");
@@ -905,5 +900,11 @@ public class Movimentacao : MonoBehaviour
             dashDisponivel=false;
             estaMorto = true;
         }
+    }
+
+    void OnPauseMenu()
+    {
+        Debug.Log("Pausei");
+        arenaManager.PausarJogo(!arenaManager.jogoPausado);
     }
 }

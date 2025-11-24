@@ -34,25 +34,51 @@ public class ArenaManager : MonoBehaviour
     private Transform posP1;
     private Transform posP2;
 
+    [Header("Players")]
     private Movimentacao player1;
     private Movimentacao player2;
+    [SerializeField] private TextMeshProUGUI nameP1;
+    [SerializeField] private TextMeshProUGUI nameP2;
 
     string winer;
     bool jaTeveEmpate = false;
 
     [SerializeField] private GameObject canvasFinal;
 
-    [SerializeField] private GameObject MenuPausa;
 
+    [Header("Barra de Vida")]
+    [SerializeField] private GameObject MenuPausa;
+    [SerializeField] private Button btnContinuarJogo;
+    [SerializeField] private Button btnConfiguracoes;
+    [SerializeField] private Button btnVoltarMenu;
+
+    [Header("Final da Partida")]
     [SerializeField] TextMeshProUGUI textWiner;
     [SerializeField] TextMeshProUGUI roundStart;
     public bool partidaIniciada = false;
+
+    private void OnEnable()
+    {
+        btnContinuarJogo.onClick.AddListener(() =>PausarJogo(!jogoPausado));
+        //btnConfiguracoes.onClick.AddListener();
+        btnVoltarMenu.onClick.AddListener(() => voltarMenu());
+    }
+
+    private void OnDisable()
+    {
+        btnContinuarJogo.onClick.RemoveAllListeners();
+        btnConfiguracoes.onClick.RemoveAllListeners();
+        btnVoltarMenu.onClick.RemoveAllListeners();
+    }
     void Awake()
     {
         
 
         barraVidaP1 = lifeBar.transform.Find("P1/barraVida").GetComponent<UnityEngine.UI.Image>();
         barraVidaP2 = lifeBar.transform.Find("P2/barraVida").GetComponent<UnityEngine.UI.Image>();
+        nameP1.text = GameManager.instance.jogador1.name;
+        nameP2.text = GameManager.instance.jogador2.name;
+
 
 
         if (GameManager.instance == null)
@@ -153,11 +179,11 @@ public class ArenaManager : MonoBehaviour
         cameraAutoFit.SetPlayers(p1, p2);
     }
 
-    void OnPauseMenu()
+    
+    void voltarMenu()
     {
-        PausarJogo(!jogoPausado);
+        SceneManager.LoadScene("MainMenu");
     }
-
     public void PausarJogo(bool value)
     {
 
@@ -346,4 +372,6 @@ public class ArenaManager : MonoBehaviour
         temporizador.IniciarRelogio();
 
     }
+
+
 }

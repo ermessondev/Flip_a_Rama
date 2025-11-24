@@ -72,7 +72,7 @@
                 {
                     "name": "PauseMenu",
                     "type": "Button",
-                    "id": "32ff0a51-dd35-45cd-a0dc-fa1dc9692730",
+                    "id": "b00907fe-fbc8-49c4-9c76-edae59606b07",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -335,7 +335,7 @@
                 },
                 {
                     "name": "",
-                    "id": "c1f879d0-406a-4386-92e1-d1195edf8791",
+                    "id": "f70b5141-34d8-4156-b307-057736a1ce8c",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
@@ -346,7 +346,7 @@
                 },
                 {
                     "name": "",
-                    "id": "f969ada7-a830-4e5d-b54c-db4a3ec71185",
+                    "id": "1b2f386a-e70d-4341-ae59-3738fac96e00",
                     "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
@@ -471,7 +471,7 @@
                 {
                     "name": "PauseMenu",
                     "type": "Button",
-                    "id": "2ebbec4c-1e93-4836-8c5e-73cdfbef9fcb",
+                    "id": "e0524b96-294e-4e6f-b182-510bc48324cb",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -624,8 +624,8 @@
                 },
                 {
                     "name": "",
-                    "id": "c6582540-7404-4cd3-8e11-f6da41ce2e3e",
-                    "path": "<Keyboard>/enter",
+                    "id": "b4a55265-0f91-4665-912f-a8b0cc30471c",
+                    "path": "<Keyboard>/backspace",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -635,7 +635,7 @@
                 },
                 {
                     "name": "",
-                    "id": "80946a1b-25c0-4bfd-8597-e2fecbb10277",
+                    "id": "ed8ffb4a-eca4-43e5-9c9f-0708461cd472",
                     "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
