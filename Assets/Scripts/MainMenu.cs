@@ -64,6 +64,7 @@ public class MainMenu : MonoBehaviour
         {
             TocarSomMenuAbrir();
             painelDeJogar.SetActive(true);
+            Time.timeScale = 1f;
         }
         else
         {

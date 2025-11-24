@@ -192,6 +192,7 @@ public class ArenaManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+    
     public void PausarJogo(bool value)
     {
 
