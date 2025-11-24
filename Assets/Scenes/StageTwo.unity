@@ -6042,61 +6042,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7450395447139310298, guid: 6fa65301187affe45b67ee1f6d8bc49b, type: 3}
   m_PrefabInstance: {fileID: 791070166}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &791070168 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3993840978913771466, guid: 6fa65301187affe45b67ee1f6d8bc49b, type: 3}
-  m_PrefabInstance: {fileID: 791070166}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
---- !u!114 &791070169 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5319019697245740546, guid: 6fa65301187affe45b67ee1f6d8bc49b, type: 3}
-  m_PrefabInstance: {fileID: 791070166}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
---- !u!114 &791070170 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7548172944491254543, guid: 6fa65301187affe45b67ee1f6d8bc49b, type: 3}
-  m_PrefabInstance: {fileID: 791070166}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
---- !u!114 &791070171 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8341928772137299582, guid: 6fa65301187affe45b67ee1f6d8bc49b, type: 3}
-  m_PrefabInstance: {fileID: 791070166}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b743370ac3e4ec2a1668f5455a8ef8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_Dropdown
---- !u!114 &791070172 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2866992927119575319, guid: 6fa65301187affe45b67ee1f6d8bc49b, type: 3}
-  m_PrefabInstance: {fileID: 791070166}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Toggle
 --- !u!1 &793600260
 GameObject:
   m_ObjectHideFlags: 0
@@ -9256,6 +9201,7 @@ MonoBehaviour:
   textWiner: {fileID: 1388428368}
   roundStart: {fileID: 504139534}
   partidaIniciada: 0
+  painelDeConfiguracoes: {fileID: 1709995439}
 --- !u!4 &1203404177
 Transform:
   m_ObjectHideFlags: 0
@@ -9458,6 +9404,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd63126b5da63045b2e9f2c2b8f67d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenu
+  botaoAbrirMenuSFX: {fileID: 8300000, guid: 4860a2a2625aaab4c8b846d2a28e9846, type: 3}
+  botaoFecharMenuSFX: {fileID: 8300000, guid: a34032c571982524eb2b812995062dc6, type: 3}
+  botaoOnSFX: {fileID: 8300000, guid: f4d4211f35961ee43aae6763bb801ee9, type: 3}
   jogar: {fileID: 0}
   configuracoes: {fileID: 1914839134}
   creditos: {fileID: 0}
@@ -9468,15 +9417,6 @@ MonoBehaviour:
   painelDeCreditos: {fileID: 0}
   arena: {fileID: 0}
   treinamento: {fileID: 0}
-  telaCheia: {fileID: 791070172}
-  painelResolucao: {fileID: 791070171}
-  volumeGeral: {fileID: 791070170}
-  volumeEfeitos: {fileID: 791070169}
-  volumeMusica: {fileID: 791070168}
-  mixer: {fileID: 24100000, guid: f879bbc931741824e8ef67589a4a5eb2, type: 2}
-  botaoAbrirMenuSFX: {fileID: 8300000, guid: 4860a2a2625aaab4c8b846d2a28e9846, type: 3}
-  botaoFecharMenuSFX: {fileID: 8300000, guid: a34032c571982524eb2b812995062dc6, type: 3}
-  botaoOnSFX: {fileID: 8300000, guid: f4d4211f35961ee43aae6763bb801ee9, type: 3}
 --- !u!1 &1230247023
 GameObject:
   m_ObjectHideFlags: 0

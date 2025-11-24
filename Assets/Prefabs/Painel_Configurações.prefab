@@ -2084,6 +2084,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7450395447139310298}
+  - component: {fileID: 6653601612595848966}
   m_Layer: 5
   m_Name: "Painel_Configura\xE7\xF5es"
   m_TagString: Untagged
@@ -2112,6 +2113,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -19}
   m_SizeDelta: {x: 0, y: 183}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6653601612595848966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4512571404234206707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e80da1da424294f43b5c0239ef185a35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PainelDeConfiguracoes
+  volumeGeral: {fileID: 7548172944491254543}
+  volumeEfeitos: {fileID: 5319019697245740546}
+  volumeMusica: {fileID: 3993840978913771466}
+  mixer: {fileID: 24100000, guid: f879bbc931741824e8ef67589a4a5eb2, type: 2}
+  botaoAbrirMenuSFX: {fileID: 8300000, guid: 4860a2a2625aaab4c8b846d2a28e9846, type: 3}
+  botaoFecharMenuSFX: {fileID: 8300000, guid: a34032c571982524eb2b812995062dc6, type: 3}
+  botaoOnSFX: {fileID: 8300000, guid: f4d4211f35961ee43aae6763bb801ee9, type: 3}
+  telaCheia: {fileID: 2866992927119575319}
+  painelResolucao: {fileID: 8341928772137299582}
 --- !u!1 &4635208879231437933
 GameObject:
   m_ObjectHideFlags: 0

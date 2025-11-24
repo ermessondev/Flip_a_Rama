@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 [DefaultExecutionOrder(-1000)]
 public class GameManager : MonoBehaviour
@@ -22,7 +23,10 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int vitoriasP2;
     [HideInInspector] public int raudsTotais;
 
-
+    [SerializeField] public Slider volumeGeral;
+    [SerializeField] public Slider volumeEfeitos;
+    [SerializeField] public Slider volumeMusica;
+    [SerializeField] public AudioMixer mixer;
 
     void Awake()
     {

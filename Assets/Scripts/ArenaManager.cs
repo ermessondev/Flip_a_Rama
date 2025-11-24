@@ -57,10 +57,12 @@ public class ArenaManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI roundStart;
     public bool partidaIniciada = false;
 
+    [SerializeField] private GameObject painelDeConfiguracoes;
+
     private void OnEnable()
     {
-        btnContinuarJogo.onClick.AddListener(() =>PausarJogo(!jogoPausado));
-        //btnConfiguracoes.onClick.AddListener();
+        btnContinuarJogo.onClick.AddListener(() => PausarJogo(!jogoPausado));
+        btnConfiguracoes.onClick.AddListener(() => AbrirConfiguracoes());
         btnVoltarMenu.onClick.AddListener(() => voltarMenu());
     }
 
@@ -70,6 +72,12 @@ public class ArenaManager : MonoBehaviour
         btnConfiguracoes.onClick.RemoveAllListeners();
         btnVoltarMenu.onClick.RemoveAllListeners();
     }
+
+    void AbrirConfiguracoes()
+    {
+        painelDeConfiguracoes.SetActive(!painelDeConfiguracoes.activeSelf);
+    }
+
     void Awake()
     {
         
