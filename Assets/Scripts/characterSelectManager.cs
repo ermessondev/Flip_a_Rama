@@ -53,9 +53,10 @@ public class characterSelectManager : MonoBehaviour
         textoBloqueado.gameObject.SetActive(false);
     }
 
-    public void ConfirmaPersonagem(string jogador, bool valor)
+    public void ConfirmaPersonagem(string nomeJogador, bool valor)
     {
-        StartCoroutine(confirmaPersonagemCoroutine(jogador, valor));
+        Debug.Log(nomeJogador);
+        StartCoroutine(confirmaPersonagemCoroutine(nomeJogador, valor));
     }
 
     private IEnumerator confirmaPersonagemCoroutine(string jogador, bool valor)

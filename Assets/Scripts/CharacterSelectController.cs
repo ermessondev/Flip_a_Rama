@@ -60,8 +60,10 @@ public class CharacterSelectController : MonoBehaviour
         {
             MoverParaBotao(listaPersonagens[personagemAtual]);
         }
+        Debug.Log(this.name);
 
-        jogador = this.name == "PlayerSelector1(Clone)" ? "Jogador1" : "Jogador2";
+        jogador = this.name == "Player1_Selector(Clone)" ? "Jogador1" : "Jogador2";
+        Debug.Log(jogador);
     }
 
     //movimentação exclusiva para HUD
