@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Movimentacao : MonoBehaviour
 {
-
+    private bool jogoAcabou = false;
     public float vida = 100;
 
     private PlayerInput playerInput;
@@ -242,7 +242,7 @@ public class Movimentacao : MonoBehaviour
     private void FixedUpdate()
     {
         // Se na estiver em dash, aplica a movimentação horizontal usando o valor armazenado em 'direcao' (setado em OnMove)
-        if (!emDash && !sendoArremessado && podeMover)
+        if (!emDash && !sendoArremessado && !jogoAcabou && podeMover)
         {
             rb.linearVelocity = new Vector2(direcao.x * velocidade, rb.linearVelocity.y);
         }
@@ -881,6 +881,7 @@ public class Movimentacao : MonoBehaviour
         if (vitoria)
         {
             Debug.Log($"{this.name} Ganhei saporra");
+            jogoAcabou = true;
             venceuPartida = true;
             podeAtacar = false;
             podeBloquear = false;
@@ -890,6 +891,7 @@ public class Movimentacao : MonoBehaviour
         else 
         {
             Debug.Log($"{this.name} Perdi saporra");
+            jogoAcabou = true;
             podeAtacar = false;
             podeBloquear = false;
             podeMover = false ;

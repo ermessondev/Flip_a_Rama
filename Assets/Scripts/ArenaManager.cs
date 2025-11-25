@@ -214,6 +214,17 @@ public class ArenaManager : MonoBehaviour
     {
         if (jogador == "Jogador1" && !player1.emBlock)
         {
+            if (temporizador.tempoRestante == 0f)
+            {
+                barraVidaP1.fillAmount = 0;
+                barraDanoP1.fillAmount = 0;
+                vidaJogador1 = 0;
+                koP1[2].SetActive(false);
+                koP1[1].SetActive(false);
+                koP1[0].SetActive(false);
+                StartCoroutine(FinalGame());
+                return;
+            }
             barraVidaP1.fillAmount -= dano;
             controleBarraSegundaria(barraDanoP1, dano);
             StartCoroutine(controleBarraSegundaria(barraDanoP1, dano));
@@ -224,6 +235,17 @@ public class ArenaManager : MonoBehaviour
         }
         else if(jogador == "Jogador2" && !player2.emBlock)
         {
+            if (temporizador.tempoRestante == 0f)
+            {
+                barraVidaP2.fillAmount = 0;
+                barraDanoP2.fillAmount = 0;
+                vidaJogador2 = 0;
+                koP2[2].SetActive(false);
+                koP2[1].SetActive(false);
+                koP2[0].SetActive(false);
+                StartCoroutine(FinalGame());
+                return;
+            }
             barraVidaP2.fillAmount -= dano;
             StartCoroutine(controleBarraSegundaria(barraDanoP2, dano));
 
@@ -255,18 +277,17 @@ public class ArenaManager : MonoBehaviour
         if (vidaJogador1 > vidaJogador2 || (vidaJogador1 == vidaJogador2 && barraVidaP1.fillAmount > barraVidaP2.fillAmount))
         {
             winer = "Jogador1";
+            Debug.Log("entrei no finalgame");
         }
         else if (vidaJogador1 < vidaJogador2 || (vidaJogador1 == vidaJogador2 && barraVidaP1.fillAmount < barraVidaP2.fillAmount))
         {
             winer = "Jogador2";
-        }
-        else 
-        {
-            winer = "Empate";
+            
         }
 
         if (winer == "Jogador1")
         {
+            Debug.Log("cheguei ao final");
             player1.FinalPartida(true);
             GameManager.instance.vitoriasP1 += 1;
             player2.FinalPartida(false);
@@ -287,9 +308,9 @@ public class ArenaManager : MonoBehaviour
             canvasFinal.gameObject.SetActive(true);
 
         }
-        else if (winer == "Empate" && !jaTeveEmpate)
+        else if (winer == "Empate")
         {
-            
+            Debug.Log("empate");
         }
     }
 
@@ -317,6 +338,8 @@ public class ArenaManager : MonoBehaviour
         }
         else if(jogador == "Jogador2")
         {
+            
+            Debug.Log("entrei no efeito K.O");
             SFX.instance.TocarSFX(koSFX, transform, 1f, 1.0f);
             if (vidaJogador2 > 1)
             {

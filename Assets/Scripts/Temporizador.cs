@@ -14,7 +14,7 @@ public class Temporizador : MonoBehaviour
     [Header("Temporizador UI")]
     [SerializeField] TextMeshProUGUI textoRelogio;
 
-    private float tempoRestante;
+    public float tempoRestante;
     private const float intervaloBase = 1f;
 
     private void Start()
