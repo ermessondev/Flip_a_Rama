@@ -438,14 +438,11 @@ public class Movimentacao : MonoBehaviour
     private IEnumerator ExecutarBlock()
     {
         podeAtacar = false;  
-        // Ativa a animação de bloqueio
         oAnimator.SetBool("Block", true);
         emBlock = true;
 
-        // Espera 5 segundos
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.6f);
 
-        // Volta para o Idle
         oAnimator.SetBool("Block", false);
         emBlock = false;
         StartCoroutine(cotroleAtaqueDefesa("ataque", true));
@@ -558,16 +555,13 @@ public class Movimentacao : MonoBehaviour
                     if (hitboxCorpo == hitboxCorpoPlayer)
                     {
                         hitboxAtingida = hitboxCorpoPlayer.gameObject.name;
-                        //arenaManager.ControleDano(0.11f, defesaInimigo.gameObject.name);
                     }else if (hitboxCorpo == hitboxCabecaPlayer)
                     {
                         hitboxAtingida = hitboxCabecaPlayer.gameObject.name;
-                        //.ControleDano(0.11f, defesaInimigo.gameObject.name);
                     }
                     else if (hitboxCorpo == hitboxPePlayer)
                     {
                         hitboxAtingida = hitboxPePlayer.gameObject.name;
-                        //arenaManager.ControleDano(0.11f, defesaInimigo.gameObject.name);
                     }
                         
 
@@ -796,6 +790,7 @@ public class Movimentacao : MonoBehaviour
     {
         if (other.collider.CompareTag("Espinhos"))
         {
+            SFX.instance.TocarSFX(receberDanoSFX, transform, 0.2f, 1f);
             arenaManager.ControleDano(0.10f, this.name);
             ArremessoEsp(transform.localScale);
             Debug.Log($"{gameObject.name} pisou nos espinhos");
@@ -844,6 +839,7 @@ public class Movimentacao : MonoBehaviour
         podeAtacar = true;
         dashDisponivel = true;
     }
+    
 
     IEnumerator cotroleAtaqueDefesa(string variavel, bool valor)
     {
