@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 public class ArenaManager : MonoBehaviour
 {
+   
     // Todos os Debug.Log são de teste por enquanto 
     [SerializeField] private Transform jogador1Referencia;
     [SerializeField] private Transform jogador2Referencia;
@@ -40,8 +41,8 @@ public class ArenaManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nameP1;
     [SerializeField] private TextMeshProUGUI nameP2;
 
-    string winer;
-    bool jaTeveEmpate = false;
+    private string winer    ;
+    //bool jaTeveEmpate = false;
 
     [SerializeField] private GameObject canvasFinal;
 
@@ -58,6 +59,7 @@ public class ArenaManager : MonoBehaviour
     public bool partidaIniciada = false;
 
     [SerializeField] private GameObject painelDeConfiguracoes;
+    [SerializeField] private TextMeshProUGUI textOverTime;
 
     private void OnEnable()
     {
@@ -405,5 +407,21 @@ public class ArenaManager : MonoBehaviour
 
     }
 
+    public void OverTime()
+    {
+        if (winer == null)
+        {
+            Debug.Log(winer);
+            StartCoroutine(OverTimeC());
+        }
+    }
+
+    IEnumerator OverTimeC()
+    {
+
+        textOverTime.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        textOverTime.gameObject.SetActive(false);
+    }
 
 }

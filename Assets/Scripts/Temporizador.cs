@@ -57,6 +57,7 @@ public class Temporizador : MonoBehaviour
     {
         Debug.Log("Acabou o Tempo");
         StartCoroutine(arenaManager.FinalGame());
+        arenaManager.OverTime();
     }
 
 
